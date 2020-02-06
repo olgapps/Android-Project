@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AndroidTeacher</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">This is an app that helps the student to learn Android</string>
+
+</resources>
