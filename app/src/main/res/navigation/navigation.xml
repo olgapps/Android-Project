@@ -40,5 +40,13 @@
         android:id="@+id/testContentFragment"
         android:name="olga.pietrzyk.androidteacher.TestContentFragment"
         android:label="fragment_test_content"
-        tools:layout="@layout/fragment_test_content" />
+        tools:layout="@layout/fragment_test_content" >
+        <action
+            android:id="@+id/action_testContentFragment_to_testResultFragment"
+            app:destination="@id/testResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testResultFragment"
+        android:name="olga.pietrzyk.androidteacher.TestResultFragment"
+        android:label="TestResultFragment" />
 </navigation>
