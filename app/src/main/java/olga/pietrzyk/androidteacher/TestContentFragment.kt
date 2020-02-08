@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
-import olga.pietrzyk.androidteacher.databinding.FragmentTestBinding
 import olga.pietrzyk.androidteacher.databinding.FragmentTestContentBinding
 
 
@@ -59,11 +58,8 @@ class TestContentFragment : Fragment() {
 
 
 
-                Log.i("AAAAAAARESULT", "nie wiem czy tu jetstem tutaj${numberOfQuestions}")
-
                 if (userAnswerId == R.id.btnAAnswer) {
                     idIndex = 0
-                    Log.i("AAAAAAARESULT", "kliknales${idIndex}")
                 } else if (userAnswerId == R.id.btnBAnswer) {
                     idIndex = 1
                 } else if (userAnswerId == R.id.btnCAnswer) {
@@ -73,27 +69,29 @@ class TestContentFragment : Fragment() {
                 }
 
                 if (idIndex == 0) {
-                numberOfCorrectAnswers += 1
-                    Log.i("AAAAAAARESULT", "dobra odp${numberOfCorrectAnswers}")
-            }
+                    numberOfCorrectAnswers += 1
+                }
                 if(idIndex!=-1) {
                     numberOfQuestionToBeAnswered -= 1
                     indexOfQuestion += 1
-                    Log.i("AAAAAAARESULT", "tu tez bylem ale nic nie zrobilem")
+
                     binding.invalidateAll()
                 }
 
                 if(numberOfQuestionToBeAnswered==0){
                     finalResult=(numberOfCorrectAnswers.toDouble()*100/numberOfQuestions.toDouble())
                     Log.i("AAAAAAARESULT","L poprawnych odp ${numberOfCorrectAnswers} l odp to ${numberOfQuestions} wiec twój wynik to${finalResult}")
+
+
+
                     Navigation.findNavController(view).navigate(R.id.action_testContentFragment_to_testResultFragment)
                 }
 
                 currentQuestion = questions[indexOfQuestion]
                 answers = currentQuestion.answers.toMutableList()
+                idIndex = -1
+
             }
-
-
 
 
 

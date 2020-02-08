@@ -43,10 +43,15 @@
         tools:layout="@layout/fragment_test_content" >
         <action
             android:id="@+id/action_testContentFragment_to_testResultFragment"
-            app:destination="@id/testResultFragment" />
+            app:destination="@id/testResultFragment"
+            app:popUpTo="@+id/testFragment" />
     </fragment>
     <fragment
         android:id="@+id/testResultFragment"
         android:name="olga.pietrzyk.androidteacher.TestResultFragment"
-        android:label="TestResultFragment" />
+        android:label="TestResultFragment" >
+        <action
+            android:id="@+id/action_testResultFragment_to_testFragment"
+            app:destination="@id/testFragment" />
+    </fragment>
 </navigation>
