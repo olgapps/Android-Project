@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Start the app"
+            android:text="@string/start_the_app"
             android:textColor="@color/colorAccent"
 
             android:textStyle="bold"
