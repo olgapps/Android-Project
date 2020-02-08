@@ -28,14 +28,14 @@
             android:layout_height="wrap_content"
             android:text="@string/test_start_page"
             android:textSize="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintBottom_toTopOf="@+id/imageTest"
+            app:layout_constraintEnd_toEndOf="@+id/imageTest"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageTest"
             app:layout_constraintTop_toBottomOf="@+id/welcomeTestText" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imageTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
@@ -46,13 +46,14 @@
             app:layout_constraintTop_toTopOf="@+id/testText" />
 
         <Button
+            android:id="@+id/buttonStartTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/imageTest"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageTest"
             android:text="@string/start_test"
             app:layout_constraintVertical_bias="0.23000002" />
 

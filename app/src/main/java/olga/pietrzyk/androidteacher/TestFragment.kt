@@ -7,13 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import olga.pietrzyk.androidteacher.databinding.FragmentTitleBinding
+import androidx.navigation.Navigation
+import olga.pietrzyk.androidteacher.databinding.FragmentTestBinding
 
-//import olga.pietrzyk.androidteacher.databinding.FragmentTestBinding
-
-/**
- * A simple [Fragment] subclass.
- */
 class TestFragment : Fragment() {
 
     override fun onCreateView(
@@ -25,8 +21,12 @@ class TestFragment : Fragment() {
         //val binding: FragmentTestBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_test, container, false)
         //val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater, R.layout.fragment_test, container, false)
        // return binding.root
+        val binding = DataBindingUtil.inflate<FragmentTestBinding>(inflater, R.layout.fragment_test, container, false)
+        binding.buttonStartTest.setOnClickListener { view:View ->
+            Navigation.findNavController(view).navigate(R.id.action_testFragment_to_testContentFragment)
 
-        return inflater.inflate(R.layout.fragment_test, container, false)
+        }
+        return binding.root
     }
 
 
