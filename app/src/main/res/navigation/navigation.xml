@@ -53,5 +53,9 @@
         <action
             android:id="@+id/action_testResultFragment_to_testFragment"
             app:destination="@id/testFragment" />
+        <argument
+            android:name="finalResult"
+            app:argType="float"
+            android:defaultValue="0.0" />
     </fragment>
 </navigation>

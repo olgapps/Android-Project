@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import olga.pietrzyk.androidteacher.databinding.FragmentTestContentBinding
 
 
@@ -19,8 +19,8 @@ class TestContentFragment : Fragment() {
     )
 
     val questions: MutableList<TestQuestion> = mutableListOf(
-        TestQuestion(question="What id the most current version of Android",
-            answers=listOf("1","2","3","4")),
+        TestQuestion(question="What is the not a function of life cycle of android activity?",
+            answers=listOf("onRecreate","onStart()","onResume()","onCreate()")),
         TestQuestion(question="Where you inflate your menu",
             answers=listOf("onCreateOptions","onOptionItemSelected","setHasOptionMenu","title")),
         TestQuestion(question="Wher UI Fragments contain a layout and occupy a place within?",
@@ -81,10 +81,13 @@ class TestContentFragment : Fragment() {
                 if(numberOfQuestionToBeAnswered==0){
                     finalResult=(numberOfCorrectAnswers.toDouble()*100/numberOfQuestions.toDouble())
                     Log.i("AAAAAAARESULT","L poprawnych odp ${numberOfCorrectAnswers} l odp to ${numberOfQuestions} wiec twój wynik to${finalResult}")
+                    val action = TestContentFragmentDirections.actionTestContentFragmentToTestResultFragment(finalResult.toFloat())
+
+                    NavHostFragment.findNavController(this).navigate(action)
 
 
 
-                    Navigation.findNavController(view).navigate(R.id.action_testContentFragment_to_testResultFragment)
+                    // Navigation.findNavController(view).navigate(R.id.action_testContentFragment_to_testResultFragment)
                 }
 
                 currentQuestion = questions[indexOfQuestion]

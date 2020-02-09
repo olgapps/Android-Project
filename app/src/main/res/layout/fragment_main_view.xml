@@ -26,7 +26,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
-                android:text="Welcome on Main page"
+                android:text="@string/welcome_on_main_page"
                 android:textSize="30dp"
                 android:textStyle="bold"
                 android:typeface="normal"

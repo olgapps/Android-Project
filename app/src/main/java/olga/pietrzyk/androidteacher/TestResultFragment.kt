@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import olga.pietrzyk.androidteacher.databinding.FragmentTestResultBinding
 
 /**
@@ -21,6 +22,9 @@ class TestResultFragment : Fragment() {
     ): View? {
 
         val binding: FragmentTestResultBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_test_result, container, false)
+
+        val testResultFragmentArgs by navArgs<TestResultFragmentArgs>()
+        binding.finalResultText.text = testResultFragmentArgs.finalResult.toString()
 
         binding.btnTryAgain.setOnClickListener { view:View ->
             Navigation.findNavController(view).navigate(R.id.action_testResultFragment_to_testFragment)
