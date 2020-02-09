@@ -31,10 +31,10 @@ class TestContentFragment : Fragment() {
 
     lateinit var currentQuestion: TestQuestion
     lateinit var answers: MutableList<String>
-    val numberOfQuestions = 3
+    val numberOfQuestions = questions.size
     var numberOfCorrectAnswers=0
     var finalResult:Double=0.0
-
+    var questionNumber=1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +43,9 @@ class TestContentFragment : Fragment() {
 
 
         val binding = DataBindingUtil.inflate<FragmentTestContentBinding>(inflater, R.layout.fragment_test_content, container, false)
-        var indexOfQuestion=0
+        binding.txtquestionNumber.text=questionNumber.toString()
 
+        var indexOfQuestion=0
         var numberOfQuestionToBeAnswered=numberOfQuestions
         var idIndex = -1
         binding.test=this
@@ -54,9 +55,12 @@ class TestContentFragment : Fragment() {
 
 
             binding.answerButton.setOnClickListener { view: View ->
+            //jeden problem z numerowaniem
+
+
+
                 var userAnswerId = binding.radioGroup.checkedRadioButtonId
-
-
+                idIndex=(-1)
 
                 if (userAnswerId == R.id.btnAAnswer) {
                     idIndex = 0
@@ -71,37 +75,39 @@ class TestContentFragment : Fragment() {
                 if (idIndex == 0) {
                     numberOfCorrectAnswers += 1
                 }
-                if(idIndex!=-1) {
-                    numberOfQuestionToBeAnswered -= 1
-                    indexOfQuestion += 1
 
-                    binding.invalidateAll()
-                }
 
-                if(numberOfQuestionToBeAnswered==0){
+
+                Log.i("AAAAAAARESULT"," QUESTION NUMBER${questionNumber} NUMBER OF QUESTIIOSN ${numberOfQuestions} indexOfQuestion ${indexOfQuestion}")
+
+
+
+                if((indexOfQuestion==(numberOfQuestions-1)) && (idIndex!=-1)){
                     finalResult=(numberOfCorrectAnswers.toDouble()*100/numberOfQuestions.toDouble())
                     Log.i("AAAAAAARESULT","L poprawnych odp ${numberOfCorrectAnswers} l odp to ${numberOfQuestions} wiec twój wynik to${finalResult}")
                     val action = TestContentFragmentDirections.actionTestContentFragmentToTestResultFragment(finalResult.toFloat())
-
                     NavHostFragment.findNavController(this).navigate(action)
-
-
-
-                    // Navigation.findNavController(view).navigate(R.id.action_testContentFragment_to_testResultFragment)
                 }
 
-                currentQuestion = questions[indexOfQuestion]
-                answers = currentQuestion.answers.toMutableList()
-                idIndex = -1
-
+                if(idIndex!=-1 && indexOfQuestion<(numberOfQuestions-1)) {
+                numberOfQuestionToBeAnswered -= 1
+                indexOfQuestion += 1
+                    questionNumber +=1
+                    idIndex = -1
+                    currentQuestion = questions[indexOfQuestion]
+                    answers = currentQuestion.answers.toMutableList()
+                    binding.radioGroup.clearCheck();
+                    if(indexOfQuestion<(numberOfQuestions)){
+                        binding.txtquestionNumber.text=questionNumber.toString()
+                    }
+                    binding.invalidateAll()
             }
 
 
 
-
+            }
 
         return binding.root
-        //return inflater.inflate(R.layout.fragment_test_content, container, false)
     }
 
 
