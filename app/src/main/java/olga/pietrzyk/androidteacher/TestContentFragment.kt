@@ -50,15 +50,19 @@ class TestContentFragment : Fragment() {
         var idIndex = -1
         binding.test=this
 
+        questions.shuffle()
+
+
         currentQuestion = questions[indexOfQuestion]
         answers = currentQuestion.answers.toMutableList()
-
+        answers.shuffle()
+        Log.i("AAAAAAARESULT","my shuffle answers ${answers} ")
 
             binding.answerButton.setOnClickListener { view: View ->
             //jeden problem z numerowaniem
 
 
-
+                Log.i("AAAAAAARESULT","my shuffle answers ${answers} ")
                 var userAnswerId = binding.radioGroup.checkedRadioButtonId
                 idIndex=(-1)
 
@@ -72,7 +76,7 @@ class TestContentFragment : Fragment() {
                     idIndex = 3
                 }
 
-                if (idIndex == 0) {
+                if (answers[idIndex] == currentQuestion.answers[0]) {
                     numberOfCorrectAnswers += 1
                 }
 
@@ -96,6 +100,8 @@ class TestContentFragment : Fragment() {
                     idIndex = -1
                     currentQuestion = questions[indexOfQuestion]
                     answers = currentQuestion.answers.toMutableList()
+                    answers.shuffle()
+
                     binding.radioGroup.clearCheck();
                     if(indexOfQuestion<(numberOfQuestions)){
                         binding.txtquestionNumber.text=questionNumber.toString()

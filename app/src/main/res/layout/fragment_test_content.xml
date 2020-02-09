@@ -73,25 +73,25 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{test.currentQuestion.answers[0]}" />
+                android:text="@{test.answers[0]}" />
 
             <RadioButton
                 android:id="@+id/btnBAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{test.currentQuestion.answers[1]}" />
+                android:text="@{test.answers[1]}" />
 
             <RadioButton
                 android:id="@+id/btnCAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{test.currentQuestion.answers[2]}" />
+                android:text="@{test.answers[2]}" />
 
             <RadioButton
                 android:id="@+id/btnDAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{test.currentQuestion.answers[3]}" />
+                android:text="@{test.answers[3]}" />
         </RadioGroup>
 
         <Button
