@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import olga.pietrzyk.androidteacher.databinding.FragmentTestBinding
@@ -20,6 +21,7 @@ class TestFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentTestBinding>(inflater, R.layout.fragment_test, container, false)
         binding.buttonStartTest.setOnClickListener { view:View ->
             Navigation.findNavController(view).navigate(R.id.action_testFragment_to_testContentFragment)
+            //(activity as AppCompatActivity).supportActionBar?.title = "Welcome in test"
         }
         return binding.root
     }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -22,7 +23,7 @@ class TestResultFragment : Fragment() {
     ): View? {
 
         val binding: FragmentTestResultBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_test_result, container, false)
-
+        //(activity as AppCompatActivity).supportActionBar?.title = "Test result"
         val testResultFragmentArgs by navArgs<TestResultFragmentArgs>()
         binding.finalResultText.text = testResultFragmentArgs.finalResult.toString()
 
