@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 import olga.pietrzyk.androidteacher.R
@@ -17,7 +18,7 @@ import olga.pietrzyk.androidteacher.databinding.FragmentIndexedCardsBinding
  */
 class IndexedCardsFragment : Fragment() {
 
-    private lateinit var ViewModel: IndexedCardsViewModel
+    private lateinit var viewModel: IndexedCardsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,16 +27,19 @@ class IndexedCardsFragment : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentIndexedCardsBinding>(inflater, R.layout.fragment_indexed_cards, container, false)
 
-        binding.btnCheckMeaning.setOnClickListener {
-            binding.apply{
 
-            }
+        viewModel = ViewModelProviders.of(this).get(IndexedCardsViewModel::class.java)
 
+        viewModel.current_card.observe(this, Observer { newWord ->
+            binding.txtDefinition.text = newWord.definition
+        })
+
+        binding.btnNext.setOnClickListener {
+            viewModel.changeTheCard()
         }
 
-        ViewModel = ViewModelProviders.of(this).get(IndexedCardsViewModel::class.java)
-        // Inflate the layout for this fragment
         return binding.root
+
     }
 
 

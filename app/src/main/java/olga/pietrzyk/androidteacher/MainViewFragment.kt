@@ -29,12 +29,12 @@ class MainViewFragment : Fragment() {
             binding.listOptions?.setOnItemClickListener{parent, view, position, id->
                 Log.i("mojeee",position.toString())
                 if(position==1) {
-                    Log.i("mojeee","jestem tu ale sobie nie działam")
                     view.findNavController().navigate(R.id.action_mainViewFragment_to_testFragment)
-
+                }
+                if(position==2) {
+                    view.findNavController().navigate(R.id.action_mainViewFragment_to_indexedCardsFragment)
 
             }
-
             }
         return binding.root
 
