@@ -1,5 +1,6 @@
 package olga.pietrzyk.androidteacher.indexedCards
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -29,11 +30,10 @@ class IndexedCardsViewModel: ViewModel(){
     )
 
 
-
-
-
     private var cardIndex=0
-
+    private var _meaning= MutableLiveData <Boolean>()
+    val meaning: LiveData<Boolean>
+        get()=_meaning
 
     private val _current_card= MutableLiveData<IndexedCards>()
     val current_card: LiveData<IndexedCards>
@@ -43,12 +43,36 @@ class IndexedCardsViewModel: ViewModel(){
     init{
         _cards.shuffle()
         _current_card.value=_cards[cardIndex]
+        _meaning.value=false
     }
 
     fun changeTheCard(){
+        Log.i("AAA", "${cardIndex}")
         cardIndex+=1
         _current_card.value=_cards[cardIndex]
     }
+
+    fun showMeaning(){
+        _meaning.value=true
+
+    }
+
+    fun coverMeaning(){
+        _meaning.value=false
+
+    }
+
+    fun setWordsAgain(){
+        Log.i("AAAAAAA", "${cardIndex}")
+        if(cardIndex==2){
+            cardIndex=0
+            _cards.shuffle()
+            _current_card.value=_cards[cardIndex]
+        }
+
+
+    }
+
 
 
 }
