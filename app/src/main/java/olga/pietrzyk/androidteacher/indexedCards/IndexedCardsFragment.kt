@@ -38,10 +38,7 @@ class IndexedCardsFragment : Fragment() {
 
         })
 
-    /*    viewModel.meaning.observe(this, Observer { newMeaning->
-            meaningSetter=newMeaning
-        })
-*/
+
 
 
         binding.btnNext.setOnClickListener {
