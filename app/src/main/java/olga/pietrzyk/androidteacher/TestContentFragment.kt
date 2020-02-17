@@ -9,34 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import olga.pietrzyk.androidteacher.databinding.FragmentTestContentBinding
 
 
 class TestContentFragment : Fragment() {
-    data class TestQuestion(
-        val question: String,
-        val answers: List<String>
-    )
-
-    val questions: MutableList<TestQuestion> = mutableListOf(
-        TestQuestion(question="What is the not a function of life cycle of android activity?",
-            answers=listOf("onRecreate()","onStart()","onResume()","onCreate()")),
-        TestQuestion(question="Where you inflate your menu",
-            answers=listOf("onCreateOptions","onOptionItemSelected","setHasOptionMenu","onInflateMenu")),
-        TestQuestion(question="Where UI Fragments contain a layout and occupy a place within?",
-            answers=listOf("in the Activity Layout","in onContextView","in context","in onCreate method")),
-        TestQuestion(question="What id the most current version of Android",
-            answers=listOf("Android Pie","Android Oreo","Android Nougat","Android Marshmallow"))
-    )
 
 
-    lateinit var currentQuestion: TestQuestion
-    lateinit var answers: MutableList<String>
-    val numberOfQuestions = questions.size
-    var numberOfCorrectAnswers=0
-    var finalResult:Double=0.0
-    var questionNumber=1
+
+
+    private lateinit var viewModel : TestContentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,22 +31,25 @@ class TestContentFragment : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentTestContentBinding>(inflater, R.layout.fragment_test_content, container, false)
         //(activity as AppCompatActivity).supportActionBar?.title = "Test question"
-        binding.txtquestionNumber.text=questionNumber.toString()
 
-        var indexOfQuestion=0
-        var numberOfQuestionToBeAnswered=numberOfQuestions
+        viewModel= ViewModelProviders.of(this).get(TestContentViewModel::class.java)
+
+        binding.txtquestionNumber.text=viewModel.questionNumber.toString()
+        binding.test=viewModel
+
+
+        //var numberOfQuestionToBeAnswered=numberOfQuestions
         var idIndex = -1
-        binding.test=this
+        //binding.test=this
+        viewModel.questionNumber.observe(this, Observer { newQuestionNumber ->
+            //binding.wordText.text = newWord
+            binding.txtquestionNumber.text=newQuestionNumber.toString()
+        })
 
-        questions.shuffle()
 
-
-        currentQuestion = questions[indexOfQuestion]
-        answers = currentQuestion.answers.toMutableList()
-        answers.shuffle()
 
             binding.answerButton.setOnClickListener { view: View ->
-            //jeden problem z numerowaniem
+
 
 
                 var userAnswerId = binding.radioGroup.checkedRadioButtonId
@@ -77,33 +65,44 @@ class TestContentFragment : Fragment() {
                     idIndex = 3
                 }
 
-                if (idIndex!=-1 && answers[idIndex] == currentQuestion.answers[0]) {
-                    numberOfCorrectAnswers += 1
+
+                //dodaje ilość poprawnych odp (idzie do view)
+
+
+                if (idIndex!=-1 && viewModel.answers.value!![idIndex]== viewModel.currentQuestion.value!!.answers[0]) {
+                    //numberOfCorrectAnswers += 1
+                    viewModel.increaseNumberOfCorrectAnswers()
                 }
 
-                if((indexOfQuestion==(numberOfQuestions-1)) && (idIndex!=-1)){
-                    finalResult=(numberOfCorrectAnswers.toDouble()*100/numberOfQuestions.toDouble())
-                    Log.i("AAAAAAARESULT","L poprawnych odp ${numberOfCorrectAnswers} l odp to ${numberOfQuestions} wiec twój wynik to${finalResult}")
-                    val action = TestContentFragmentDirections.actionTestContentFragmentToTestResultFragment(finalResult.toFloat())
-                    NavHostFragment.findNavController(this).navigate(action)
+                //vin statement
+                if((viewModel.indexOfQuestion==(viewModel.numberOfQuestions-1)) && (idIndex!=-1)){
+                    viewModel.setFinalResult()
+                    //finalResult=(numberOfCorrectAnswers.toDouble()*100/numberOfQuestions.toDouble())
+                    val action = TestContentFragmentDirections.actionTestContentFragmentToTestResultFragment(viewModel.finalResult.value!!.toFloat())
+                   NavHostFragment.findNavController(this).navigate(action)
                 }
 
-                if(idIndex!=-1 && indexOfQuestion<(numberOfQuestions-1)) {
-                    numberOfQuestionToBeAnswered -= 1
+                if(idIndex!=-1 && viewModel.indexOfQuestion<(viewModel.numberOfQuestions-1)) {
+                    viewModel.goToNextQuestion()
+                    /*numberOfQuestionToBeAnswered -= 1
                     indexOfQuestion += 1
                     questionNumber +=1
                     //idIndex = -1
                     currentQuestion = questions[indexOfQuestion]
                     answers = currentQuestion.answers.toMutableList()
-                    answers.shuffle()
+                    answers.shuffle()*/
 
                     binding.radioGroup.clearCheck();
-                    if(indexOfQuestion<(numberOfQuestions)){
-                        binding.txtquestionNumber.text=questionNumber.toString()
+                    if(viewModel.indexOfQuestion<(viewModel.numberOfQuestions)){
+                        viewModel.questionNumber.observe(this, Observer { newQuestionNumber ->
+                            //binding.wordText.text = newWord
+                            binding.txtquestionNumber.text=newQuestionNumber.toString()
+                        })
+
                     }
                     binding.invalidateAll()
 
-            }
+                }
 
 
 
