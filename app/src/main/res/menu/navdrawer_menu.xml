@@ -7,4 +7,7 @@
     <item
         android:id="@+id/aboutAppFragment"
         android:title="@string/aboutApp" />
+    <item
+        android:id="@+id/indexedCardsFragment"
+        android:title="Indexed Cards" />
 </menu>
