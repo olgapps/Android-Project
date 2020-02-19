@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_mainViewFragment_to_indexedCardsFragment"
             app:destination="@id/indexedCardsFragment" />
+        <action
+            android:id="@+id/action_mainViewFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutAppFragment"
@@ -65,4 +68,9 @@
         android:id="@+id/indexedCardsFragment"
         android:name="olga.pietrzyk.androidteacher.indexedCards.IndexedCardsFragment"
         android:label="IndexedCardsFragment" />
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="olga.pietrzyk.androidteacher.articles.ArticleFragment"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_article" />
 </navigation>

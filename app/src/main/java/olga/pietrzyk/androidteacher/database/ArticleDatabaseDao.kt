@@ -22,9 +22,9 @@ interface ArticleDatabaseDao {
     fun clear()
 
     @Query("SELECT * FROM articles_table ORDER BY articleId DESC")
-    fun getAllNights(): LiveData<List<Article>>
+    fun getAllArticles(): LiveData<List<Article>>
 
     @Query("SELECT * FROM articles_table ORDER BY articleId DESC LIMIT 1")
-    fun getTonight(): Article?
+    fun getArticle(): Article?
 
 }

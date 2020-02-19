@@ -28,6 +28,9 @@ class MainViewFragment : Fragment() {
 
             binding.listOptions?.setOnItemClickListener{parent, view, position, id->
                 Log.i("mojeee",position.toString())
+                if(position==0) {
+                    view.findNavController().navigate(R.id.action_mainViewFragment_to_articleFragment)
+                }
                 if(position==1) {
                     view.findNavController().navigate(R.id.action_mainViewFragment_to_testFragment)
                 }

@@ -10,12 +10,12 @@ data class Article(
     var articleId: Long=0L,
 
     @ColumnInfo(name = "title")
-    val startTimeMilli: String="title" ,
+    val aticleTitle: String?,
 
     @ColumnInfo(name = "content")
-    var endTimeMilli: String="content",
+    var articleContent: String?,
 
     @ColumnInfo(name = "quality_rating")
-    var sleepQuality: Int = -1
+    var articleRate: Int = -1
 
 )
