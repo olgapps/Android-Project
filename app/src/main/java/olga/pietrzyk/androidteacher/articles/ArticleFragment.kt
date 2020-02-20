@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 
@@ -31,6 +32,21 @@ class ArticleFragment : Fragment() {
         val dataSource = ArticleDatabase.getInstance(application).articleDatabaseDao
         val viewModelFactory = ArticleViewModelFactory(dataSource, application)
         val articleViewModel= ViewModelProviders.of(this, viewModelFactory).get(ArticleViewModel::class.java)
+
+        //tell recyclerView about our adapter
+        val adapter = ArticlesAdapter()
+
+        //this will thell the adapter we made to dispaly things on the srcreen
+        binding.listArticles.adapter=adapter
+
+        //tell the adapter what data it should be adapting
+        articleViewModel.articles.observe(viewLifecycleOwner, Observer{
+            it?.let{
+                adapter.data=it
+            }
+
+        })
+
         binding.setLifecycleOwner(this)
         binding.atricleViewModel=articleViewModel
         return binding.root

@@ -23,7 +23,7 @@ class ArticleViewModel(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private var newArticle = MutableLiveData<Article>()
-    private val articles =database.getAllArticles()
+   val articles =database.getAllArticles()
    // lateinit var article: Article?
 
    // val articleString=article.toString()
@@ -33,7 +33,7 @@ class ArticleViewModel(
     }
 
     init{
-        //onStartArticle()
+       // onStartArticle()
     }
 
 
@@ -46,13 +46,13 @@ class ArticleViewModel(
     fun onStartArticle(){
         uiScope.launch {
            // val nerArticle1 = Article("Android Intro","This is the first article about Android")
-            val nerArticle2 = Article(2,"Android Layout","This is the first article about Android Layout")
-            val nerArticle3 = Article(3,"Android Main Activity","This is the first article about Main Activity")
-            val nerArticle4 = Article(4,"Android Fragments","This is the first article about Fragments")
+            val nerArticle2 = Article(5,"Android Layout","This is the first article about Android Layout", 0)
+            //val nerArticle3 = Article(3,"Android Main Activity","This is the first article about Main Activity")
+            val nerArticle4 = Article(6,"Android Fragments","This is the first article about Fragments", 1)
 
             //insert(nerArticle1)
             insert(nerArticle2)
-            insert(nerArticle3)
+            //insert(nerArticle3)
             insert(nerArticle4)
 
         }
