@@ -28,7 +28,7 @@ class ArticleFragment : Fragment() {
         val binding: FragmentArticleBinding=DataBindingUtil.inflate(inflater, R.layout.fragment_article, container, false)
         // Inflate the layout for this fragment
 
-       val application = requireNotNull(this.activity).application
+        val application = requireNotNull(this.activity).application
         val dataSource = ArticleDatabase.getInstance(application).articleDatabaseDao
         val viewModelFactory = ArticleViewModelFactory(dataSource, application)
         val articleViewModel= ViewModelProviders.of(this, viewModelFactory).get(ArticleViewModel::class.java)
@@ -42,7 +42,7 @@ class ArticleFragment : Fragment() {
         //tell the adapter what data it should be adapting
         articleViewModel.articles.observe(viewLifecycleOwner, Observer{
             it?.let{
-                adapter.data=it
+                adapter.submitList(it)
             }
 
         })

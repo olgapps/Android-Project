@@ -5,13 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import olga.pietrzyk.androidteacher.R
-import olga.pietrzyk.androidteacher.TextItemViewHolder
 import olga.pietrzyk.androidteacher.database.Article
 
-class ArticlesAdapter: RecyclerView.Adapter<ArticlesAdapter.ViewHolder>(){
-    var data = listOf<Article>()
+class ArticlesAdapter: ListAdapter<Article, ArticlesAdapter.ViewHolder>(ArticleDifferences()){
+   /* var data = listOf<Article>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -19,27 +20,23 @@ class ArticlesAdapter: RecyclerView.Adapter<ArticlesAdapter.ViewHolder>(){
 
     override fun getItemCount(): Int {
        return data.size//To change body of created functions use File | Settings | File Templates.
-    }
+    }*/
     //tell Recycler view how to actually draw an item
     //holder is an TextItemViewHolder which is a
     /*generic type we specified on the Recycler View Adapter
      and positio n is just a position in the list we are supposed to be binding*/
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
 
         val res = holder.itemView.context.resources
        // holder.articleGrade.text =
         //holder.textView.text=item.aticleTitle.toString()
 
-        holder.articleTitle.text=item.aticleTitle.toString()
-        holder.gradeImage.setImageResource(when (item.articleRate){
-            -1 -> R.drawable.ic_plain_yellow_star1
-            0-> R.drawable.ic_plain_yellow_star2
-            1-> R.drawable.ic_plain_yellow_star3
-            else -> R.drawable.ic_plain_yellow_star3
-        })
+        holder.bind(item)
 
     }
+
+
 
     //tell recycler view how to create a new view holder
     /**recycler does not really cares about views it does everything in terms of VIEW HOLDERS
@@ -68,23 +65,11 @@ class ArticlesAdapter: RecyclerView.Adapter<ArticlesAdapter.ViewHolder>(){
      */
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        /*to make a view holder you neet to make a view for it to hold
-        *to inflate a layout form xml you use a layout inflator
-        *from parent.context -> you will create a layout inflator based on the parent view
-        *  */
-        val layoutInflater= LayoutInflater.from(parent.context)
-        /*we just use the layout infaltor object to inflate text item view
-        * you need to pass a parent that recycyler view gave us
-        * the layou inflator will make sure it sets the view up correctly for the parrent  passed
-        * false - > this parameter is attached to root, root just means parent
-        *   since recycycler view will add this item for us when it is time it will thow an exception if we added iit now
-        *
-       */
-        val view =layoutInflater.inflate(R.layout.list_item_article, parent, false)
-        return ViewHolder(view)
+        return ViewHolder.from(parent)
 
         //
     }
+
     //we need to let the recycler view know when the data changes
     // recycyler view does not really care about what data it is displying
     // it just uses the adapter to bind items that should be on the screen right now
@@ -103,6 +88,50 @@ class ArticlesAdapter: RecyclerView.Adapter<ArticlesAdapter.ViewHolder>(){
         var articleTitle: TextView = itemView.findViewById(R.id.txt_article_title)
         val gradeImage: ImageView=itemView.findViewById(R.id.img_stars)
         //when we are binding this view holders we can just use these properties to get directly to the views that we need to update
+
+        fun bind(
+            item: Article
+        ) {
+            articleTitle.text = item.aticleTitle.toString()
+            gradeImage.setImageResource(
+                when (item.articleRate) {
+                    -1 -> R.drawable.ic_plain_yellow_star1
+                    0 -> R.drawable.ic_plain_yellow_star2
+                    1 -> R.drawable.ic_plain_yellow_star3
+                    else -> R.drawable.ic_plain_yellow_star3
+                }
+            )
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                /*to make a view holder you neet to make a view for it to hold
+                *to inflate a layout form xml you use a layout inflator
+                *from parent.context -> you will create a layout inflator based on the parent view
+                *  */
+                val layoutInflater = LayoutInflater.from(parent.context)
+                /*we just use the layout infaltor object to inflate text item view
+                * you need to pass a parent that recycyler view gave us
+                * the layou inflator will make sure it sets the view up correctly for the parrent  passed
+                * false - > this parameter is attached to root, root just means parent
+                *   since recycycler view will add this item for us when it is time it will thow an exception if we added iit now
+                *
+               */
+                val view = layoutInflater.inflate(R.layout.list_item_article, parent, false)
+                return ViewHolder(view)
+            }
+        }
+
+    }
+
+    class ArticleDifferences: DiffUtil.ItemCallback<Article>(){
+        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
+            return oldItem.articleId==newItem.articleId
+        }
+
+        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
+            return oldItem==newItem
+        }
 
     }
 }
