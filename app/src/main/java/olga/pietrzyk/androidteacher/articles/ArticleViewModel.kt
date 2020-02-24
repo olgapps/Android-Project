@@ -20,6 +20,18 @@ class ArticleViewModel(
         viewModelJob.cancel()
     }
 
+    private val _navigateToArticleId=MutableLiveData<Long>()
+    val navigateToArticleViewModelId
+        get()=_navigateToArticleId
+
+    fun onArticleNavigated(){
+        _navigateToArticleId.value=null
+    }
+
+    fun onArticleClicked(ID: Long){
+        _navigateToArticleId.value=ID
+    }
+
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private var newArticle = MutableLiveData<Article>()

@@ -18,6 +18,9 @@ interface ArticleDatabaseDao {
     @Query("SELECT * from articles_table WHERE articleId = :key")
     fun get(key: Long): Article?
 
+    @Query("SELECT * from articles_table WHERE articleId=:key")
+    fun getArticleWithId(key:Long): LiveData<Article>
+
     @Query("DELETE FROM articles_table")
     fun clear()
 
@@ -26,5 +29,7 @@ interface ArticleDatabaseDao {
 
     @Query("SELECT * FROM articles_table ORDER BY articleId DESC LIMIT 1")
     fun getArticle(): Article?
+
+
 
 }

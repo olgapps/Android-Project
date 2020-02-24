@@ -1,17 +1,14 @@
 package olga.pietrzyk.androidteacher.articles
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import olga.pietrzyk.androidteacher.R
 import olga.pietrzyk.androidteacher.database.Article
+import olga.pietrzyk.androidteacher.databinding.ListItemArticleBinding
 
-class ArticlesAdapter: ListAdapter<Article, ArticlesAdapter.ViewHolder>(ArticleDifferences()){
+class ArticlesAdapter(val clickListener:ArticleListener): ListAdapter<Article, ArticlesAdapter.ViewHolder>(ArticleDifferences()){
    /* var data = listOf<Article>()
         set(value) {
             field = value
@@ -26,13 +23,16 @@ class ArticlesAdapter: ListAdapter<Article, ArticlesAdapter.ViewHolder>(ArticleD
     /*generic type we specified on the Recycler View Adapter
      and positio n is just a position in the list we are supposed to be binding*/
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
+       holder.bind(getItem(position)!!, clickListener)
+        //val item = getItem(position)
 
-        val res = holder.itemView.context.resources
+       // val res = holder.itemView.context.resources
        // holder.articleGrade.text =
         //holder.textView.text=item.aticleTitle.toString()
 
-        holder.bind(item)
+
+
+        //holder.bind(item)
 
     }
 
@@ -78,29 +78,16 @@ class ArticlesAdapter: ListAdapter<Article, ArticlesAdapter.ViewHolder>(ArticleD
 
 
     /**we will make a class inside a Adapter called View Holder */
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        //every time you bind view holder you need to acces the image and both TextViews
-        //this way when we are binding this view holder we we do not need to look up at id...length every time
-        //we can retreive the view by the findView by id
-        //firt we will pull out sleep lenth from the item view
-        //later we will update this using data binding
-        //but we want to get working view holder as much as possible
-        var articleTitle: TextView = itemView.findViewById(R.id.txt_article_title)
-        val gradeImage: ImageView=itemView.findViewById(R.id.img_stars)
+    class ViewHolder(val binding: ListItemArticleBinding): RecyclerView.ViewHolder(binding.root){
         //when we are binding this view holders we can just use these properties to get directly to the views that we need to update
 
         fun bind(
-            item: Article
+            item: Article,
+            clickListener: ArticleListener
         ) {
-            articleTitle.text = item.aticleTitle.toString()
-            gradeImage.setImageResource(
-                when (item.articleRate) {
-                    -1 -> R.drawable.ic_plain_yellow_star1
-                    0 -> R.drawable.ic_plain_yellow_star2
-                    1 -> R.drawable.ic_plain_yellow_star3
-                    else -> R.drawable.ic_plain_yellow_star3
-                }
-            )
+            binding.clickListener=clickListener
+            binding.article=item
+            binding.executePendingBindings()
         }
 
         companion object {
@@ -117,8 +104,9 @@ class ArticlesAdapter: ListAdapter<Article, ArticlesAdapter.ViewHolder>(ArticleD
                 *   since recycycler view will add this item for us when it is time it will thow an exception if we added iit now
                 *
                */
-                val view = layoutInflater.inflate(R.layout.list_item_article, parent, false)
-                return ViewHolder(view)
+                //val view = layoutInflater.inflate(R.layout.list_item_article, parent, false)
+                val binding = ListItemArticleBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
         }
 
@@ -134,4 +122,8 @@ class ArticlesAdapter: ListAdapter<Article, ArticlesAdapter.ViewHolder>(ArticleD
         }
 
     }
+}
+
+class ArticleListener(val clickListener: (articleId: Long)->Unit){
+    fun onClick(article: Article)=clickListener(article.articleId)
 }
