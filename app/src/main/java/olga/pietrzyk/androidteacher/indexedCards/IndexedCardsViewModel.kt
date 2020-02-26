@@ -64,7 +64,7 @@ class IndexedCardsViewModel: ViewModel(){
 
     fun setWordsAgain(){
         Log.i("AAAAAAA", "${cardIndex}")
-        if(cardIndex==2){
+        if(cardIndex==(_cards.size-1)){
             cardIndex=0
             _cards.shuffle()
             _current_card.value=_cards[cardIndex]

@@ -45,6 +45,7 @@ class IndexedCardsFragment : Fragment() {
 
             viewModel.changeTheCard()
             viewModel.setWordsAgain()
+            viewModel.coverMeaning()
             binding.txtDescription.visibility = View.GONE
             binding.btnCheckMeaning.visibility=View.VISIBLE
         }
@@ -61,6 +62,7 @@ class IndexedCardsFragment : Fragment() {
             binding.btnCheckMeaning.visibility=View.GONE
 
         }
+
         if ( viewModel.meaning.value==true) {
             binding.txtDescription.visibility = View.VISIBLE
             binding.btnCheckMeaning.visibility=View.GONE
