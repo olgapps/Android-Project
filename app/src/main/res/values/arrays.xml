@@ -4,7 +4,11 @@
         <item>Learn Android</item>
         <item>Do a test</item>
         <item>Control your knowledge</item>
+        <item>Login</item>
     </string-array>
 
-
+    <array name="fact_type">
+        <item>@string/fact_type_android</item>
+        <item>@string/fact_type_california</item>
+    </array>
 </resources>

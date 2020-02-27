@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "958535753261",
+    "firebase_url": "https://android-teacher-f7086.firebaseio.com",
+    "project_id": "android-teacher-f7086",
+    "storage_bucket": "android-teacher-f7086.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958535753261:android:ad4e539be9ee5650b022a4",
+        "android_client_info": {
+          "package_name": "olga.pietrzyk.androidteacher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958535753261-6itdlfpef4u57jgpcole77mre9dvvc9v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "olga.pietrzyk.androidteacher",
+            "certificate_hash": "48daccd3356d164d3bc096fdee720b4960d25550"
+          }
+        },
+        {
+          "client_id": "958535753261-ovobbi049t4bpd0abeip8gbathlk5u0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnuU5_TlG7HdTQTH3XzJZU00tvMUhShuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958535753261-ovobbi049t4bpd0abeip8gbathlk5u0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -26,18 +26,23 @@ class MainViewFragment : Fragment() {
     ): View? {
         val binding=DataBindingUtil.inflate<FragmentMainViewBinding>(inflater, R.layout.fragment_main_view, container, false)
 
-            binding.listOptions?.setOnItemClickListener{parent, view, position, id->
-                Log.i("mojeee",position.toString())
-                if(position==0) {
-                    view.findNavController().navigate(R.id.action_mainViewFragment_to_articleFragment)
+            binding.listOptions?.setOnItemClickListener { parent, view, position, id ->
+                Log.i("mojeee", position.toString())
+                if (position == 0) {
+                    view.findNavController()
+                        .navigate(R.id.action_mainViewFragment_to_articleFragment)
                 }
-                if(position==1) {
+                if (position == 1) {
                     view.findNavController().navigate(R.id.action_mainViewFragment_to_testFragment)
                 }
-                if(position==2) {
-                    view.findNavController().navigate(R.id.action_mainViewFragment_to_indexedCardsFragment)
+                if (position == 2) {
+                    view.findNavController()
+                        .navigate(R.id.action_mainViewFragment_to_indexedCardsFragment)
+                }
+                if (position == 3) {
+                    view.findNavController().navigate(R.id.action_mainViewFragment_to_mainFragment)
 
-            }
+                }
             }
         return binding.root
 

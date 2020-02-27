@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_mainViewFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
+        <action
+            android:id="@+id/action_mainViewFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutAppFragment"
@@ -88,4 +91,21 @@
             android:id="@+id/action_articleContentFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="olga.pietrzyk.androidteacher.login.MainFragment"
+        android:label="MainFragment" >
+
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="olga.pietrzyk.androidteacher.login.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="olga.pietrzyk.androidteacher.login.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>
