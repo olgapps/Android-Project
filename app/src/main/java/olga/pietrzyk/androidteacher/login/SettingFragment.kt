@@ -15,7 +15,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         const val TAG = "SettingsFragment"
     }
 
-    // Get a reference to the ViewModel scoped to this Fragment
+
     private val viewModel by viewModels<LoginViewModel>()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

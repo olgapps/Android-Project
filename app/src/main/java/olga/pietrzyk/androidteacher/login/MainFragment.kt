@@ -34,7 +34,6 @@ class MainFragment : Fragment() {
         const val SIGN_IN_RESULT_CODE = 1001
     }
 
-    // Get a reference to the ViewModel scoped to this Fragment
     private val viewModel by viewModels<LoginViewModel>()
     private lateinit var binding: FragmentMainBinding
 
@@ -44,7 +43,8 @@ class MainFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
 
         // TODO Remove the two lines below once observeAuthenticationState is implemented.
-        binding.welcomeText.text = viewModel.getFactToDisplay(requireContext())
+        binding.welcomeText.text ="tutaj będzie lista Artykułow"
+                //binding.welcomeText.text = viewModel.getFactToDisplay(requireContext())
         binding.authButton.text = getString(R.string.login_btn)
 
         return binding.root
@@ -68,24 +68,16 @@ class MainFragment : Fragment() {
         if (requestCode == SIGN_IN_RESULT_CODE) {
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK) {
-                // User successfully signed in
+
                 Log.i(TAG, "Successfully signed in user ${FirebaseAuth.getInstance().currentUser?.displayName}!")
             } else {
-                // Sign in failed. If response is null the user canceled the
-                // sign-in flow using the back button. Otherwise check
-                // response.getError().getErrorCode() and handle the error.
                 Log.i(TAG, "Sign in unsuccessful ${response?.error?.errorCode}")
             }
         }
     }
 
-    /**
-     * Observes the authentication state and changes the UI accordingly.
-     * If there is a logged in user: (1) show a logout button and (2) display their name.
-     * If there is no logged in user: show a login button
-     */
     private fun observeAuthenticationState() {
-        val factToDisplay = viewModel.getFactToDisplay(requireContext())
+        //val factToDisplay = viewModel.getFactToDisplay(requireContext())
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenicationState ->
             when (authenicationState) {
                 LoginViewModel.AuthenticationState.AUTHENTICATED -> {
@@ -93,27 +85,18 @@ class MainFragment : Fragment() {
                     binding.authButton.setOnClickListener {
                         AuthUI.getInstance().signOut(requireContext())
                     }
-                    binding.welcomeText.text=getFactWithPersonalization(factToDisplay)
+                    binding.welcomeText.text=getFactWithPersonalization(":)")
                 }
                 else -> {
                     binding.authButton.text = getString(R.string.login_button_text)
                     binding.authButton.setOnClickListener { launchSignInFlow() }
-                    binding.welcomeText.text=factToDisplay
+                    //binding.welcomeText.text=factToDisplay
+                    binding.welcomeText.text="tutaj będzie lista Artykułow a Ty się nie zalogowałeś"
                 }
 
             }
         })
 
-        // TODO Use the authenticationState variable from LoginViewModel to update the UI
-        //  accordingly.
-        //
-        //  TODO If there is a logged-in user, authButton should display Logout. If the
-        //   user is logged in, you can customize the welcome message by utilizing
-        //   getFactWithPersonalition(). I
-
-        // TODO If there is no logged in user, authButton should display Login and launch the sign
-        //  in screen when clicked. There should also be no personalization of the message
-        //  displayed.
     }
 
 
@@ -121,8 +104,7 @@ class MainFragment : Fragment() {
         return String.format(
             resources.getString(
                 R.string.welcome_message_authed,
-                FirebaseAuth.getInstance().currentUser?.displayName,
-                Character.toLowerCase(fact[0]) + fact.substring(1)
+                FirebaseAuth.getInstance().currentUser?.displayName
             )
         )
     }

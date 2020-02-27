@@ -32,7 +32,6 @@ class LoginFragment : Fragment() {
         const val SIGN_IN_RESULT_CODE = 1001
     }
 
-    // Get a reference to the ViewModel scoped to this Fragment.
     private val viewModel by viewModels<LoginViewModel>()
 
     private lateinit var navController: NavController
@@ -41,7 +40,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        // Inflate the layout for this fragment.
+
         val binding = DataBindingUtil.inflate<FragmentLoginBinding>(
             inflater, R.layout.fragment_login, container, false
         )
@@ -56,20 +55,15 @@ class LoginFragment : Fragment() {
 
         navController = findNavController()
 
-        // If the user presses the back button, bring them back to the home screen
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             navController.popBackStack(R.id.mainFragment, false)
         }
     }
     private fun launchSignInFlow() {
-        // Give users the option to sign in / register with their email or Google account. If users
-        // choose to register with their email, they will need to create a password as well.
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(), AuthUI.IdpConfig.GoogleBuilder().build()
         )
 
-        // Create and launch sign-in intent. We listen to the response of this activity with the
-        // SIGN_IN_RESULT_CODE code.
         startActivityForResult(
             AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(
                 providers
@@ -82,16 +76,14 @@ class LoginFragment : Fragment() {
         if (requestCode == SIGN_IN_RESULT_CODE) {
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK) {
-                // Successfully signed in user.
+
                 Log.i(
                     TAG,
                     "Successfully signed in user " +
                             "${FirebaseAuth.getInstance().currentUser?.displayName}!"
                 )
             } else {
-                // Sign in failed. If response is null the user canceled the sign-in flow using
-                // the back button. Otherwise check response.getError().getErrorCode() and handle
-                // the error.
+
                 Log.i(TAG, "Sign in unsuccessful ${response?.error?.errorCode}")
             }
         }
