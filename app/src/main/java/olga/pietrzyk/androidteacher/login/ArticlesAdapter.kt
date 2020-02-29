@@ -23,14 +23,14 @@ class ArticlesAdapter(val adapterContext: Context, val layoutResId: Int, val art
         val layoutInflater: LayoutInflater = LayoutInflater.from(adapterContext)
         val view: View = layoutInflater.inflate(layoutResId, null)
 
+
         Log.i("aaaaaa", "${articlesList}")
 
         val articleField = view.findViewById<TextView>(R.id.article_field)
         val updateArticle = view.findViewById<TextView>(R.id.update_article)
 
-        Log.i("aaaaaa", "${articleField}")
+
         val article =articlesList[position]
-        Log.i("aaaaab", "${article.title}")
         articleField.text=article.title
 
         updateArticle.setOnClickListener {
