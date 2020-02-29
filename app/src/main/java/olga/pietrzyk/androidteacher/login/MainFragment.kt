@@ -48,9 +48,11 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        //context = container!!.getContext();
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         referenceToFirebase =FirebaseDatabase.getInstance().getReference("articles")
+
+        //val currentUserMail= FirebaseAuth.getInstance().currentUser?.email
+
         articlesList= mutableListOf()
         articleTitle= mutableListOf()
 
@@ -75,8 +77,8 @@ class MainFragment : Fragment() {
                    }
                    var k = listOf("a", "bf")
                    context?.let{
-                       val adapter = ArticlesAdapter(it, R.layout.articles, articlesList)
-                       //val adapter = ArrayAdapter(it, android.R.layout.simple_list_item_1, articleTitle)
+
+                       val adapter = ArrayAdapter(it, android.R.layout.simple_list_item_1, articleTitle)
                        binding.listView.adapter=adapter
 
                    }
@@ -97,6 +99,9 @@ class MainFragment : Fragment() {
         val Id=referenceToFirebase.push().key
         val articleId=Id.toString()
         val article = Articles(articleId, title, content)
+
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!1
+        //val userArticle = UserArticle(articleId, title, content, currentUserMail)
         //val article2 = Articles(articleId, "title", "content")
 
 
@@ -134,6 +139,11 @@ class MainFragment : Fragment() {
     private fun observeAuthenticationState() {
         //val factToDisplay = viewModel.getFactToDisplay(requireContext())
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenicationState ->
+            context?.let {
+                //val adapter : ArrayAdapter<Articles>
+                        //= ArticlesAdapter(it, R.layout.articles, articlesList)
+                val currentUserId= FirebaseAuth.getInstance().currentUser?.email
+
             when (authenicationState) {
                 LoginViewModel.AuthenticationState.AUTHENTICATED -> {
                     binding.articleContent.visibility=View.VISIBLE
@@ -144,6 +154,9 @@ class MainFragment : Fragment() {
                         AuthUI.getInstance().signOut(requireContext())
                     }
                     binding.welcomeText.text=getFactWithPersonalization(":)")
+                    val adapter= ArticlesAdapter(it, R.layout.articles, articlesList)
+                    //, referenceToFirebase, currentUserId
+                    binding.listView.adapter=adapter
                 }
                 else -> {
                     binding.articleContent.visibility=View.GONE
@@ -153,7 +166,14 @@ class MainFragment : Fragment() {
                     binding.authButton.setOnClickListener { launchSignInFlow() }
                     //binding.welcomeText.text=factToDisplay
                     binding.welcomeText.text="tutaj będzie lista Artykułow a Ty się nie zalogowałeś"
+
+
+                    val adapter = ArrayAdapter(it, android.R.layout.simple_list_item_1, articleTitle)
+                    binding.listView.adapter=adapter
                 }
+
+            }
+
 
             }
         })
