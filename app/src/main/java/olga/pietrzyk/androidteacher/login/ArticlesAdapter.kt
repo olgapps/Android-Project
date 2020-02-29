@@ -33,6 +33,11 @@ class ArticlesAdapter(val adapterContext: Context, val layoutResId: Int, val art
         val article =articlesList[position]
         articleField.text=article.title
 
+        if(article.email!=MainFragment.currentUserMail){
+            updateArticle.visibility=View.GONE
+        }
+
+
         updateArticle.setOnClickListener {
             showUpdateDialog(article)
         }
@@ -69,7 +74,7 @@ class ArticlesAdapter(val adapterContext: Context, val layoutResId: Int, val art
                     articleContent.requestFocus()
                     //return
 r                }*/
-                val article = Articles(article.id, title, content)
+                val article = Articles(article.id, title, content, MainFragment.currentUserMail)
                 articleInDatabase.child(article.id.toString()).setValue(article)
                 Toast.makeText(adapterContext, "you have updated Article",Toast.LENGTH_LONG ).show()
             }

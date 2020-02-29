@@ -36,10 +36,13 @@ class MainFragment : Fragment() {
     lateinit var articleTitle: MutableList<String>
 
 
+
+
     //lateinit var adapterLoggedIn:  ArrayAdapter<Articles>
     //lateinit var adapterLoggedOut: ArrayAdapter<String>
 
     companion object {
+        lateinit var currentUserMail: String
         const val TAG = "MainFragment"
         const val SIGN_IN_RESULT_CODE = 1001
     }
@@ -58,7 +61,9 @@ class MainFragment : Fragment() {
 
         referenceToFirebase =FirebaseDatabase.getInstance().getReference("articles")
 
-        val currentUserMail= FirebaseAuth.getInstance().currentUser?.email
+        currentUserMail= FirebaseAuth.getInstance().currentUser?.email.toString()
+
+        Log.i("AAAAAAAAAAAAAA","${currentUserMail}")
 
 
 
@@ -69,6 +74,8 @@ class MainFragment : Fragment() {
         binding.welcomeText.text ="tutaj będzie lista Artykułow"
         binding.authButton.text = getString(R.string.login_btn)
         binding.btnSubmitArticle.setOnClickListener { saveArticle() }
+
+
 
 
 
@@ -95,7 +102,6 @@ class MainFragment : Fragment() {
                        articleTitle.add(a.title)
                    }
 
-                   Log.i("aaaaaaaaaaaaaaaaaaaaaa", "${articlesList}")
                    context?.let{
 
                        val adapterLoggedIn = ArticlesAdapter(it, R.layout.articles, articlesList)
@@ -105,14 +111,11 @@ class MainFragment : Fragment() {
                        viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenicationState ->
                            when(authenicationState){
                                LoginViewModel.AuthenticationState.AUTHENTICATED -> {
-                                   Log.i("sss", "Sss")
-                                   //binding.invalidateAll()
                                    binding.listView.adapter=adapterLoggedIn
 
                                }
                                else -> {
                                    binding.listView.adapter=adapterLoggedOut
-                                   //binding.invalidateAll()
                                }
 
                            }
@@ -139,8 +142,9 @@ class MainFragment : Fragment() {
 
         val Id=referenceToFirebase.push().key
         val articleId=Id.toString()
-        val article = Articles(articleId, title, content)
-
+        Log.i("BBBBBBBBBB","${currentUserMail}")
+        val article = Articles(articleId, title, content, currentUserMail)
+        Log.i("BBBBBBBBBB","${article}")
         //!!!!!!!!!!!!!!!!!!!!!!!!!!1
         //val userArticle = UserArticle(articleId, title, content, currentUserMail)
         //val article2 = Articles(articleId, "title", "content")
