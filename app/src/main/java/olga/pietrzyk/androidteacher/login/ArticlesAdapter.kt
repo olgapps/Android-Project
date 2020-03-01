@@ -7,10 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.articles.view.*
@@ -30,12 +27,16 @@ class ArticlesAdapter(val adapterContext: Context, val layoutResId: Int, val art
         val updateArticle = view.findViewById<TextView>(R.id.update_article)
 
 
+
+
         val article =articlesList[position]
         articleField.text=article.title
 
         if(article.email!=MainFragment.currentUserMail){
             updateArticle.visibility=View.GONE
         }
+
+
 
 
         updateArticle.setOnClickListener {
@@ -82,7 +83,7 @@ r                }*/
 
         builder.setNegativeButton("No", object: DialogInterface.OnClickListener{
             override fun onClick(dialog: DialogInterface?, which: Int) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Toast.makeText(adapterContext, "you didn't update the article" ,Toast.LENGTH_SHORT).show()
             }
         })
 

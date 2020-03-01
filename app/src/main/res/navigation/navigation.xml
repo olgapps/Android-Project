@@ -20,7 +20,8 @@
         tools:layout="@layout/fragment_main_view" >
         <action
             android:id="@+id/action_mainViewFragment_to_testFragment"
-            app:destination="@id/testFragment" />
+            app:destination="@id/testFragment"
+            app:popUpTo="@+id/mainViewFragment" />
         <action
             android:id="@+id/action_mainViewFragment_to_indexedCardsFragment"
             app:destination="@id/indexedCardsFragment" />
@@ -95,10 +96,9 @@
         android:id="@+id/mainFragment"
         android:name="olga.pietrzyk.androidteacher.login.MainFragment"
         android:label="MainFragment" >
-
         <action
-            android:id="@+id/action_mainFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_mainFragment_to_articleDescriptionFragment"
+            app:destination="@id/articleDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -108,4 +108,24 @@
         android:id="@+id/settingsFragment"
         android:name="olga.pietrzyk.androidteacher.login.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/articleDescriptionFragment"
+        android:name="olga.pietrzyk.androidteacher.login.ArticleDescriptionFragment"
+        android:label="ArticleDescriptionFragment" >
+        <argument
+            android:name="articleTitle"
+            app:argType="string" />
+        <argument
+            android:name="articleContent"
+            app:argType="string" />
+        <argument
+            android:name="articleKey"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_articleDescriptionFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="articleEmail"
+            app:argType="string" />
+    </fragment>
 </navigation>

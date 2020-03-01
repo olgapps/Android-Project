@@ -35,7 +35,7 @@ class ArticleViewModel(
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private var newArticle = MutableLiveData<Article>()
-   val articles =database.getAllArticles()
+    val articles =database.getAllArticles()
    // lateinit var article: Article?
 
    // val articleString=article.toString()

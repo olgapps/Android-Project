@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="options">
-        <item>Learn Android</item>
+        <item>Learn progress</item>
         <item>Do a test</item>
         <item>Control your knowledge</item>
-        <item>Login</item>
+        <item>Articles</item>
     </string-array>
 
     <array name="fact_type">
