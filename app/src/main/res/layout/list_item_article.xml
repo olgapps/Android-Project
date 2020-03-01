@@ -4,19 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="article"
-            type="olga.pietrzyk.androidteacher.database.Article" />
-        <variable
-            name="clickListener"
-            type="olga.pietrzyk.androidteacher.articles.ArticleListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/article_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{()->clickListener.onClick(article)}">
+>
 
         <ImageView
             android:id="@+id/img_stars"
@@ -24,13 +19,13 @@
             android:layout_height="37dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-           app:setStarsImage="@{article}"/>
+/>
 
         <TextView
             android:id="@+id/txt_article_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:setArticleTitle="@{article}"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_stars"

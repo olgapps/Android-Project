@@ -26,9 +26,6 @@
             android:id="@+id/action_mainViewFragment_to_indexedCardsFragment"
             app:destination="@id/indexedCardsFragment" />
         <action
-            android:id="@+id/action_mainViewFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
-        <action
             android:id="@+id/action_mainViewFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
@@ -72,26 +69,6 @@
         android:id="@+id/indexedCardsFragment"
         android:name="olga.pietrzyk.androidteacher.indexedCards.IndexedCardsFragment"
         android:label="IndexedCardsFragment" />
-    <fragment
-        android:id="@+id/articleFragment"
-        android:name="olga.pietrzyk.androidteacher.articles.ArticleFragment"
-        android:label="fragment_article"
-        tools:layout="@layout/fragment_article" >
-        <action
-            android:id="@+id/action_articleFragment_to_articleContentFragment"
-            app:destination="@id/articleContentFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/articleContentFragment"
-        android:name="olga.pietrzyk.androidteacher.articleContent.ArticleContentFragment"
-        android:label="ArticleContentFragment" >
-        <argument
-            android:name="articleKey"
-            app:argType="long" />
-        <action
-            android:id="@+id/action_articleContentFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
-    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="olga.pietrzyk.androidteacher.login.MainFragment"

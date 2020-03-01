@@ -12,7 +12,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.articles.view.*
 import olga.pietrzyk.androidteacher.R
-import olga.pietrzyk.androidteacher.generated.callback.OnClickListener
+//import olga.pietrzyk.androidteacher.generated.callback.OnClickListener
 
 class ArticlesAdapter(val adapterContext: Context, val layoutResId: Int, val articlesList: List<Articles>): ArrayAdapter<Articles>(adapterContext, layoutResId, articlesList) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
