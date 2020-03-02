@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.list_item_task.*
 import olga.pietrzyk.androidteacher.R
 import olga.pietrzyk.androidteacher.databaseSqlite.Task
 
@@ -26,20 +25,37 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
         val item =tasks[position]
 
         val res = holder.itemView.context.resources
-        holder.taskTitle.text = item.taskTitle.toString()
-        //holder.taskContent.text = item.taskContent.toString()
+        holder.bind(item)
+        //holder.
 
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.list_item_task, parent, false)
-        return ViewHolder(view)
+        return ViewHolder.from(parent)
     }
 
-    class ViewHolder(taskView: View): RecyclerView.ViewHolder(taskView){
+    class ViewHolder (taskView: View): RecyclerView.ViewHolder(taskView){
         val taskTitle: TextView = taskView.findViewById(R.id.item_task_title)
-       // val taskContent: TextView = taskView.findViewById(R.id.item_task_content)
+        //val taskContent: TextView = taskView.findViewById(R.id.item_task_content)
         val taskStatus: CheckBox = taskView.findViewById(R.id.task_status)
+
+        fun bind(
+        item: Task
+        ) {
+            taskTitle.text = item.taskTitle.toString()
+            // taskContent.text = item.taskContent.toString()
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val view = layoutInflater.inflate(R.layout.list_item_task, parent, false)
+                return ViewHolder(view)
+            }
+        }
     }
+
+
 }

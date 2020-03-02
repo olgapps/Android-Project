@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,6 +10,7 @@
             type="olga.pietrzyk.androidteacher.databaseSqlite.Task" />
 
     </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -29,12 +31,23 @@
 
         <TextView
             android:id="@+id/item_task_title"
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/task_status"
             app:layout_constraintStart_toStartOf="@+id/task_status"
             app:layout_constraintTop_toBottomOf="@+id/task_status"
+            />
+
+        <TextView
+            android:id="@+id/item_task_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/item_task_title"
+            app:layout_constraintStart_toStartOf="@+id/item_task_title"
+            app:layout_constraintTop_toBottomOf="@+id/item_task_title"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
