@@ -1,15 +1,15 @@
-package olga.pietrzyk.androidteacher
+package olga.pietrzyk.androidteacher.androidTest
 
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import olga.pietrzyk.androidteacher.R
+//import olga.pietrzyk.androidteacher.TestResultFragmentArgs
 import olga.pietrzyk.androidteacher.databinding.FragmentTestResultBinding
 
 /**
@@ -22,12 +22,13 @@ class TestResultFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentTestResultBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_test_result, container, false)
+        val binding: FragmentTestResultBinding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_test_result, container, false)
         val testResultFragmentArgs by navArgs<TestResultFragmentArgs>()
 
         binding.finalResultText.text = testResultFragmentArgs.finalResult.toString()
 
-        result+=testResultFragmentArgs.finalResult.toString()+"%"
+        result +=testResultFragmentArgs.finalResult.toString()+"%"
         binding.btnTryAgain.setOnClickListener { view:View ->
             Navigation.findNavController(view).navigate(R.id.action_testResultFragment_to_testFragment)
         }

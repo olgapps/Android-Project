@@ -3,9 +3,10 @@ package olga.pietrzyk.androidteacher
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import olga.pietrzyk.androidteacher.database.Article
-import olga.pietrzyk.androidteacher.database.ArticleDatabase
-import olga.pietrzyk.androidteacher.database.ArticleDatabaseDao
+
+import olga.pietrzyk.androidteacher.databaseSqlite.Task
+import olga.pietrzyk.androidteacher.databaseSqlite.TaskDatabase
+import olga.pietrzyk.androidteacher.databaseSqlite.TaskDatabaseDao
 import org.junit.After
 
 import org.junit.Test
@@ -23,19 +24,19 @@ import java.io.IOException
 @RunWith(AndroidJUnit4::class)
 class AndroidDatabaseTest {
 
-    private lateinit var articleDao: ArticleDatabaseDao
-    private lateinit var db: ArticleDatabase
+    private lateinit var articleDao: TaskDatabaseDao
+    private lateinit var db: TaskDatabase
 
     @Before
     fun createDb() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         // Using an in-memory database because the information stored here disappears when the
         // process is killed.
-        db = Room.inMemoryDatabaseBuilder(context, ArticleDatabase::class.java)
+        db = Room.inMemoryDatabaseBuilder(context, TaskDatabase::class.java)
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
-        articleDao = db.articleDatabaseDao
+        articleDao = db.taskDatabaseDao
     }
 
     @After
@@ -47,9 +48,9 @@ class AndroidDatabaseTest {
     @Test
     @Throws(Exception::class)
     fun insertAndGetNight() {
-        val night = Article(1, "a","b",-1)
-        articleDao.insert(night)
-        val tonight = articleDao.getArticle()
-        assertEquals(tonight?.articleRate, -1)
+        val task = Task(1, "a","b",true)
+        articleDao.insert(task)
+        val tonight = articleDao.getTask()
+        assertEquals(tonight?.taskStatus, true)
     }
 }

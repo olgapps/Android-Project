@@ -1,4 +1,4 @@
-package olga.pietrzyk.androidteacher
+package olga.pietrzyk.androidteacher.androidTest
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,14 +13,32 @@ class TestContentViewModel : ViewModel(){
     )
 
     val questions: MutableList<TestQuestion> = mutableListOf(
-        TestQuestion(question="What is the not a function of life cycle of android activity?",
-            answers=listOf("onRecreate()","onStart()","onResume()","onCreate()")),
-        TestQuestion(question="Where you inflate your menu",
-            answers=listOf("onCreateOptions","onOptionItemSelected","setHasOptionMenu","onInflateMenu")),
-        TestQuestion(question="Where UI Fragments contain a layout and occupy a place within?",
-            answers=listOf("in the Activity Layout","in onContextView","in context","in onCreate method")),
-        TestQuestion(question="What id the most current version of Android",
-            answers=listOf("Android Pie","Android Oreo","Android Nougat","Android Marshmallow"))
+        TestQuestion(
+            question = "What is the not a function of life cycle of android activity?",
+            answers = listOf("onRecreate()", "onStart()", "onResume()", "onCreate()")
+        ),
+        TestQuestion(
+            question = "Where you inflate your menu",
+            answers = listOf(
+                "onCreateOptions",
+                "onOptionItemSelected",
+                "setHasOptionMenu",
+                "onInflateMenu"
+            )
+        ),
+        TestQuestion(
+            question = "Where UI Fragments contain a layout and occupy a place within?",
+            answers = listOf(
+                "in the Activity Layout",
+                "in onContextView",
+                "in context",
+                "in onCreate method"
+            )
+        ),
+        TestQuestion(
+            question = "What id the most current version of Android",
+            answers = listOf("Android Pie", "Android Oreo", "Android Nougat", "Android Marshmallow")
+        )
     )
 
 

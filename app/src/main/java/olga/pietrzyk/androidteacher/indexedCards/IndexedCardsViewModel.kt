@@ -1,11 +1,9 @@
 package olga.pietrzyk.androidteacher.indexedCards
 
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import olga.pietrzyk.androidteacher.TestContentFragment
 
 class IndexedCardsViewModel: ViewModel(){
 

@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_mainViewFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_mainViewFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutAppFragment"
@@ -36,7 +39,7 @@
         tools:layout="@layout/fragment_about_app" />
     <fragment
         android:id="@+id/testFragment"
-        android:name="olga.pietrzyk.androidteacher.TestFragment"
+        android:name="olga.pietrzyk.androidteacher.androidTest.TestFragment"
         android:label="fragment_test"
         tools:layout="@layout/fragment_test" >
         <action
@@ -45,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/testContentFragment"
-        android:name="olga.pietrzyk.androidteacher.TestContentFragment"
+        android:name="olga.pietrzyk.androidteacher.androidTest.TestContentFragment"
         android:label="fragment_test_content"
         tools:layout="@layout/fragment_test_content" >
         <action
@@ -55,7 +58,7 @@
     </fragment>
     <fragment
         android:id="@+id/testResultFragment"
-        android:name="olga.pietrzyk.androidteacher.TestResultFragment"
+        android:name="olga.pietrzyk.androidteacher.androidTest.TestResultFragment"
         android:label="TestResultFragment" >
         <action
             android:id="@+id/action_testResultFragment_to_testFragment"
@@ -105,4 +108,8 @@
             android:name="articleEmail"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="olga.pietrzyk.androidteacher.tasks.TaskFragment"
+        android:label="TaskFragment" />
 </navigation>

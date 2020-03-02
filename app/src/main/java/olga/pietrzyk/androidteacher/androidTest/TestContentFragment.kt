@@ -1,18 +1,17 @@
-package olga.pietrzyk.androidteacher
+package olga.pietrzyk.androidteacher.androidTest
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
+import olga.pietrzyk.androidteacher.R
+//import olga.pietrzyk.androidteacher.TestContentFragmentDirections
 import olga.pietrzyk.androidteacher.databinding.FragmentTestContentBinding
 
 
@@ -29,7 +28,8 @@ class TestContentFragment : Fragment() {
     ): View? {
 
 
-        val binding = DataBindingUtil.inflate<FragmentTestContentBinding>(inflater, R.layout.fragment_test_content, container, false)
+        val binding = DataBindingUtil.inflate<FragmentTestContentBinding>(inflater,
+            R.layout.fragment_test_content, container, false)
         //(activity as AppCompatActivity).supportActionBar?.title = "Test question"
 
         viewModel= ViewModelProviders.of(this).get(TestContentViewModel::class.java)
@@ -78,7 +78,10 @@ class TestContentFragment : Fragment() {
                 if((viewModel.indexOfQuestion==(viewModel.numberOfQuestions-1)) && (idIndex!=-1)){
                     viewModel.setFinalResult()
                     //finalResult=(numberOfCorrectAnswers.toDouble()*100/numberOfQuestions.toDouble())
-                    val action = TestContentFragmentDirections.actionTestContentFragmentToTestResultFragment(viewModel.finalResult.value!!.toFloat())
+                    val action =
+                        TestContentFragmentDirections.actionTestContentFragmentToTestResultFragment(
+                            viewModel.finalResult.value!!.toFloat()
+                        )
                    NavHostFragment.findNavController(this).navigate(action)
                 }
 

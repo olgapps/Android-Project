@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="task"
+            type="olga.pietrzyk.androidteacher.databaseSqlite.Task" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/task_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/checkbox_off_background" />
+
+        <TextView
+            android:id="@+id/item_task_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/task_status"
+            app:layout_constraintStart_toStartOf="@+id/task_status"
+            app:layout_constraintTop_toBottomOf="@+id/task_status"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+<!--
+    <CheckBox
+        android:id="@+id/task_status"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/checkbox_off_background"  />
+
+    <TextView
+        android:id="@+id/item_task_title"
+        android:text="title"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/task_status"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Task" />
+
+    <TextView
+        android:id="@+id/item_task_content"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:text="content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/item_task_title"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/item_task_title"
+        app:layout_constraintTop_toBottomOf="@+id/item_task_title"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>-->
+

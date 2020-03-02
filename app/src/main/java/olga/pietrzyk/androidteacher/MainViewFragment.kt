@@ -30,7 +30,7 @@ class MainViewFragment : Fragment() {
                 Log.i("mojeee", position.toString())
                 if (position == 0) {
                     view.findNavController()
-                        .navigate(R.id.action_mainViewFragment_to_testFragment)
+                        .navigate(R.id.action_mainViewFragment_to_taskFragment)
                 }
                 if (position == 1) {
                     view.findNavController().navigate(R.id.action_mainViewFragment_to_testFragment)
