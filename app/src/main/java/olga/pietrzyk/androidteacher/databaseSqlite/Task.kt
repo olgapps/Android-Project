@@ -16,7 +16,7 @@ class Task(
     val taskContent: String?,
 
     @ColumnInfo(name="status")
-    val taskStatus: Boolean,
+    var taskStatus: Boolean,
 
     @PrimaryKey(autoGenerate = true)
     var taskId: Long=0L

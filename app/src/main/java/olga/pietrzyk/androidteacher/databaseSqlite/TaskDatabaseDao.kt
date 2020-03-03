@@ -18,6 +18,9 @@ interface TaskDatabaseDao {
     @Query("SELECT * from tasks_table WHERE taskId = :key")
     fun get(key: Long): Task?
 
+   // @Query("UPDATE tasks_table SET status=\"true\" WHERE taskId = :key")
+   // fun updateById(key: Long): Task?
+
     @Query("SELECT * from tasks_table WHERE taskId=:key")
     fun getTaskWithId(key:Long): LiveData<Task>
 
@@ -29,6 +32,9 @@ interface TaskDatabaseDao {
 
     @Query("SELECT * FROM tasks_table ORDER BY taskId DESC LIMIT 1")
     fun getTask(): Task?
+
+    @Query("DELETE FROM tasks_table WHERE taskId=:key")
+    fun deleteByTaskId(key: Long)
 
 
 }

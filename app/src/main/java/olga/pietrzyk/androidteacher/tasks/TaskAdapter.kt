@@ -1,15 +1,16 @@
 package olga.pietrzyk.androidteacher.tasks
 
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import olga.pietrzyk.androidteacher.R
 import olga.pietrzyk.androidteacher.databaseSqlite.Task
+import olga.pietrzyk.androidteacher.databinding.ListItemTaskBinding
 
-class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
+class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
+
+
 
     var tasks = listOf<Task>()
         set(value) {
@@ -25,7 +26,9 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
         val item =tasks[position]
 
         val res = holder.itemView.context.resources
-        holder.bind(item)
+        //holder.bind(item)
+        holder.bind(item, clickListener)
+
         //holder.
 
     }
@@ -36,26 +39,31 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder (taskView: View): RecyclerView.ViewHolder(taskView){
-        val taskTitle: TextView = taskView.findViewById(R.id.item_task_title)
+    class ViewHolder(val binding: ListItemTaskBinding): RecyclerView.ViewHolder(binding.root){
         //val taskContent: TextView = taskView.findViewById(R.id.item_task_content)
-        val taskStatus: CheckBox = taskView.findViewById(R.id.task_status)
+        //val taskStatus: CheckBox = binding.taskStatus
 
         fun bind(
-        item: Task
+        item: Task, clickListener: TaskListener
         ) {
-            taskTitle.text = item.taskTitle.toString()
-            // taskContent.text = item.taskContent.toString()
+            binding.task=item
+            binding.itemTaskTitle.text = item.taskStatus.toString()
+            binding.clickListener=clickListener
+            binding.executePendingBindings()
+            // binding.taskContent.text = item.taskContent.toString()
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.list_item_task, parent, false)
-                return ViewHolder(view)
+                //val view = layoutInflater.inflate(R.layout.list_item_task, parent, false)
+                val binding = ListItemTaskBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
         }
     }
+}
 
-
+class TaskListener(val clickListener: (taskId: Long)-> Unit){
+    fun onClick(task:Task)=clickListener(task.taskId)
 }

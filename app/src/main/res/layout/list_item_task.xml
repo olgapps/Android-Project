@@ -8,6 +8,9 @@
         <variable
             name="task"
             type="olga.pietrzyk.androidteacher.databaseSqlite.Task" />
+        <variable
+            name="clickListener"
+            type="olga.pietrzyk.androidteacher.tasks.TaskListener" />
 
     </data>
 
@@ -15,7 +18,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:onClick="@{()->clickListener.onClick(task)}">
 
         <CheckBox
             android:id="@+id/task_status"
