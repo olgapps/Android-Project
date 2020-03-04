@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         tools:context=".articleContent.ArticleContentFragment">
 
-        <!-- TODO: Update blank fragment layout -->
+
         <TextView
             android:id="@+id/article_title"
             android:layout_width="match_parent"

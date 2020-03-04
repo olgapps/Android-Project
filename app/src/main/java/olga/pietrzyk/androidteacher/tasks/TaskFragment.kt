@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.gms.tasks.Tasks.await
 import olga.pietrzyk.androidteacher.R
 import olga.pietrzyk.androidteacher.databaseSqlite.TaskDatabase
 import olga.pietrzyk.androidteacher.databinding.FragmentTaskBinding
@@ -57,7 +58,7 @@ class TaskFragment : Fragment() {
         binding.setLifecycleOwner (this)
 
 
-        val manager =GridLayoutManager(activity, 4)
+        val manager =GridLayoutManager(activity, 3)
         binding.tasksList.layoutManager=manager
 
         //val alert =makeWindow(taskViewModel)
@@ -68,40 +69,36 @@ class TaskFragment : Fragment() {
 
 
 
-        builder.setTitle("Update Task")
+
         builder.setView(view)
-
-        builder.setPositiveButton("DONE"){dialog, which ->
-            // Do something when user press the positive button
-            Toast.makeText(context,"Ok, we change the app background.",Toast.LENGTH_SHORT).show()
-
-            // Change the app background color
-
-        }
-
-
-        // Display a negative button on alert dialog
-
-
 
 
         val adapter = TaskAdapter(TaskListener { task->
 
-            Toast.makeText(context, "${task} and ", Toast.LENGTH_LONG).show()
-           // alert.show()
-
-            //
-            builder.setNegativeButton("DELETE"){dialog,which ->
-                       Toast.makeText(context,"You are not agree.",Toast.LENGTH_SHORT).show()
-                    taskViewModel.deleteTask(task)
-                  }
-
-            builder.setPositiveButton("DONE"){dialog, which ->
-                taskViewModel.updateById(task)
-                Toast.makeText(context,"Ok, we change the app background.",Toast.LENGTH_SHORT).show()
+          taskViewModel.getTaskByID(task.taskId)
 
 
-            }
+           // taskViewModel.currentTask.observe(viewLifecycleOwner, Observer{
+               // newCurrentTask->
+
+                Toast.makeText(context, "${task} and ", Toast.LENGTH_LONG).show()
+                // alert.show()
+                builder.setTitle(" ${task.taskTitle}")
+                builder.setMessage("${task.taskContent}")
+                //
+                builder.setNegativeButton("DELETE"){dialog,which ->
+                    Toast.makeText(context,"You are not agree.",Toast.LENGTH_SHORT).show()
+                    taskViewModel.deleteTask(task.taskId)
+                }
+
+                builder.setPositiveButton("DONE"){dialog, which ->
+                    taskViewModel.updateById(task.taskId)
+                    Toast.makeText(context,"Ok, we change the app background.",Toast.LENGTH_SHORT).show()
+
+
+                }
+           // })
+
             val alert = builder.create()
             alert.show()
 
@@ -142,6 +139,7 @@ class TaskFragment : Fragment() {
         builder.setPositiveButton("DONE"){dialog, which ->
             // Do something when user press the positive button
             Toast.makeText(context,"Ok, we change the app background.",Toast.LENGTH_SHORT).show()
+
 
             // Change the app background color
 

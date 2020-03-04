@@ -16,12 +16,14 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="90dp"
         android:orientation="vertical"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
         android:onClick="@{()->clickListener.onClick(task)}">
 
-        <CheckBox
+        <!--<CheckBox
             android:id="@+id/task_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,28 +33,43 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/checkbox_off_background" />-->
+
+
+        <ImageView
+            android:id="@+id/task_status"
+            android:layout_width="46dp"
+            android:layout_height="48dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.26999998"
             app:srcCompat="@android:drawable/checkbox_off_background" />
+
+        <ImageView
+            android:id="@+id/task_status_checked"
+            android:layout_width="46dp"
+            android:layout_height="48dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.26"
+            app:srcCompat="@android:drawable/checkbox_on_background" />
 
         <TextView
             android:id="@+id/item_task_title"
-
+            android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/task_status"
-            app:layout_constraintStart_toStartOf="@+id/task_status"
-            app:layout_constraintTop_toBottomOf="@+id/task_status"
-            />
-
-        <TextView
-            android:id="@+id/item_task_content"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/item_task_title"
-            app:layout_constraintStart_toStartOf="@+id/item_task_title"
-            app:layout_constraintTop_toBottomOf="@+id/item_task_title"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.957" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

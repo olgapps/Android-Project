@@ -87,13 +87,6 @@ class TestContentFragment : Fragment() {
 
                 if(idIndex!=-1 && viewModel.indexOfQuestion<(viewModel.numberOfQuestions-1)) {
                     viewModel.goToNextQuestion()
-                    /*numberOfQuestionToBeAnswered -= 1
-                    indexOfQuestion += 1
-                    questionNumber +=1
-                    //idIndex = -1
-                    currentQuestion = questions[indexOfQuestion]
-                    answers = currentQuestion.answers.toMutableList()
-                    answers.shuffle()*/
 
                     binding.radioGroup.clearCheck();
                     if(viewModel.indexOfQuestion<(viewModel.numberOfQuestions)){

@@ -14,11 +14,10 @@
             android:id="@+id/welcomeTestText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="48dp"
             android:text="@string/test_welcome_header"
-            android:textSize="25dp"
+            android:textSize="30dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,36 +25,37 @@
             android:id="@+id/testText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="@string/test_welcome_description"
-            android:textSize="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageTest"
-            app:layout_constraintEnd_toEndOf="@+id/imageTest"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="@+id/imageTest"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/welcomeTestText" />
 
         <ImageView
             android:id="@+id/imageTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:src="@drawable/test"
+            android:layout_width="429dp"
+            android:layout_height="290dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/image_test"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/testText" />
+            app:layout_constraintTop_toBottomOf="@+id/testText" />
 
         <Button
             android:id="@+id/buttonStartTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="159dp"
+            android:layout_height="63dp"
             android:layout_marginBottom="32dp"
+            android:text="@string/start_test"
+            android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/imageTest"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageTest"
-            android:text="@string/start_test"
-            app:layout_constraintVertical_bias="0.23000002" />
+            app:layout_constraintVertical_bias="0.202" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

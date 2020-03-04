@@ -2,6 +2,7 @@ package olga.pietrzyk.androidteacher.tasks
 
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
@@ -47,11 +48,24 @@ class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAd
         item: Task, clickListener: TaskListener
         ) {
             binding.task=item
-            binding.itemTaskTitle.text = item.taskStatus.toString()
+
             binding.clickListener=clickListener
+            binding.itemTaskTitle.text = item.taskTitle.toString()
             binding.executePendingBindings()
+            if(item.taskStatus==true){
+                binding.taskStatus.visibility= View.GONE
+                binding.taskStatusChecked.visibility= View.VISIBLE
+            }else{
+                binding.taskStatusChecked.visibility= View.GONE
+                binding.taskStatus.visibility= View.VISIBLE
+               // binding.itemTaskTitle2.text = item.taskTitle.toString()
+
+                }
+            }
+
+
             // binding.taskContent.text = item.taskContent.toString()
-        }
+
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
@@ -64,6 +78,6 @@ class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAd
     }
 }
 
-class TaskListener(val clickListener: (taskId: Long)-> Unit){
-    fun onClick(task:Task)=clickListener(task.taskId)
+class TaskListener(val clickListener: (taskId: Task)-> Unit){
+    fun onClick(task:Task)=clickListener(task)
 }

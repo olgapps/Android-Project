@@ -6,7 +6,7 @@
     <string name="test_welcome_description">Check your knowledge of Android</string>
     <string name="test">Do a Test</string>
     <string name="aboutApp">Info about App</string>
-    <string name="start_the_app">Start the app</string>
+    <string name="start_the_app">Start</string>
     <string name="start_test">start TEST</string>
     <string name="your_result">Your result is:</string>
     <string name="try_again">Try again</string>
@@ -38,7 +38,10 @@
 
     <!--Shared Preference Keys -->
     <string name="preference_fact_type_key">fact_type_pref</string>
-
+    <string name="instruction">This is an app to help students learn Android</string>
+    <string name="description">Description</string>
+    <string name="content">Content</string>
+    <string name="add_article">Add article</string>
 
 
 </resources>

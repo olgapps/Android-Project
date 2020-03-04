@@ -1,6 +1,8 @@
 package olga.pietrzyk.androidteacher.tasks
 
 import android.app.Application
+import android.util.Log
+import android.widget.Toast
 import androidx.core.content.res.TypedArrayUtils.getString
 
 import androidx.lifecycle.AndroidViewModel
@@ -30,10 +32,10 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
     var taskTitle = "nic nie przeczytałem"
     var taskContnet = "nic nie przeczytałem"
 
-   // private val sleepNightKey: Long = 0L
+    var currentTask= MutableLiveData<Task?>()
 
-    //l resource = getString(R.id.taskContentFromUser)//l a = applicaton.resources.getValue(R.id.taskTitleFromUser, String(), true
-    //val taskStringFormat = tasks.toString()
+
+
     val taskStringFormat = Transformations.map(tasks) { newTask ->
         formatTasks(newTask, applicaton.resources)}
 
@@ -52,6 +54,7 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
     fun initializeTask(){
         uiScope.launch{
             task.value = getTaskFromDatabase()
+
         }
     }
 
@@ -63,9 +66,12 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
 
     fun getTaskByID(id: Long){
         uiScope.launch{
-            getTaskByIdFromDatabase(id)
+            currentTask.value = getTaskByIdFromDatabase(id)
+            Log.i("aaaaaaaaaaaaa", "${currentTask.value!!.taskTitle}")
+
         }
     }
+
 
 
     fun onCreateTask(){
@@ -78,13 +84,20 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
 
     fun deleteAllTasks() {
         uiScope.launch {
-            // Clear the database table.
             clear()
-
-            // And clear tonight since it's no longer in the database
             task.value = null
         }
     }
+
+    /*fun getChosenTask(Id: Long): Task{
+        uiScope.launch{
+            withContext(Dispatchers.IO){
+                val task = database.get(Id) ?: return@withContext
+                task
+            }
+        }
+
+    }*/
 
     fun updateById(Id: Long) {
         uiScope.launch {
@@ -92,25 +105,12 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
             // our Room database.
             withContext(Dispatchers.IO) {
                 val task = database.get(Id) ?: return@withContext
+                //currentTask=task
                 task.taskStatus = true
                 database.update(task)
             }
         }
     }
-
-  /*  fun updateState(taskId: Long) {
-        uiScope.launch {
-
-            updateInDatabase(taskId)
-
-        }
-    }
-
-    private suspend fun updateInDatabase(taskId: Long): Task?{
-        return withContext(Dispatchers.IO){
-            //database.updateById(taskId)
-        }
-    }*/
 
 
     private suspend fun getTaskFromDatabase(): Task?{
@@ -122,8 +122,8 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
 
     private suspend fun getTaskByIdFromDatabase(id : Long): Task?{
         return withContext(Dispatchers.IO){
-            var taskId = database.get(id)
-            taskId
+            var taskId = async { database.get(id) }
+            taskId.await()
         }
     }
 
