@@ -24,7 +24,7 @@ import com.google.firebase.database.*
 import olga.pietrzyk.androidteacher.MainViewFragmentDirections
 
 import olga.pietrzyk.androidteacher.R
-import olga.pietrzyk.androidteacher.databinding.FragmentLoginBinding
+
 import olga.pietrzyk.androidteacher.databinding.FragmentMainBinding
 
 
