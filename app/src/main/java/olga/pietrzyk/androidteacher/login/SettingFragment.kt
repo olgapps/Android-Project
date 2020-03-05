@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
 import olga.pietrzyk.androidteacher.R
 
-class SettingsFragment : PreferenceFragmentCompat() {
+/*class SettingsFragment : PreferenceFragmentCompat() {
 
     companion object {
         const val TAG = "SettingsFragment"
@@ -28,10 +28,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer{authenticationState ->
             when(authenticationState){
                 LoginViewModel.AuthenticationState.AUTHENTICATED -> Log.i(TAG,"Authenticated")
-                LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.navigate(R.id.loginFragment)
+              //  LoginViewModel.AuthenticationState.UNAUTHENTICATED -> navController.navigate(R.id.loginFragment)
                 else -> Log.e(TAG, "New $authenticationState state tahat do not require any change")
             }
 
         })
     }
-}
+}*/

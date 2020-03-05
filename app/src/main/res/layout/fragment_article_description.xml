@@ -8,18 +8,27 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="439dp"
+        android:layout_height="755dp">
 
+
+        <ImageView
+            android:id="@+id/image_article_description"
+            android:layout_width="430dp"
+            android:layout_height="228dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/image_articles_description" />
 
         <TextView
             android:id="@+id/article_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/hello_blank_fragment"
+            android:layout_marginTop="256dp"
+
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,10 +36,11 @@
             android:id="@+id/article_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/hello_blank_fragment"
+            android:layout_marginTop="20dp"
+
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/article_title" />
 
@@ -38,7 +48,7 @@
             android:id="@+id/delete_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
+            android:text="@string/delete"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

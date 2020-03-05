@@ -21,8 +21,6 @@ class ArticlesAdapter(val adapterContext: Context, val layoutResId: Int, val art
         val view: View = layoutInflater.inflate(layoutResId, null)
 
 
-        Log.i("aaaaaa", "${articlesList}")
-
         val articleField = view.findViewById<TextView>(R.id.article_field)
         val updateArticle = view.findViewById<TextView>(R.id.update_article)
 
@@ -56,11 +54,11 @@ class ArticlesAdapter(val adapterContext: Context, val layoutResId: Int, val art
         val articleContent = view.findViewById<TextView>(R.id.article_content)
 
 
-        builder.setTitle("Update Article")
+        builder.setTitle(context.getResources().getString(R.string.update_article))
 
         builder.setView(view)
 
-        builder.setPositiveButton("Update", object: DialogInterface.OnClickListener{
+        builder.setPositiveButton(context.getResources().getString(R.string.update), object: DialogInterface.OnClickListener{
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 val articleInDatabase = FirebaseDatabase.getInstance().getReference("articles")
                 val title = articleTitle.text.toString()
@@ -77,13 +75,13 @@ class ArticlesAdapter(val adapterContext: Context, val layoutResId: Int, val art
 r                }*/
                 val article = Articles(article.id, title, content, MainFragment.currentUserMail)
                 articleInDatabase.child(article.id.toString()).setValue(article)
-                Toast.makeText(adapterContext, "you have updated Article",Toast.LENGTH_LONG ).show()
+                Toast.makeText(adapterContext, context.getResources().getString(R.string.updated_article),Toast.LENGTH_LONG ).show()
             }
         })
 
-        builder.setNegativeButton("No", object: DialogInterface.OnClickListener{
+        builder.setNegativeButton(context.getResources().getString(R.string.no), object: DialogInterface.OnClickListener{
             override fun onClick(dialog: DialogInterface?, which: Int) {
-                Toast.makeText(adapterContext, "you didn't update the article" ,Toast.LENGTH_SHORT).show()
+                Toast.makeText(adapterContext, context.getResources().getString(R.string.no_updated_article),Toast.LENGTH_SHORT).show()
             }
         })
 

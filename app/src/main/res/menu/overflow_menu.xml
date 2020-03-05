@@ -3,14 +3,17 @@
 
     <item
         android:id="@+id/aboutAppFragment"
-        android:title="info about app" />
+        android:title="@string/info_about_the_app" />
     <item
         android:id="@+id/articleFragment"
-        android:title="read Articles" />
+        android:title="@string/read_articles" />
     <item
         android:id="@+id/indexedCardsFragment"
-        android:title="learn wit Indexed Cards" />
+        android:title="@string/indexed_cards" />
     <item
         android:id="@+id/testFragment"
-        android:title="to a Test" />
+        android:title="@string/do_a_test" />
+    <item
+        android:id="@+id/taskFragment"
+        android:title="@string/control_your_progress" />
 </menu>

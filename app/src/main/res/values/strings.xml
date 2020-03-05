@@ -12,8 +12,8 @@
     <string name="try_again">Try again</string>
     <string name="answer">Answer</string>
 
-    <string name="your_final_result"></string>
-    <string name="title">Your articles</string>
+    <string name="result">Result:</string>
+    <string name="title">Title</string>
     <string name="article_title">Title</string>
 
 
@@ -42,6 +42,27 @@
     <string name="description">Description</string>
     <string name="content">Content</string>
     <string name="add_article">Add article</string>
+    <string name="your_tasks">Your tasks:</string>
+    <string name="delete_all">delete all</string>
+    <string name="add">add</string>
+
+    <string name="delete">delete</string>
+    <string name="done">done</string>
+    <string name="congratulations">Congatulations, keep going!</string>
+    <string name="task_removed">Your task has been removed</string>
+
+    <string name="update_article">Update article</string>
+    <string name="no">no</string>
+    <string name="update">update</string>
+    <string name="updated_article">you have updated the Article</string>
+    <string name="no_updated_article">you have not updated the Article</string>
+    <string name="next">Next</string>
+    <string name="info_about_the_app">Info about the App</string>
+    <string name="read_articles">Read Articles</string>
+    <string name="indexed_cards">Indexed Cards</string>
+    <string name="do_a_test">Do a Test</string>
+    <string name="control_your_progress">Control your progress</string>
+    <string name="created_article">you created article</string>
 
 
 </resources>

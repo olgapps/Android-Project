@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/titleFragment"
         android:name="olga.pietrzyk.androidteacher.TitleFragment"
-        android:label="TitleFragment" >
+        android:label="fragment_title">
         <action
             android:id="@+id/action_titleFragment_to_mainViewFragment"
             app:destination="@id/mainViewFragment" />
@@ -80,14 +80,6 @@
             android:id="@+id/action_mainFragment_to_articleDescriptionFragment"
             app:destination="@id/articleDescriptionFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="olga.pietrzyk.androidteacher.login.LoginFragment"
-        android:label="LoginFragment" />
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="olga.pietrzyk.androidteacher.login.SettingsFragment"
-        android:label="SettingsFragment" />
     <fragment
         android:id="@+id/articleDescriptionFragment"
         android:name="olga.pietrzyk.androidteacher.login.ArticleDescriptionFragment"

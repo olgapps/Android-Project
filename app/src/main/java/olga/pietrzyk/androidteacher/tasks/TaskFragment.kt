@@ -78,26 +78,21 @@ class TaskFragment : Fragment() {
           taskViewModel.getTaskByID(task.taskId)
 
 
-           // taskViewModel.currentTask.observe(viewLifecycleOwner, Observer{
-               // newCurrentTask->
-
-                Toast.makeText(context, "${task} and ", Toast.LENGTH_LONG).show()
-                // alert.show()
                 builder.setTitle(" ${task.taskTitle}")
                 builder.setMessage("${task.taskContent}")
                 //
-                builder.setNegativeButton("DELETE"){dialog,which ->
-                    Toast.makeText(context,"You are not agree.",Toast.LENGTH_SHORT).show()
+                builder.setNegativeButton(getResources().getString(R.string.delete)){dialog,which ->
+                    Toast.makeText(context,getResources().getString(R.string.task_removed),Toast.LENGTH_SHORT).show()
                     taskViewModel.deleteTask(task.taskId)
                 }
 
-                builder.setPositiveButton("DONE"){dialog, which ->
+                builder.setPositiveButton(getResources().getString(R.string.done)){dialog, which ->
                     taskViewModel.updateById(task.taskId)
-                    Toast.makeText(context,"Ok, we change the app background.",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context,getResources().getString(R.string.congratulations),Toast.LENGTH_SHORT).show()
 
 
                 }
-           // })
+
 
             val alert = builder.create()
             alert.show()
@@ -113,47 +108,9 @@ class TaskFragment : Fragment() {
                 adapter.tasks=it
             }
         })
-   // })
+
         return binding.root
     }
 
-    fun makeWindow(
-        viewModel: TaskViewModel
-    ):AlertDialog
-    {
-        val builder = AlertDialog.Builder(context)
-        //var a = "kupa"
-        //val taskTitle= taskViewModel.tasks[taskId.toInt()]
-        viewModel.task.observe(viewLifecycleOwner, Observer { newWord ->
-            newWord!!.taskTitle.toString()
-            Log.i("AAAAAAAAAAAAA","${newWord!!.taskTitle}")
-
-            Toast.makeText(context, "${newWord!!.taskTitle}", Toast.LENGTH_LONG).show()
-
-
-        })
-
-        builder.setTitle("Update Task")
-        builder.setView(view)
-
-        builder.setPositiveButton("DONE"){dialog, which ->
-            // Do something when user press the positive button
-            Toast.makeText(context,"Ok, we change the app background.",Toast.LENGTH_SHORT).show()
-
-
-            // Change the app background color
-
-        }
-
-
-        // Display a negative button on alert dialog
-        builder.setNegativeButton("DELETE"){dialog,which ->
-            Toast.makeText(context,"You are not agree.",Toast.LENGTH_SHORT).show()
-        }
-        val alert = builder.create()
-        return alert
-        //alert.show()
-
-    }
 
 }

@@ -162,7 +162,7 @@ class MainFragment : Fragment() {
 
 
         referenceToFirebase.child(articleId).setValue(article).addOnCompleteListener{
-            Toast.makeText(context, "you created article", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, getString(R.string.created_article), Toast.LENGTH_LONG).show()
         }
     }
 
