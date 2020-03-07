@@ -4,7 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="test_welcome_header">Witaj na stronie głównej</string>
     <string name="test_welcome_description">Sprawdź swoją wiedzę z Androida</string>
-    <string name="test">Zrób Test</string>
+    <string name="test">Test</string>
     <string name="aboutApp">Informacja o Appce</string>
     <string name="start_the_app">Start</string>
     <string name="start_test">start TEST</string>
@@ -12,7 +12,7 @@
     <string name="try_again">Spróbuj ponownie</string>
     <string name="answer">Odpowiedź</string>
 
-    <string name="result">Wynik:</string>
+    <string name="result">Wynik</string>
     <string name="title">Tytuł</string>
     <string name="article_title">Tytuł</string>
 
@@ -20,7 +20,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome_on_main_page">Witaj na stornie głównej</string>
-    <string name="check_meaning">Sprawdź zanaczenie</string>
+    <string name="check_meaning">Sprawdź znaczenie</string>
 
 
     <string name="login_button_text">Logowanie</string>
@@ -31,13 +31,9 @@
     <string name="login_prompt">Login to set customizations!</string>
     <string name="login_btn">Login</string>
     <string name="settings_btn">Dodaj artykuł</string>
-    <string name="settings_fact_type_title">Fun Fact Type</string>
 
-    <string name="fact_type_android">Android</string>
-    <string name="fact_type_california">California</string>
 
-    <!--Shared Preference Keys -->
-    <string name="preference_fact_type_key">fact_type_pref</string>
+
     <string name="instruction">Aplikacja pomaga studento nauczyć się Androida</string>
     <string name="description">Opis</string>
     <string name="content">Zawartość</string>
@@ -65,6 +61,17 @@
     <string name="do_a_test">Zrób test</string>
     <string name="control_your_progress">Kontroluj postęp</string>
     <string name="created_article">Stworzyłeś artykuł</string>
+    <string name="share_result">Chcę się podzielić moim wynikiem z testu z Androida, który wynosi:</string>
+
+    <string name="task">Zadania</string>
+    <string name="article">Artykuł</string>
+    <string name="articles">Artykuły</string>
+    <string name="indexed_card">Fiszki</string>
+    <string name="about">O aplikacji</string>
+    <string name="main_page">Strona główna</string>
+    <string name="welcome">Witaj</string>
+
+
 
 
 

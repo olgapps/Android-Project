@@ -29,6 +29,7 @@ class TaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
         val binding: FragmentTaskBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_task, container, false)
 
         // po co to

@@ -22,7 +22,7 @@ class ArticlesAdapter(val adapterContext: Context, val layoutResId: Int, val art
 
 
         val articleField = view.findViewById<TextView>(R.id.article_field)
-        val updateArticle = view.findViewById<TextView>(R.id.update_article)
+        val updateArticle = view.findViewById<ImageView>(R.id.update_article)
 
 
 

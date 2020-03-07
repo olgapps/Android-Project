@@ -4,7 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="test_welcome_header">Welcome on Test page</string>
     <string name="test_welcome_description">Check your knowledge of Android</string>
-    <string name="test">Do a Test</string>
+    <string name="test">Test</string>
     <string name="aboutApp">Info about App</string>
     <string name="start_the_app">Start</string>
     <string name="start_test">start TEST</string>
@@ -12,7 +12,7 @@
     <string name="try_again">Try again</string>
     <string name="answer">Answer</string>
 
-    <string name="result">Result:</string>
+    <string name="result">Result</string>
     <string name="title">Title</string>
     <string name="article_title">Title</string>
 
@@ -31,13 +31,9 @@
     <string name="login_prompt">Login to set customizations!</string>
     <string name="login_btn">Login</string>
     <string name="settings_btn">Add article</string>
-    <string name="settings_fact_type_title">Fun Fact Type</string>
 
-    <string name="fact_type_android">Android</string>
-    <string name="fact_type_california">California</string>
 
-    <!--Shared Preference Keys -->
-    <string name="preference_fact_type_key">fact_type_pref</string>
+
     <string name="instruction">This is an app to help students learn Android</string>
     <string name="description">Description</string>
     <string name="content">Content</string>
@@ -63,6 +59,16 @@
     <string name="do_a_test">Do a Test</string>
     <string name="control_your_progress">Control your progress</string>
     <string name="created_article">you created article</string>
+
+    <string name="share_result">I want to share with you my Android test result which is:</string>
+    <string name="task">Tasks</string>
+    <string name="article">Article</string>
+    <string name="articles">Articles</string>
+    <string name="indexed_card">Indexed cards</string>
+    <string name="about">About app</string>
+    <string name="main_page">Main page</string>
+    <string name="welcome">Welcome</string>
+
 
 
 </resources>

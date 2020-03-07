@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/titleFragment"
         android:name="olga.pietrzyk.androidteacher.TitleFragment"
-        android:label="fragment_title">
+        android:label="@string/welcome">
         <action
             android:id="@+id/action_titleFragment_to_mainViewFragment"
             app:destination="@id/mainViewFragment" />
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/mainViewFragment"
         android:name="olga.pietrzyk.androidteacher.MainViewFragment"
-        android:label="fragment_main_view"
+        android:label="@string/main_page"
         tools:layout="@layout/fragment_main_view" >
         <action
             android:id="@+id/action_mainViewFragment_to_testFragment"
@@ -35,12 +35,12 @@
     <fragment
         android:id="@+id/aboutAppFragment"
         android:name="olga.pietrzyk.androidteacher.AboutAppFragment"
-        android:label="fragment_about_app"
+        android:label="@string/about"
         tools:layout="@layout/fragment_about_app" />
     <fragment
         android:id="@+id/testFragment"
         android:name="olga.pietrzyk.androidteacher.androidTest.TestFragment"
-        android:label="fragment_test"
+        android:label="@string/test"
         tools:layout="@layout/fragment_test" >
         <action
             android:id="@+id/action_testFragment_to_testContentFragment"
@@ -49,7 +49,7 @@
     <fragment
         android:id="@+id/testContentFragment"
         android:name="olga.pietrzyk.androidteacher.androidTest.TestContentFragment"
-        android:label="fragment_test_content"
+        android:label="@string/test"
         tools:layout="@layout/fragment_test_content" >
         <action
             android:id="@+id/action_testContentFragment_to_testResultFragment"
@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/testResultFragment"
         android:name="olga.pietrzyk.androidteacher.androidTest.TestResultFragment"
-        android:label="TestResultFragment" >
+        android:label="@string/result" >
         <action
             android:id="@+id/action_testResultFragment_to_testFragment"
             app:destination="@id/testFragment" />
@@ -71,11 +71,11 @@
     <fragment
         android:id="@+id/indexedCardsFragment"
         android:name="olga.pietrzyk.androidteacher.indexedCards.IndexedCardsFragment"
-        android:label="IndexedCardsFragment" />
+        android:label="@string/indexed_card" />
     <fragment
         android:id="@+id/mainFragment"
         android:name="olga.pietrzyk.androidteacher.login.MainFragment"
-        android:label="MainFragment" >
+        android:label="@string/articles" >
         <action
             android:id="@+id/action_mainFragment_to_articleDescriptionFragment"
             app:destination="@id/articleDescriptionFragment" />
@@ -83,7 +83,7 @@
     <fragment
         android:id="@+id/articleDescriptionFragment"
         android:name="olga.pietrzyk.androidteacher.login.ArticleDescriptionFragment"
-        android:label="ArticleDescriptionFragment" >
+        android:label="@string/article" >
         <argument
             android:name="articleTitle"
             app:argType="string" />
@@ -103,5 +103,5 @@
     <fragment
         android:id="@+id/taskFragment"
         android:name="olga.pietrzyk.androidteacher.tasks.TaskFragment"
-        android:label="TaskFragment" />
+        android:label="@string/task" />
 </navigation>
