@@ -21,14 +21,13 @@
             android:id="@+id/resultHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:text="@string/your_result"
             android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgResult"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/imgResult" />
 
         <TextView
             android:id="@+id/finalResultText"
@@ -36,12 +35,10 @@
             android:layout_height="wrap_content"
             android:text="@string/result"
             android:textSize="55sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnTryAgain"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.43"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/resultHeader"
-            app:layout_constraintVertical_bias="0.13999999" />
+            app:layout_constraintTop_toBottomOf="@+id/resultHeader" />
 
         <TextView
             android:id="@+id/percentage"
@@ -54,9 +51,10 @@
 
         <ImageView
             android:id="@+id/imgResult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/result"
+            android:layout_width="412dp"
+            android:layout_height="232dp"
+            android:src="@drawable/image_test_result"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,11 +62,11 @@
             android:id="@+id/btnTryAgain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
             android:text="@string/try_again"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imgResult"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgResult" />
+            app:layout_constraintTop_toBottomOf="@+id/finalResultText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

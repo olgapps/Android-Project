@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.ListView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
@@ -59,17 +61,15 @@ class MainFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
 
 
-        referenceToFirebase =FirebaseDatabase.getInstance().getReference("articles")
+        referenceToFirebase = FirebaseDatabase.getInstance().getReference("articles")
 
-        currentUserMail= FirebaseAuth.getInstance().currentUser?.email.toString()
+        currentUserMail = FirebaseAuth.getInstance().currentUser?.email.toString()
 
         //Toast.makeText(context,"'${currentUserMail}'", Toast.LENGTH_LONG).show()
 
 
-
-
-        articlesList= mutableListOf()
-        articleTitle= mutableListOf()
+        articlesList = mutableListOf()
+        articleTitle = mutableListOf()
 
 //        binding.welcomeText.text ="tutaj będzie lista Artykułow"
 //        binding.authButton.text = getString(R.string.login_btn)
@@ -78,45 +78,45 @@ class MainFragment : Fragment() {
 
 
 
-        referenceToFirebase.addValueEventListener(object: ValueEventListener{
+        referenceToFirebase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-               if(p0!!.exists()){
-                   var i:Long=0
+                if (p0!!.exists()) {
+                    var i: Long = 0
                     articlesList.clear()
-                       for (p in p0.children) {
+                    for (p in p0.children) {
 
-                               val article = p.getValue(Articles::class.java)
-                                   articlesList.add(article!!)
+                        val article = p.getValue(Articles::class.java)
+                        articlesList.add(article!!)
 
 
-                   }
+                    }
 
 
                     articleTitle.clear()
-                   for(a in articlesList){
-                       articleTitle.add(a.title)
-                   }
+                    for (a in articlesList) {
+                        articleTitle.add(a.title)
+                    }
 
-                   context?.let{
+                    context?.let {
 
-                       val adapterLoggedIn = ArticlesAdapter(it, R.layout.articles, articlesList)
-                       val adapterLoggedOut =ArrayAdapter(it, android.R.layout.simple_list_item_1, articleTitle)
-
-
-
-                       if(currentUserMail=="null"){
-                           binding.listView.adapter=adapterLoggedOut
-                       }else{
-                           binding.listView.adapter=adapterLoggedIn
-                       }
+                        val adapterLoggedIn = ArticlesAdapter(it, R.layout.articles, articlesList)
+                        val adapterLoggedOut =
+                            ArrayAdapter(it, android.R.layout.simple_list_item_1, articleTitle)
 
 
 
-                      /* viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenicationState ->
+                        if (currentUserMail == "null") {
+                            binding.listView.adapter = adapterLoggedOut
+                        } else {
+                            binding.listView.adapter = adapterLoggedIn
+                        }
+
+
+                        /* viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenicationState ->
                            when(authenicationState){
                                LoginViewModel.AuthenticationState.AUTHENTICATED -> {
                                    binding.listView.adapter=adapterLoggedIn
@@ -127,8 +127,8 @@ class MainFragment : Fragment() {
                                }
                            }
                        })*/
-                   }
-               }
+                    }
+                }
             }
         });
 
@@ -138,12 +138,65 @@ class MainFragment : Fragment() {
             var articleTitle = articlesList[id.toInt()].title.toString()
             var articleKey = articlesList[id.toInt()].id.toString()
             var articleEmail = articlesList[id.toInt()].email.toString()
-            view.findNavController().navigate(MainFragmentDirections.actionMainFragmentToArticleDescriptionFragment( articleTitle, articleContent,articleKey, articleEmail))
+            view.findNavController().navigate(
+                MainFragmentDirections.actionMainFragmentToArticleDescriptionFragment(
+                    articleTitle,
+                    articleContent,
+                    articleKey,
+                    articleEmail
+                )
+            )
 
         }
+
+        binding.listView.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                    val action = event!!.action
+                    when (action) {
+                        MotionEvent.ACTION_DOWN ->
+                            // Disallow ScrollView to intercept touch events.
+                            v!!.parent.requestDisallowInterceptTouchEvent(true)
+
+                        MotionEvent.ACTION_UP ->
+                            // Allow ScrollView to intercept touch events.
+                            v!!.parent.requestDisallowInterceptTouchEvent(false)
+                    }
+
+                    // Handle ListView touch events.
+                    v!!.onTouchEvent(event)
+                    return true
+                }
+            })
+
+
+
+
         binding.invalidateAll()
+
+
         return binding.root
+
+
     }
+    /*    binding.listView.setOnTouchListener(object : ListView.() {
+            fun onTouch(v: View, event: MotionEvent): Boolean {
+                val action = event.action
+                when (action) {
+                    MotionEvent.ACTION_DOWN ->
+                        // Disallow ScrollView to intercept touch events.
+                        v.parent.requestDisallowInterceptTouchEvent(true)
+
+                    MotionEvent.ACTION_UP ->
+                        // Allow ScrollView to intercept touch events.
+                        v.parent.requestDisallowInterceptTouchEvent(false)
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event)
+                return true
+            }
+        })
+    }*/
 
 
 

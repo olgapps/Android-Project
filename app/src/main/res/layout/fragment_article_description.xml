@@ -15,14 +15,15 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="439dp"
-        android:layout_height="755dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
         <ImageView
             android:id="@+id/image_article_description"
-            android:layout_width="411dp"
-            android:layout_height="204dp"
+            android:layout_width="421dp"
+            android:layout_height="214dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/image_articles_description" />
@@ -35,7 +36,6 @@
 
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.46"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,7 +47,6 @@
 
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.46"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/article_title" />
 
@@ -64,15 +63,18 @@
 
         <ImageView
             android:id="@+id/delete_button"
-            android:layout_width="58dp"
-            android:layout_height="62dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+
+            android:visibility="gone"
+
             app:layout_constraintBottom_toBottomOf="parent"
+
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.461"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/article_content"
-            app:layout_constraintVertical_bias="0.467"
-            android:visibility="gone"
             app:srcCompat="@android:drawable/ic_menu_delete" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
