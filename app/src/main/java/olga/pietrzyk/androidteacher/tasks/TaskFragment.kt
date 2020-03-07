@@ -61,6 +61,7 @@ class TaskFragment : Fragment() {
 
         val manager =GridLayoutManager(activity, 3)
         binding.tasksList.layoutManager=manager
+       // binding.tasksList.isNestedScrollingEnabled = false
 
         //val alert =makeWindow(taskViewModel)
        // taskViewModel.task.observe(viewLifecycleOwner, Observer { newWord ->
