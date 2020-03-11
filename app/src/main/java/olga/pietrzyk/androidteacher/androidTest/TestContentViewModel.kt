@@ -69,7 +69,6 @@ class TestContentViewModel : ViewModel(){
 
         indexOfQuestion += 1
         questionNumber.value=(questionNumber.value)?.plus(1)
-        //idIndex = -1
         currentQuestion.value = questions[indexOfQuestion]
         var k=currentQuestion.value
         answers.value = k?.answers?.toMutableList()
@@ -78,7 +77,6 @@ class TestContentViewModel : ViewModel(){
     }
 
     fun setFinalResult(){
-
         finalResult.value=(numberOfCorrectAnswers.value?.toDouble()!!.times(100)/numberOfQuestions.toDouble())
 
     }

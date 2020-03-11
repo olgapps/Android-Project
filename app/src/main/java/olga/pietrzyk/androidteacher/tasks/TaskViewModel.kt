@@ -29,15 +29,12 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
     var task = MutableLiveData<Task?>()
 
     val tasks = database.getAllTasks()
-    var taskTitle = "nic nie przeczytałem"
-    var taskContnet = "nic nie przeczytałem"
+    var taskTitle = ""
+    var taskContnet = ""
 
     var currentTask= MutableLiveData<Task?>()
 
 
-
-    val taskStringFormat = Transformations.map(tasks) { newTask ->
-        formatTasks(newTask, applicaton.resources)}
 
     init{
         initializeTask()
@@ -48,7 +45,6 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
         taskContnet = content
         onCreateTask()
     }
-
 
 
     fun initializeTask(){
@@ -67,11 +63,9 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
     fun getTaskByID(id: Long){
         uiScope.launch{
             currentTask.value = getTaskByIdFromDatabase(id)
-            Log.i("aaaaaaaaaaaaa", "${currentTask.value!!.taskTitle}")
 
         }
     }
-
 
 
     fun onCreateTask(){
@@ -89,23 +83,11 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
         }
     }
 
-    /*fun getChosenTask(Id: Long): Task{
-        uiScope.launch{
-            withContext(Dispatchers.IO){
-                val task = database.get(Id) ?: return@withContext
-                task
-            }
-        }
-
-    }*/
 
     fun updateById(Id: Long) {
         uiScope.launch {
-            // IO is a thread pool for running operations that access the disk, such as
-            // our Room database.
             withContext(Dispatchers.IO) {
                 val task = database.get(Id) ?: return@withContext
-                //currentTask=task
                 task.taskStatus = true
                 database.update(task)
             }

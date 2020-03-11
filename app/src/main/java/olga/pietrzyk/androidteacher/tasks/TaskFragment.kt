@@ -32,13 +32,10 @@ class TaskFragment : Fragment() {
 
         val binding: FragmentTaskBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_task, container, false)
 
-        // po co to
         val application = requireNotNull(this.activity).application
 
-        //we need a reference to a database we are reference to a dao
         val dataSource = TaskDatabase.getInstance(application).taskDatabaseDao
 
-        //instance of sleep tracker view factory and we pass it a data source
         val viewModelFactory = TaskViewModelFactory(dataSource, application)
 
         val taskViewModel = ViewModelProviders.of(this, viewModelFactory).get(TaskViewModel::class.java)
@@ -52,8 +49,6 @@ class TaskFragment : Fragment() {
         }
 
 
-
-        //this is necessary so that the live data can observe live data updates
         binding.taskViewModel=taskViewModel
 
         binding.setLifecycleOwner (this)
@@ -61,16 +56,7 @@ class TaskFragment : Fragment() {
 
         val manager =GridLayoutManager(activity, 3)
         binding.tasksList.layoutManager=manager
-       // binding.tasksList.isNestedScrollingEnabled = false
-
-        //val alert =makeWindow(taskViewModel)
-       // taskViewModel.task.observe(viewLifecycleOwner, Observer { newWord ->
         val builder = AlertDialog.Builder(context)
-        //var a = "kupa"
-
-
-
-
 
         builder.setView(view)
 
@@ -82,7 +68,7 @@ class TaskFragment : Fragment() {
 
                 builder.setTitle(" ${task.taskTitle}")
                 builder.setMessage("${task.taskContent}")
-                //
+
                 builder.setNegativeButton(getResources().getString(R.string.delete)){dialog,which ->
                     Toast.makeText(context,getResources().getString(R.string.task_removed),Toast.LENGTH_SHORT).show()
                     taskViewModel.deleteTask(task.taskId)
@@ -95,15 +81,11 @@ class TaskFragment : Fragment() {
 
                 }
 
-
             val alert = builder.create()
             alert.show()
 
         })
         binding.tasksList.adapter=adapter
-
-
-
 
         taskViewModel.tasks.observe(viewLifecycleOwner, Observer{
             it?.let{

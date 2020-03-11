@@ -32,7 +32,7 @@ class IndexedCardsFragment : Fragment() {
 
         var meaningSetter: Boolean=false
 
-        viewModel.current_card.observe(this, Observer { newWord ->
+        viewModel.current_card.observe(viewLifecycleOwner, Observer { newWord ->
             binding.txtDefinition.text = newWord.definition
             binding.txtDescription.text=newWord.description
 

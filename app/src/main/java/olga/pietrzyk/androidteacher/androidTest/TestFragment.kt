@@ -22,7 +22,6 @@ class TestFragment : Fragment() {
             R.layout.fragment_test, container, false)
         binding.buttonStartTest.setOnClickListener { view:View ->
             Navigation.findNavController(view).navigate(R.id.action_testFragment_to_testContentFragment)
-            //(activity as AppCompatActivity).supportActionBar?.title = "Welcome in test"
         }
         return binding.root
     }

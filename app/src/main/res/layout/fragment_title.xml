@@ -35,6 +35,16 @@
                     app:layout_constraintTop_toBottomOf="@+id/titleImage"
                     app:layout_constraintVertical_bias="0.35" />
 
+                <Spinner
+                    android:id="@+id/spinner_language"
+                    android:layout_width="150dp"
+                    android:layout_height="33dp"
+                    app:layout_constraintBottom_toTopOf="@+id/playButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titleImage" />
+
+
+
                 <ImageView
                     android:id="@+id/titleImage"
                     android:layout_width="475dp"

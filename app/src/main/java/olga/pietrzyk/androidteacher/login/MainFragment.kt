@@ -178,25 +178,7 @@ class MainFragment : Fragment() {
 
 
     }
-    /*    binding.listView.setOnTouchListener(object : ListView.() {
-            fun onTouch(v: View, event: MotionEvent): Boolean {
-                val action = event.action
-                when (action) {
-                    MotionEvent.ACTION_DOWN ->
-                        // Disallow ScrollView to intercept touch events.
-                        v.parent.requestDisallowInterceptTouchEvent(true)
 
-                    MotionEvent.ACTION_UP ->
-                        // Allow ScrollView to intercept touch events.
-                        v.parent.requestDisallowInterceptTouchEvent(false)
-                }
-
-                // Handle ListView touch events.
-                v.onTouchEvent(event)
-                return true
-            }
-        })
-    }*/
 
 
 

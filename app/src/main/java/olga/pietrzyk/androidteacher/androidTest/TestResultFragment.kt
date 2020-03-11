@@ -12,9 +12,7 @@ import olga.pietrzyk.androidteacher.R
 //import olga.pietrzyk.androidteacher.TestResultFragmentArgs
 import olga.pietrzyk.androidteacher.databinding.FragmentTestResultBinding
 
-/**
- * A simple [Fragment] subclass.
- */var result : String=""
+var result : String=""
 class TestResultFragment : Fragment() {
 
     override fun onCreateView(
@@ -29,7 +27,7 @@ class TestResultFragment : Fragment() {
         binding.finalResultText.text = testResultFragmentArgs.finalResult.toString()
 
         result =testResultFragmentArgs.finalResult.toString()+"%"
-        val lala = "jjd"
+
         binding.btnTryAgain.setOnClickListener { view:View ->
             Navigation.findNavController(view).navigate(R.id.action_testResultFragment_to_testFragment)
         }
@@ -46,7 +44,8 @@ class TestResultFragment : Fragment() {
     }
 
 
-    private fun getShareIntent(): Intent {        val shareIntent = Intent(Intent.ACTION_SEND)
+    private fun getShareIntent(): Intent {
+        val shareIntent = Intent(Intent.ACTION_SEND)
 
 
         shareIntent.setType("text/plain")

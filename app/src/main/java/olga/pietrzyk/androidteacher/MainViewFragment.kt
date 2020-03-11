@@ -27,7 +27,6 @@ class MainViewFragment : Fragment() {
         val binding=DataBindingUtil.inflate<FragmentMainViewBinding>(inflater, R.layout.fragment_main_view, container, false)
 
             binding.listOptions?.setOnItemClickListener { parent, view, position, id ->
-                Log.i("mojeee", position.toString())
                 if (position == 0) {
                     view.findNavController()
                         .navigate(R.id.action_mainViewFragment_to_taskFragment)

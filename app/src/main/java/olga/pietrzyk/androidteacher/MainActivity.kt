@@ -1,5 +1,6 @@
 package olga.pietrzyk.androidteacher
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -12,12 +13,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
+    lateinit var languagePreference: LanguagePreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding=DataBindingUtil.setContentView(this, R.layout.activity_main)
         drawerLayout=binding.drawerLayout
         val NavController = this.findNavController(R.id.myNavHostFragment)
+
         NavigationUI.setupActionBarWithNavController(this, NavController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, NavController)
     }
@@ -25,8 +29,12 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.myNavHostFragment)
         return NavigationUI.navigateUp(navController, drawerLayout)
-        //return navController.navigateUp()
     }
 
+    override fun attachBaseContext(newBase: Context?) {
+        languagePreference= LanguagePreference(newBase!!)
+        val lang: String = languagePreference.getLanguage().toString()
 
+        super.attachBaseContext(MyContextWrapper.wrap(newBase, lang))
+    }
 }

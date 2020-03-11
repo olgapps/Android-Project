@@ -20,18 +20,15 @@ class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAd
         }
 
     override fun getItemCount(): Int {
-       return tasks.size //To change body of created functions use File | Settings | File Templates.
+       return tasks.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item =tasks[position]
 
         val res = holder.itemView.context.resources
-        //holder.bind(item)
+
         holder.bind(item, clickListener)
-
-        //holder.
-
     }
 
 
@@ -41,8 +38,6 @@ class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAd
     }
 
     class ViewHolder(val binding: ListItemTaskBinding): RecyclerView.ViewHolder(binding.root){
-        //val taskContent: TextView = taskView.findViewById(R.id.item_task_content)
-        //val taskStatus: CheckBox = binding.taskStatus
 
         fun bind(
         item: Task, clickListener: TaskListener
@@ -58,19 +53,13 @@ class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAd
             }else{
                 binding.taskStatusChecked.visibility= View.GONE
                 binding.taskStatus.visibility= View.VISIBLE
-               // binding.itemTaskTitle2.text = item.taskTitle.toString()
-
                 }
             }
-
-
-            // binding.taskContent.text = item.taskContent.toString()
 
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                //val view = layoutInflater.inflate(R.layout.list_item_task, parent, false)
                 val binding = ListItemTaskBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }

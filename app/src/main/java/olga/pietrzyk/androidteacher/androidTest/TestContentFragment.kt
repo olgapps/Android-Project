@@ -30,27 +30,21 @@ class TestContentFragment : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentTestContentBinding>(inflater,
             R.layout.fragment_test_content, container, false)
-        //(activity as AppCompatActivity).supportActionBar?.title = "Test question"
+
 
         viewModel= ViewModelProviders.of(this).get(TestContentViewModel::class.java)
 
         binding.txtquestionNumber.text=viewModel.questionNumber.toString()
         binding.test=viewModel
 
-
-        //var numberOfQuestionToBeAnswered=numberOfQuestions
         var idIndex = -1
-        //binding.test=this
-        viewModel.questionNumber.observe(this, Observer { newQuestionNumber ->
-            //binding.wordText.text = newWord
+
+        viewModel.questionNumber.observe(viewLifecycleOwner, Observer { newQuestionNumber ->
             binding.txtquestionNumber.text=newQuestionNumber.toString()
         })
 
 
-
             binding.answerButton.setOnClickListener { view: View ->
-
-
 
                 var userAnswerId = binding.radioGroup.checkedRadioButtonId
                 idIndex=(-1)
@@ -66,18 +60,14 @@ class TestContentFragment : Fragment() {
                 }
 
 
-                //dodaje ilość poprawnych odp (idzie do view)
-
 
                 if (idIndex!=-1 && viewModel.answers.value!![idIndex]== viewModel.currentQuestion.value!!.answers[0]) {
-                    //numberOfCorrectAnswers += 1
                     viewModel.increaseNumberOfCorrectAnswers()
                 }
 
-                //vin statement
+
                 if((viewModel.indexOfQuestion==(viewModel.numberOfQuestions-1)) && (idIndex!=-1)){
                     viewModel.setFinalResult()
-                    //finalResult=(numberOfCorrectAnswers.toDouble()*100/numberOfQuestions.toDouble())
                     val action =
                         TestContentFragmentDirections.actionTestContentFragmentToTestResultFragment(
                             viewModel.finalResult.value!!.toFloat()
@@ -90,8 +80,7 @@ class TestContentFragment : Fragment() {
 
                     binding.radioGroup.clearCheck();
                     if(viewModel.indexOfQuestion<(viewModel.numberOfQuestions)){
-                        viewModel.questionNumber.observe(this, Observer { newQuestionNumber ->
-                            //binding.wordText.text = newWord
+                        viewModel.questionNumber.observe(viewLifecycleOwner, Observer { newQuestionNumber ->
                             binding.txtquestionNumber.text=newQuestionNumber.toString()
                         })
 
@@ -99,9 +88,6 @@ class TestContentFragment : Fragment() {
                     binding.invalidateAll()
 
                 }
-
-
-
             }
 
         return binding.root
