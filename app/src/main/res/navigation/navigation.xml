@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_mainViewFragment_to_taskFragment"
             app:destination="@id/taskFragment" />
+        <action
+            android:id="@+id/action_mainViewFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutAppFragment"
@@ -104,4 +107,8 @@
         android:id="@+id/taskFragment"
         android:name="olga.pietrzyk.androidteacher.tasks.TaskFragment"
         android:label="@string/task" />
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="olga.pietrzyk.androidteacher.camera.CameraFragment"
+        android:label="CameraFragment" />
 </navigation>

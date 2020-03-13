@@ -46,8 +46,8 @@
         <ListView
 
             android:id="@+id/list_options"
-            android:layout_width="206dp"
-            android:layout_height="207dp"
+            android:layout_width="224dp"
+            android:layout_height="279dp"
             android:layout_marginTop="24dp"
             android:descendantFocusability="blocksDescendants"
             android:entries="@array/options"

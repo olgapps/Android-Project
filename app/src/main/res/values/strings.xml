@@ -13,7 +13,6 @@
     <string name="answer">Answer</string>
 
     <string name="result">Result</string>
-    <string name="title">Title</string>
     <string name="article_title">Title</string>
 
 
@@ -33,10 +32,8 @@
     <string name="settings_btn">Add article</string>
 
 
-
     <string name="instruction">This is an app to help students learn Android</string>
     <string name="description">Description</string>
-    <string name="content">Content</string>
     <string name="add_article">Add article</string>
     <string name="your_tasks">Your tasks:</string>
     <string name="delete_all">delete all</string>
@@ -68,7 +65,8 @@
     <string name="about">About app</string>
     <string name="main_page">Main page</string>
     <string name="welcome">Welcome</string>
-
+    <string name="title">Title</string>
+    <string name="content">Content</string>
 
 
 </resources>

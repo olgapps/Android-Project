@@ -45,7 +45,6 @@ class IndexedCardsViewModel: ViewModel(){
     }
 
     fun changeTheCard(){
-        Log.i("AAA", "${cardIndex}")
         cardIndex+=1
         _current_card.value=_cards[cardIndex]
     }
@@ -60,8 +59,14 @@ class IndexedCardsViewModel: ViewModel(){
 
     }
 
+    fun changeCard(){
+        changeTheCard()
+        setWordsAgain()
+        coverMeaning()
+    }
+
     fun setWordsAgain(){
-        Log.i("AAAAAAA", "${cardIndex}")
+
         if(cardIndex==(_cards.size-1)){
             cardIndex=0
             _cards.shuffle()

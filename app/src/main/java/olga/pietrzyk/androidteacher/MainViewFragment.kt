@@ -42,6 +42,10 @@ class MainViewFragment : Fragment() {
                     view.findNavController().navigate(R.id.action_mainViewFragment_to_mainFragment)
 
                 }
+                if (position == 4) {
+                    view.findNavController().navigate(R.id.action_mainViewFragment_to_cameraFragment)
+
+                }
             }
         return binding.root
 

@@ -30,17 +30,12 @@ import olga.pietrzyk.androidteacher.R
 import olga.pietrzyk.androidteacher.databinding.FragmentMainBinding
 
 
-/**
- * A simple [Fragment] subclass.
- */
 class MainFragment : Fragment() {
     lateinit var referenceToFirebase: DatabaseReference
     lateinit var articlesList: MutableList<Articles>
     lateinit var articleTitle: MutableList<String>
-    lateinit var itemKeys: MutableList<String>
-    //lateinit var adapterIn: ArticlesAdapter
-    //lateinit var adapterOut: ArrayAdapter<String>
-
+    //lateinit var listOfArticles:
+    lateinit var listOfArticles: MutableList<Articles>
 
 
     companion object {
@@ -48,8 +43,6 @@ class MainFragment : Fragment() {
         const val TAG = "MainFragment"
         const val SIGN_IN_RESULT_CODE = 1001
     }
-
-
 
     private val viewModel by viewModels<LoginViewModel>()
     private lateinit var binding: FragmentMainBinding
@@ -59,79 +52,23 @@ class MainFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
-
-
         referenceToFirebase = FirebaseDatabase.getInstance().getReference("articles")
 
         currentUserMail = FirebaseAuth.getInstance().currentUser?.email.toString()
 
-        //Toast.makeText(context,"'${currentUserMail}'", Toast.LENGTH_LONG).show()
-
-
         articlesList = mutableListOf()
         articleTitle = mutableListOf()
 
-//        binding.welcomeText.text ="tutaj będzie lista Artykułow"
-//        binding.authButton.text = getString(R.string.login_btn)
         binding.btnSubmitArticle.setOnClickListener { saveArticle() }
+        createArticleListFromFirebase()
+        observeAuthenticationState()
 
+        bindArticleItemWithList()
+        handleListScrollingInsideScreenScrolling()
+        return binding.root
+    }
 
-
-
-        referenceToFirebase.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                if (p0!!.exists()) {
-                    var i: Long = 0
-                    articlesList.clear()
-                    for (p in p0.children) {
-
-                        val article = p.getValue(Articles::class.java)
-                        articlesList.add(article!!)
-
-
-                    }
-
-
-                    articleTitle.clear()
-                    for (a in articlesList) {
-                        articleTitle.add(a.title)
-                    }
-
-                    context?.let {
-
-                        val adapterLoggedIn = ArticlesAdapter(it, R.layout.articles, articlesList)
-                        val adapterLoggedOut =
-                            ArrayAdapter(it, android.R.layout.simple_list_item_1, articleTitle)
-
-
-
-                        if (currentUserMail == "null") {
-                            binding.listView.adapter = adapterLoggedOut
-                        } else {
-                            binding.listView.adapter = adapterLoggedIn
-                        }
-
-
-                        /* viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenicationState ->
-                           when(authenicationState){
-                               LoginViewModel.AuthenticationState.AUTHENTICATED -> {
-                                   binding.listView.adapter=adapterLoggedIn
-
-                               }
-                               else -> {
-                                   binding.listView.adapter=adapterLoggedOut
-                               }
-                           }
-                       })*/
-                    }
-                }
-            }
-        });
-
+    private fun bindArticleItemWithList() {
         binding.listView.setOnItemClickListener { parent, view, position, id ->
 
             var articleContent = articlesList[id.toInt()].content.toString()
@@ -146,41 +83,41 @@ class MainFragment : Fragment() {
                     articleEmail
                 )
             )
-
         }
-
-        binding.listView.setOnTouchListener(object : View.OnTouchListener {
-            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                    val action = event!!.action
-                    when (action) {
-                        MotionEvent.ACTION_DOWN ->
-                            // Disallow ScrollView to intercept touch events.
-                            v!!.parent.requestDisallowInterceptTouchEvent(true)
-
-                        MotionEvent.ACTION_UP ->
-                            // Allow ScrollView to intercept touch events.
-                            v!!.parent.requestDisallowInterceptTouchEvent(false)
-                    }
-
-                    // Handle ListView touch events.
-                    v!!.onTouchEvent(event)
-                    return true
-                }
-            })
-
-
-
-
-        binding.invalidateAll()
-
-
-        return binding.root
-
-
     }
 
+    private fun createArticleListFromFirebase() {
+        referenceToFirebase.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+            }
 
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0!!.exists()) {
+                    var i: Long = 0
+                    articlesList.clear()
+                    for (p in p0.children) {
+                        val article = p.getValue(Articles::class.java)
+                        articlesList.add(article!!)
+                    }
 
+                    articleTitle.clear()
+                    for (a in articlesList) {
+                        articleTitle.add(a.title)
+                    }
+                }
+
+                val adapterLoggedIn = ArticlesAdapter(context!!, R.layout.articles, articlesList)
+                val adapterLoggedOut =
+                    ArrayAdapter(context!!, android.R.layout.simple_list_item_1, articleTitle)
+
+                if (currentUserMail == "null") {
+                    binding.listView.adapter = adapterLoggedOut
+                } else {
+                    binding.listView.adapter = adapterLoggedIn
+                }
+            }
+        });
+    }
 
     fun saveArticle(){
         val articleTitle = binding.articleTitle.text.toString()
@@ -189,11 +126,11 @@ class MainFragment : Fragment() {
         val content= articleContent
 
 
-        val Id=referenceToFirebase.push().key
+        val Id = referenceToFirebase.push().key
+
         val articleId=Id.toString()
+
         val article = Articles(articleId, title, content, currentUserMail)
-
-
 
 
         referenceToFirebase.child(articleId).setValue(article).addOnCompleteListener{
@@ -208,7 +145,6 @@ class MainFragment : Fragment() {
         binding.authButton.setOnClickListener {
             launchSignInFlow()
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -226,49 +162,48 @@ class MainFragment : Fragment() {
     }
 
     private fun observeAuthenticationState() {
-        //val factToDisplay = viewModel.getFactToDisplay(requireContext())
+        context?.let {
+            val adapterLoggedIn = ArticlesAdapter(it, R.layout.articles, articlesList)
+            val adapterLoggedOut =
+                ArrayAdapter(it, android.R.layout.simple_list_item_1, articleTitle)
+
+
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenicationState ->
-            context?.let {
 
-            when (authenicationState) {
-                LoginViewModel.AuthenticationState.AUTHENTICATED -> {
-                    binding.articleContent.visibility=View.VISIBLE
-                    binding.articleTitle.visibility=View.VISIBLE
-                    binding.btnSubmitArticle.visibility=View.VISIBLE
-                    binding.authButton.text = getString(R.string.logout_button_text)
-                    binding.authButton.setOnClickListener {
-                        AuthUI.getInstance().signOut(requireContext())
+                when (authenicationState) {
+                    LoginViewModel.AuthenticationState.AUTHENTICATED -> {
+                        binding.apply {
+                            authButton.text = getString(R.string.logout_button_text)
+                            authButton.setOnClickListener {
+                                AuthUI.getInstance().signOut(requireContext())
+                            }
+                            welcomeText.text = getFactWithPersonalization(":)")
+                            textView2.visibility = View.GONE
+                            currentUserMail =
+                                FirebaseAuth.getInstance().currentUser?.email.toString()
+                            listView.adapter = adapterLoggedIn
+                            articleContent.visibility = View.VISIBLE
+                            articleTitle.visibility = View.VISIBLE
+                            btnSubmitArticle.visibility = View.VISIBLE
+                        }
                     }
-                    binding.welcomeText.text=getFactWithPersonalization(":)")
-                    binding.textView2.visibility=View.GONE
-                    val adapterLoggedIn = ArticlesAdapter(it, R.layout.articles, articlesList)
-                    binding.listView.adapter=adapterLoggedIn
-                    currentUserMail= FirebaseAuth.getInstance().currentUser?.email.toString()
-
+                    else -> {
+                        binding.apply {
+                            articleContent.visibility = View.GONE
+                            articleTitle.visibility = View.GONE
+                            btnSubmitArticle.visibility = View.GONE
+                            authButton.text = getString(R.string.login_button_text)
+                            textView2.text = "to add your articles login ->"
+                            authButton.setOnClickListener { launchSignInFlow() }
+                            welcomeText.text = "Articles list:"
+                            listView.adapter = adapterLoggedOut
+                            currentUserMail = "null"
+                            authButton.text = getString(R.string.login_btn)
+                        }
+                    }
                 }
-                else -> {
-                    binding.articleContent.visibility=View.GONE
-                    binding.articleTitle.visibility=View.GONE
-                    binding.btnSubmitArticle.visibility=View.GONE
-                    binding.authButton.text = getString(R.string.login_button_text)
-                    binding.textView2.text="to add your articles login ->"
-                    binding.authButton.setOnClickListener { launchSignInFlow() }
-                    //binding.welcomeText.text=factToDisplay
-                    binding.welcomeText.text="Articles list:"
-                    val adapterLoggedOut =ArrayAdapter(it, android.R.layout.simple_list_item_1, articleTitle)
-                    binding.listView.adapter=adapterLoggedOut
-                    currentUserMail="null"
-                    //binding.welcomeText.text ="tutaj będzie lista Artykułow"
-                    binding.authButton.text = getString(R.string.login_btn)
-
-                }
-
-            }
-
-
-            }
-        })
-
+            })
+        }
     }
 
 
@@ -293,6 +228,24 @@ class MainFragment : Fragment() {
                 .build(),
             MainFragment.SIGN_IN_RESULT_CODE
         )
+    }
+
+    fun handleListScrollingInsideScreenScrolling(){
+        binding.listView.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                val action = event!!.action
+                when (action) {
+                    MotionEvent.ACTION_DOWN ->
+                        v!!.parent.requestDisallowInterceptTouchEvent(true)
+
+                    MotionEvent.ACTION_UP ->
+                        v!!.parent.requestDisallowInterceptTouchEvent(false)
+                }
+
+                v!!.onTouchEvent(event)
+                return true
+            }
+        })
     }
 }
 

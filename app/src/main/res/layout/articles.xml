@@ -13,13 +13,6 @@
         android:text="TextView"
         android:textSize="18dp" />
 
-   <!-- <TextView
-        android:id="@+id/update_article"
-        android:paddingLeft="150dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="update"
-        android:textSize="18dp"/>-->
 
     <ImageView
         android:id="@+id/update_article"

@@ -30,33 +30,30 @@ class IndexedCardsFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(IndexedCardsViewModel::class.java)
 
-        var meaningSetter: Boolean=false
 
         viewModel.current_card.observe(viewLifecycleOwner, Observer { newWord ->
             binding.txtDefinition.text = newWord.definition
             binding.txtDescription.text=newWord.description
 
         })
+        binding.indexedCardsViewModel=viewModel
+
+        binding.setLifecycleOwner (this)
 
 
 
 
-        binding.btnNext.setOnClickListener {
+        /*binding.btnNext.setOnClickListener {
 
             viewModel.changeTheCard()
             viewModel.setWordsAgain()
             viewModel.coverMeaning()
             binding.txtDescription.visibility = View.GONE
             binding.btnCheckMeaning.visibility=View.VISIBLE
-        }
+        }*/
 
 
-            if ( viewModel.meaning.value==false) {
-                binding.txtDescription.visibility = View.GONE
-                binding.btnCheckMeaning.visibility=View.VISIBLE
-        }
-
-        binding.btnCheckMeaning.setOnClickListener {
+        /*binding.btnCheckMeaning.setOnClickListener {
             viewModel.showMeaning()
             binding.txtDescription.visibility = View.VISIBLE
             binding.btnCheckMeaning.visibility=View.GONE
@@ -71,6 +68,17 @@ class IndexedCardsFragment : Fragment() {
         if (viewModel.meaning.value==false) {
             binding.txtDescription.visibility = View.GONE
             binding.btnCheckMeaning.visibility=View.VISIBLE}
+        */
+        viewModel.meaning.observe(viewLifecycleOwner, Observer{meaning->
+            if (meaning==false){
+                binding.txtDescription.visibility = View.GONE
+                binding.btnCheckMeaning.visibility=View.VISIBLE
+            }
+            if (meaning==true) {
+                binding.txtDescription.visibility = View.VISIBLE
+                binding.btnCheckMeaning.visibility=View.GONE
+            }
+        })
 
 
         return binding.root

@@ -33,6 +33,7 @@ class TestResultFragment : Fragment() {
         }
 
         setHasOptionsMenu(true)
+
         return binding.root
 
 
@@ -40,14 +41,12 @@ class TestResultFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.result_menu, menu)
+        inflater.inflate(R.menu.result_menu, menu)
     }
 
 
     private fun getShareIntent(): Intent {
         val shareIntent = Intent(Intent.ACTION_SEND)
-
-
         shareIntent.setType("text/plain")
             .putExtra(Intent.EXTRA_TEXT,
                 resources.getString(R.string.share_result)+
