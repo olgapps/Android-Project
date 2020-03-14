@@ -26,6 +26,7 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
     }
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
     var task = MutableLiveData<Task?>()
 
     val tasks = database.getAllTasks()
@@ -38,6 +39,7 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
 
     init{
         initializeTask()
+
     }
 
     fun addTaskTitle(title: String,content: String){
@@ -77,6 +79,7 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
     }
 
     fun deleteAllTasks() {
+
         uiScope.launch {
             clear()
             task.value = null

@@ -35,9 +35,12 @@ class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAd
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
+
     }
 
     class ViewHolder(val binding: ListItemTaskBinding): RecyclerView.ViewHolder(binding.root){
+
+
 
         fun bind(
         item: Task, clickListener: TaskListener
@@ -67,6 +70,10 @@ class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAd
     }
 }
 
-class TaskListener(val clickListener: (taskId: Task)-> Unit){
-    fun onClick(task:Task)=clickListener(task)
+class TaskListener(val clickListener: (task: Task)-> Unit){
+    fun onClick(task:Task){clickListener(task)}
+}
+
+class o(task: Task){
+
 }

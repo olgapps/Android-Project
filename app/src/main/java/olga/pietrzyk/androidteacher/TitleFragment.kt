@@ -28,12 +28,12 @@ class TitleFragment : Fragment() {
         val binding: FragmentTitleBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_title, container, false)
 
 
-        languagePreference= LanguagePreference(this.context)
+        languagePreference= LanguagePreference(context!!)
 
-        context?.let {
+
             binding.spinnerLanguage.adapter =
-                ArrayAdapter(it, android.R.layout.simple_list_item_1, languageList)
-        }
+                ArrayAdapter(context!!, android.R.layout.simple_list_item_1, languageList)
+
 
         val lang: String = languagePreference.getLanguage().toString()
         val index = languageList.indexOf(lang)

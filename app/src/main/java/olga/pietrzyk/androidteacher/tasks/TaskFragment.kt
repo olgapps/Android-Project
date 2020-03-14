@@ -11,12 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.gms.tasks.Tasks.await
 import olga.pietrzyk.androidteacher.R
 import olga.pietrzyk.androidteacher.databaseSqlite.TaskDatabase
 import olga.pietrzyk.androidteacher.databinding.FragmentTaskBinding
@@ -25,6 +23,9 @@ import olga.pietrzyk.androidteacher.databinding.FragmentTaskBinding
  * A simple [Fragment] subclass.
  */
 class TaskFragment : Fragment() {
+    companion object{
+        lateinit var taskViewModel: TaskViewModel
+    }
 
 
     override fun onCreateView(
@@ -41,7 +42,7 @@ class TaskFragment : Fragment() {
 
         val viewModelFactory = TaskViewModelFactory(dataSource, application)
 
-        val taskViewModel = ViewModelProviders.of(this, viewModelFactory).get(TaskViewModel::class.java)
+        taskViewModel = ViewModelProviders.of(this, viewModelFactory).get(TaskViewModel::class.java)
 
 
 
@@ -59,6 +60,10 @@ class TaskFragment : Fragment() {
 
         val manager =GridLayoutManager(activity, 3)
         binding.tasksList.layoutManager=manager
+
+
+
+
         val builder = AlertDialog.Builder(context)
 
         builder.setView(view)
@@ -66,45 +71,49 @@ class TaskFragment : Fragment() {
 
         val adapter = TaskAdapter(TaskListener { task->
 
-          taskViewModel.getTaskByID(task.taskId)
+          val fm = activity!!.supportFragmentManager
+          val f = TaskDialogFragment.newInstance(task.taskTitle,task.taskContent, task.taskId);
+
+          f.show(fm, "TaskDialogFragment_tag")
 
 
-                builder.setTitle(" ${task.taskTitle}")
-                builder.setMessage("${task.taskContent}")
+/*
+          builder.setTitle(" ${task.taskTitle}")
+          builder.setMessage("${task.taskContent}")
 
-                builder.setNegativeButton(getResources().getString(R.string.delete)){dialog,which ->
-                    Toast.makeText(context,getResources().getString(R.string.task_removed),Toast.LENGTH_SHORT).show()
-                    taskViewModel.deleteTask(task.taskId)
-                }
+          builder.setNegativeButton(getResources().getString(R.string.delete)){dialog,which ->
+              Toast.makeText(context,getResources().getString(R.string.task_removed),Toast.LENGTH_SHORT).show()
+              taskViewModel.deleteTask(task.taskId)
+          }
 
-                builder.setPositiveButton(getResources().getString(R.string.done)){dialog, which ->
-                    taskViewModel.updateById(task.taskId)
-                    Toast.makeText(context,getResources().getString(R.string.congratulations),Toast.LENGTH_SHORT).show()
-
-
-                }
-
-            val alert = builder.create()
-            alert.show()
-
-        })
-        binding.tasksList.adapter=adapter
-
-        taskViewModel.tasks.observe(viewLifecycleOwner, Observer{
-            it?.let{
-                adapter.tasks=it
-            }
-        })
+          builder.setPositiveButton(getResources().getString(R.string.done)){dialog, which ->
+              taskViewModel.updateById(task.taskId)
+              Toast.makeText(context,getResources().getString(R.string.congratulations),Toast.LENGTH_SHORT).show()
 
 
-        return binding.root
-    }
+          }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        val inn =getActivity()!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inn.hideSoftInputFromWindow(view!!.windowToken, 0)
+      val alert = builder.create()
+      alert.show()
+        */
+  })
+  binding.tasksList.adapter=adapter
+
+  taskViewModel.tasks.observe(viewLifecycleOwner, Observer{
+      it?.let{
+          adapter.tasks=it
+      }
+  })
 
 
-    }
+  return binding.root
+}
+
+override fun onActivityCreated(savedInstanceState: Bundle?) {
+  super.onActivityCreated(savedInstanceState)
+  val inn =getActivity()!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+  inn.hideSoftInputFromWindow(view!!.windowToken, 0)
+
+
+}
 }

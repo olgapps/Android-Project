@@ -3,15 +3,13 @@ package olga.pietrzyk.androidteacher.camera
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentResolver
-import android.content.ContentValues
-import android.content.Context
-import android.content.Intent
+import android.app.AlertDialog
+import android.content.*
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
-import android.graphics.drawable.BitmapDrawable
+
 import android.net.Uri
 
 import android.os.Build
@@ -20,24 +18,18 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.core.content.FileProvider
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.setContentView
-import kotlinx.android.synthetic.main.fragment_camera.*
-import olga.pietrzyk.androidteacher.MainActivity
+
 
 import olga.pietrzyk.androidteacher.R
-import olga.pietrzyk.androidteacher.databinding.FragmentCameraBinding
+
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -45,9 +37,7 @@ import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class CameraFragment : Fragment() {
 
     private lateinit var imageView: ImageView
@@ -126,8 +116,8 @@ class CameraFragment : Fragment() {
 
             photoFile = createImageFile()
             //displayMessage(baseContext, photoFile!!.getAbsolutePath())
-            Log.i("Olga", photoFile!!.getAbsolutePath())
-           // val fileProvider = FileProvider.getUriForFile(context!!, "olga.pietrzyk.androidteacher.fileprovider", photoFile);
+            Log.i("Olgaa", photoFile!!.getAbsolutePath())
+            // val fileProvider = FileProvider.getUriForFile(context!!, "olga.pietrzyk.androidteacher.fileprovider", photoFile);
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 val pF = photoFile
@@ -137,10 +127,16 @@ class CameraFragment : Fragment() {
                         "olga.pietrzyk.androidteacher.fileprovider",
                         pF
                     )
-                    Log.i("Olga", photoFile!!.getAbsolutePath())
+                    photoFile=pF
+                    Log.i("Olgab", photoFile!!.getAbsolutePath())
                     u=photoURI
 
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+//                    val file = File(u!!.getPath());//create path from uri
+//                    Log.i("Olgaurid", "${file}")
+//                    var split = file.getPath().split(":");//split the path.
+//                    val filePath = split[1];//assign it to a string(your choice).
+
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,u)
                     // Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
                     startActivityForResult(takePictureIntent, CAPTURE_IMAGE_REQUEST)
@@ -175,8 +171,6 @@ class CameraFragment : Fragment() {
     }
 
 
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -191,25 +185,36 @@ class CameraFragment : Fragment() {
             //imageView.setImageBitmap(myBitmap)
 
 */
-        if (requestCode == CAPTURE_IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
-            //val imageBitmap = data!!.extras!!.get("data") as Bitmap
-            //val st = Environment.getExternalStorageDirectory().toString() + "/" + PHOTO_DIR  + "/test1.jpg";
+        if (requestCode == CAPTURE_IMAGE_REQUEST&& resultCode == Activity.RESULT_OK) {
+
             imageView = view!!.findViewById(R.id.img)
+            val myBitmap = BitmapFactory.decodeFile(photoFile!!.getAbsolutePath())
+            imageView.setImageBitmap(myBitmap)
+            //val imageBitmap = data!!.extras!!.get("data") as Bitmap
+            //val returnUri=data!!.getData()
+            //val st = Environment.getExternalStorageDirectory().toString() + "/" + PHOTO_DIR  + "/test1.jpg";
+
             //setPic()
 //           Log.i("olgagaga", "${data!!.getData()}")
-           // imgUri!!.let {
-                //val myBitmap =
-                  //  BitmapFactory.decodeStream(context!!.getContentResolver().openInputStream(Uri.parse(mCurrentPhotoPath)))
-                val imageBitmap = BitmapFactory.decodeFile(u.toString())
-               // imageView.setImageBitmap(myBitmap)
-           // }
-            imageView.setImageBitmap(imageBitmap)
+            // imgUri!!.let {
+            //val myBitmap =
+            //  BitmapFactory.decodeStream(context!!.getContentResolver().openInputStream(Uri.parse(mCurrentPhotoPath)))
+
+
+
+
+            // }
+            //val a = activity!!.contentResolver.openInputStream(returnUri!!)
+//val bitmap = BitmapFactory.decodeStream(a)
+
+            //imageView.setImageBitmap(bitmap)
             //galleryAddPic()
 
 
         } else if (resultCode == Activity.RESULT_OK && requestCode == GALLERY) {
             val returnUri = data!!.getData();
-            Log.i("Olgauri", "${returnUri}")
+
+
             imageView = view!!.findViewById(R.id.img);
             returnUri!!.let {
 
@@ -218,18 +223,10 @@ class CameraFragment : Fragment() {
                 val b = BitmapFactory.decodeStream(s)
                 imageView.setImageBitmap(b)
             }
-            /*  val bitmapImage = MediaStore.Images.Media.getBitmap(getActivity()!!.getContentResolver(), returnUri);
-            imageView = view!!.findViewById(R.id.img);
-            imageView.setImageBitmap(bitmapImage)*/
-            //your_imageView.setImageBitmap(bitmapImage);
-            /*imageView.setImageURI(data?.data)
-            var bitmap = (imageView.drawable as BitmapDrawable).bitmap// handle chosen image
-            imageView = view!!.findViewById(R.id.img);
-            imageView.setImageBitmap(bitmap)*/
         }
 
         else {
-            Log.i("Olga", "Request cancelled or something went wrong.")
+            Log.i("Olgare", "Request cancelled or something went wrong.")
         }
     }
 
@@ -254,7 +251,7 @@ class CameraFragment : Fragment() {
 
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.absolutePath
-        Log.i("Olga", "Request cancelled or something went wrong.")
+
         return image
         /* val mediaStorageDir = File( getActivity()!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "ola")
 
@@ -296,5 +293,4 @@ class CameraFragment : Fragment() {
          camera_image.setImageBitmap(bmp)
      }
  }*/
-
 

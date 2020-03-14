@@ -11,10 +11,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ListView
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -23,7 +20,6 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import olga.pietrzyk.androidteacher.MainViewFragmentDirections
 
 import olga.pietrzyk.androidteacher.R
 
@@ -63,6 +59,19 @@ class MainFragment : Fragment() {
         createArticleListFromFirebase()
         observeAuthenticationState()
 
+
+
+
+
+//        val fm = activity!!.supportFragmentManager
+//        val pioneersFragment = UpdateArticleDialogFragment()
+//
+//        binding.button.setOnClickListener(object : View.OnClickListener {
+//            override fun onClick(view: View) {
+//                pioneersFragment.show(fm, "PioneersFragment_tag")
+//            }
+//        })
+
         bindArticleItemWithList()
         handleListScrollingInsideScreenScrolling()
         return binding.root
@@ -87,6 +96,8 @@ class MainFragment : Fragment() {
     }
 
     private fun createArticleListFromFirebase() {
+        val adapterLoggedIn = ArticlesAdapter(context!!, R.layout.articles, articlesList)
+        val adapterLoggedOut = ArrayAdapter(context!!, android.R.layout.simple_list_item_1, articleTitle)
         referenceToFirebase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
             }
@@ -106,9 +117,7 @@ class MainFragment : Fragment() {
                     }
                 }
 
-                val adapterLoggedIn = ArticlesAdapter(context!!, R.layout.articles, articlesList)
-                val adapterLoggedOut =
-                    ArrayAdapter(context!!, android.R.layout.simple_list_item_1, articleTitle)
+
 
                 if (currentUserMail == "null") {
                     binding.listView.adapter = adapterLoggedOut
