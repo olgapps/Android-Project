@@ -60,18 +60,6 @@ class MainFragment : Fragment() {
         observeAuthenticationState()
 
 
-
-
-
-//        val fm = activity!!.supportFragmentManager
-//        val pioneersFragment = UpdateArticleDialogFragment()
-//
-//        binding.button.setOnClickListener(object : View.OnClickListener {
-//            override fun onClick(view: View) {
-//                pioneersFragment.show(fm, "PioneersFragment_tag")
-//            }
-//        })
-
         bindArticleItemWithList()
         handleListScrollingInsideScreenScrolling()
         return binding.root

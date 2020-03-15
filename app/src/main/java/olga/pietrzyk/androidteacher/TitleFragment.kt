@@ -13,9 +13,6 @@ import androidx.navigation.ui.NavigationUI
 import kotlinx.android.synthetic.main.fragment_title.*
 import olga.pietrzyk.androidteacher.databinding.FragmentTitleBinding
 
-/**
- * A simple [Fragment] subclass.
- */
 class TitleFragment : Fragment() {
     lateinit var languagePreference: LanguagePreference
     val languageList = arrayOf("en","pl")

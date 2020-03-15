@@ -17,9 +17,6 @@ import olga.pietrzyk.androidteacher.databinding.FragmentTestContentBinding
 
 class TestContentFragment : Fragment() {
 
-
-
-
     private lateinit var viewModel : TestContentViewModel
 
     override fun onCreateView(
