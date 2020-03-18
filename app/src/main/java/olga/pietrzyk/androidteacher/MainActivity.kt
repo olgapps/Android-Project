@@ -28,9 +28,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout=binding.drawerLayout
 
         val NavController = this.findNavController(R.id.myNavHostFragment)
-
         NavigationUI.setupActionBarWithNavController(this, NavController, drawerLayout)
-
         NavigationUI.setupWithNavController(binding.navView, NavController)
     }
 
@@ -44,8 +42,6 @@ class MainActivity : AppCompatActivity() {
         val lang: String = languagePreference.getLanguage().toString()
 
         super.attachBaseContext(MyContextWrapper.wrap(newBase, lang))
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

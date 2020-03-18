@@ -17,7 +17,6 @@ class TestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val binding = DataBindingUtil.inflate<FragmentTestBinding>(inflater,
             R.layout.fragment_test, container, false)
         binding.buttonStartTest.setOnClickListener { view:View ->
@@ -25,6 +24,4 @@ class TestFragment : Fragment() {
         }
         return binding.root
     }
-
-
 }

@@ -10,11 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.google.firebase.database.FirebaseDatabase
 import olga.pietrzyk.androidteacher.R
-import olga.pietrzyk.androidteacher.tasks.TaskDialogFragment
 
 class UpdateArticleDialogFragment : DialogFragment() {
-
-
 
     private var articleId: String ="-1"
 
@@ -23,10 +20,8 @@ class UpdateArticleDialogFragment : DialogFragment() {
         articleId = arguments?.getString(ID)!!.toString()
     }
 
-
     companion object {
         private const val ID= "ID"
-
         fun newInstance(
            articleId: String
         ): UpdateArticleDialogFragment = UpdateArticleDialogFragment().apply {
@@ -41,16 +36,11 @@ class UpdateArticleDialogFragment : DialogFragment() {
             val builder = AlertDialog.Builder(it)
             val inflater = LayoutInflater.from(it)
             val view = inflater.inflate(R.layout.update_article, null)
-
-
             val articleTitle= view!!.findViewById<TextView>(R.id.article_title)
             val articleContent = view!!.findViewById<TextView>(R.id.article_content)
 
-
             builder.setTitle(it.getResources().getString(R.string.update_article))
-
             builder.setView(view)
-
             builder.setPositiveButton(
                     it.getResources().getString(R.string.update),
                     object : DialogInterface.OnClickListener {
@@ -80,8 +70,6 @@ class UpdateArticleDialogFragment : DialogFragment() {
                             ).show()
                         }
                     })
-
-
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }

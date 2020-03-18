@@ -22,45 +22,38 @@ class TitleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        val firstIndex = 0
+
         val binding: FragmentTitleBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_title, container, false)
 
-
-        languagePreference= LanguagePreference(context!!)
-
+        languagePreference = LanguagePreference(context!!)
 
             binding.spinnerLanguage.adapter =
                 ArrayAdapter(context!!, android.R.layout.simple_list_item_1, languageList)
 
-
         val lang: String = languagePreference.getLanguage().toString()
         val index = languageList.indexOf(lang)
 
-        if (index>=0){
+        if (index >= firstIndex){
             binding.spinnerLanguage.setSelection(index)
         }
-
 
         binding.playButton.setOnClickListener { view: View->
             languagePreference.setLanguage(languageList[binding.spinnerLanguage.selectedItemPosition])
             view.findNavController().navigate(R.id.action_titleFragment_to_mainViewFragment)
         }
-
         setHasOptionsMenu(true)
-
         return binding.root
    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.overflow_menu, menu)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item!!,
+        return NavigationUI.onNavDestinationSelected(item,
             view!!.findNavController())
                 || super.onOptionsItemSelected(item)
     }
-
-
 }

@@ -25,55 +25,40 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class CameraFragment : Fragment() {
 
     private lateinit var imageView: ImageView
-    private lateinit var button: Button
-    private lateinit var button_upload: Button
+    private lateinit var buttonTakePicture: Button
+    private lateinit var buttonUploadPicture: Button
     private var photoFile: File? = null
     private val CAPTURE_IMAGE_REQUEST = 1
+    private val REQUEST_CODE = 0
     private lateinit var mCurrentPhotoPath: String
     private val GALLERY = 2
-    lateinit var u: Uri
-
+    private val firstGrant= 0
+    private val secondGrant = 1
+    lateinit var currentPhotoUrl: Uri
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        /* val binding = DataBindingUtil.inflate<FragmentCameraBinding>(
-            inflater,
-            R.layout.fragment_camera, container, false
-        )*/
         val view = inflater!!.inflate(R.layout.fragment_camera, container, false)
-        //View rootView = inflater.inflate( R.layout.fragment_camera, container, false);
-        //imageView = view.findViewById(R.id.camera_image);
-        button = view.findViewById(R.id.take_picture_button);
-        button_upload = view.findViewById(R.id.upload_picture_button);
 
+        buttonTakePicture = view.findViewById(R.id.take_picture_button);
+        buttonUploadPicture = view.findViewById(R.id.upload_picture_button);
 
-
-        button.setOnClickListener {
+        buttonTakePicture.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 captureImage()
             }
         }
 
-        button_upload.setOnClickListener {
+        buttonUploadPicture.setOnClickListener {
             openGalleryForImage()
         }
         return view
-    }
-
-
-    private fun dispatchTakePictureIntent() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            takePictureIntent.resolveActivity(getActivity()!!.getPackageManager())?.also {
-                startActivityForResult(takePictureIntent, CAPTURE_IMAGE_REQUEST)
-            }
-        }
     }
 
     private fun captureImage() {
@@ -86,7 +71,7 @@ class CameraFragment : Fragment() {
             ActivityCompat.requestPermissions(
                 activity!!,
                 arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                0
+                REQUEST_CODE
             )
         } else {
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -94,19 +79,17 @@ class CameraFragment : Fragment() {
             photoFile = createImageFile()
 
             if (photoFile != null) {
-                val pF = photoFile
-                pF!!.let {
+                val currentPhotoFile = photoFile
+                currentPhotoFile!!.let {
                     var photoURI = FileProvider.getUriForFile(
                         context!!,
-                        "olga.pietrzyk.androidteacher.fileprovider",
-                        pF
+                        resources.getString(R.string.authority),
+                        currentPhotoFile
                     )
-                    photoFile=pF
-                    u=photoURI
+                    photoFile = currentPhotoFile
+                    currentPhotoUrl = photoURI
 
-
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,u)
-
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, currentPhotoUrl)
                     startActivityForResult(takePictureIntent, CAPTURE_IMAGE_REQUEST)
                 }
             }
@@ -115,8 +98,8 @@ class CameraFragment : Fragment() {
 
     private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/*"
-        startActivityForResult(Intent.createChooser(intent, "p"), GALLERY)
+        intent.type = resources.getString(R.string.image)
+        startActivityForResult(Intent.createChooser(intent, resources.getString(R.string.gallery)), GALLERY)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -133,9 +116,7 @@ class CameraFragment : Fragment() {
 
             imageView = view!!.findViewById(R.id.img);
             returnUri!!.let {
-
                 val s = activity!!.contentResolver.openInputStream(returnUri)
-                Log.i("Olgabs", "${s}")
                 val b = BitmapFactory.decodeStream(s)
                 imageView.setImageBitmap(b)
             }
@@ -148,17 +129,16 @@ class CameraFragment : Fragment() {
 
     @Throws(IOException::class)
     private fun createImageFile(): File {
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val imageFileName = "JPEG_" + timeStamp + "_"
+        val timeStamp = SimpleDateFormat(resources.getString(R.string.yyyyMMdd_HHmmss)).format(Date())
+        val imageFileName = resources.getString(R.string.JPEG)+ timeStamp + "_"
         val storageDir = getActivity()!!.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         val image = File.createTempFile(
-            imageFileName, /* prefix */
-            ".jpg", /* suffix */
-            storageDir      /* directory */
+            imageFileName,
+            resources.getString(R.string.jpg),
+            storageDir
         )
 
         mCurrentPhotoPath = image.absolutePath
-
         return image
     }
 
@@ -167,9 +147,9 @@ class CameraFragment : Fragment() {
         permissions: Array<String>,
         grantResults: IntArray
     ) {
-        if (requestCode == 0) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                && grantResults[1] == PackageManager.PERMISSION_GRANTED
+        if (requestCode == REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[firstGrant] == PackageManager.PERMISSION_GRANTED
+                && grantResults[secondGrant] == PackageManager.PERMISSION_GRANTED
             ) {
                 captureImage()
             }

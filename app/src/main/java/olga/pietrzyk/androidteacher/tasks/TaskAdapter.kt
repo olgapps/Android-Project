@@ -11,8 +11,6 @@ import olga.pietrzyk.androidteacher.databinding.ListItemTaskBinding
 
 class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 
-
-
     var tasks = listOf<Task>()
         set(value) {
             field = value
@@ -31,16 +29,11 @@ class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAd
         holder.bind(item, clickListener)
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
-
     }
 
     class ViewHolder(val binding: ListItemTaskBinding): RecyclerView.ViewHolder(binding.root){
-
-
 
         fun bind(
         item: Task, clickListener: TaskListener
@@ -59,7 +52,6 @@ class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAd
                 }
             }
 
-
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
@@ -74,6 +66,3 @@ class TaskListener(val clickListener: (task: Task)-> Unit){
     fun onClick(task:Task){clickListener(task)}
 }
 
-class o(task: Task){
-
-}

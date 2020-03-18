@@ -24,39 +24,36 @@ class IndexedCardsViewModel: ViewModel(){
             definition = "Launcher",
             description = "Collectively, the part of the Android user interface on home screens that lets you launch apps, make phone calls, etc. Is built in to Android, or can be purchased in the Android Market"
         )
-
     )
 
-
-    private var cardIndex=0
+    private var cardIndex = 0
+    private val indexCardChanger = 1
+    private val firstIndexCard = 0
     private var _meaning= MutableLiveData <Boolean>()
     val meaning: LiveData<Boolean>
-        get()=_meaning
+        get() = _meaning
 
     private val _current_card= MutableLiveData<IndexedCards>()
     val current_card: LiveData<IndexedCards>
-        get()=_current_card
-
+        get() = _current_card
 
     init{
         _cards.shuffle()
-        _current_card.value=_cards[cardIndex]
-        _meaning.value=false
+        _current_card.value =_cards[cardIndex]
+        _meaning.value = false
     }
 
     fun changeTheCard(){
-        cardIndex+=1
-        _current_card.value=_cards[cardIndex]
+        cardIndex += indexCardChanger
+        _current_card.value =_cards[cardIndex]
     }
 
     fun showMeaning(){
-        _meaning.value=true
-
+        _meaning.value = true
     }
 
     fun coverMeaning(){
-        _meaning.value=false
-
+        _meaning.value = false
     }
 
     fun changeCard(){
@@ -66,16 +63,10 @@ class IndexedCardsViewModel: ViewModel(){
     }
 
     fun setWordsAgain(){
-
-        if(cardIndex==(_cards.size-1)){
-            cardIndex=0
+        if(cardIndex == (_cards.size-indexCardChanger)){
+            cardIndex = firstIndexCard
             _cards.shuffle()
             _current_card.value=_cards[cardIndex]
         }
-
-
     }
-
-
-
 }

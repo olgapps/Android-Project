@@ -4,6 +4,10 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
@@ -15,25 +19,40 @@ import olga.pietrzyk.androidteacher.login.LoginViewModel
 
 class TaskDialogFragment() : DialogFragment() {
 
-    //
     private lateinit var title: String
     private lateinit var content: String
     private var taskId: Long =-1
-    //private  var taskViewModel=taskViewModel
 
-
-   override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         content = arguments?.getString(CONTENT).toString()
         title = arguments?.getString(TITLE).toString()
         taskId = arguments?.getLong(ID)!!.toLong()
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.dialog_fragment_task, container, false)
+        content = arguments?.getString(CONTENT).toString()
+        title = arguments?.getString(TITLE).toString()
+        taskId = arguments?.getLong(ID)!!.toLong()
+
+        val dialog_title = view!!.findViewById<TextView>(R.id.dialog_title)
+        val dialog_content = view.findViewById<TextView>(R.id.dialog_content)
+
+        dialog_title.setText(" ${title}")
+        dialog_content.setText(" ${content}")
+
+        return view
+    }
 
     companion object {
         private const val CONTENT = "content"
         private const val TITLE = "title"
-        private const val ID= "ID"
+        private const val ID = "ID"
 
         fun newInstance(
             title: String?, content: String?, taskId: Long
@@ -46,30 +65,19 @@ class TaskDialogFragment() : DialogFragment() {
         }
     }
 
-
-
-
-
-    //lateinit var task: Task
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-
+        val inflater = requireActivity().layoutInflater;
         val taskViewModel = TaskFragment.taskViewModel
-       // val taskViewModel = ViewModelProviders.of(this, viewModelFactory).get(TaskViewModel::class.java)
-
 
         return activity?.let {
 
             val builder = AlertDialog.Builder(it)
-            builder.setTitle(" ${title}")
-            builder.setMessage("${content}")
-
-
+            builder.setView(inflater.inflate(R.layout.dialog_fragment_task, null))
 
             builder.setNegativeButton(getResources().getString(R.string.delete)){ dialog, which ->
                 taskViewModel.deleteTask(taskId)
                 Toast.makeText(context,getResources().getString(R.string.task_removed), Toast.LENGTH_SHORT).show()
-
             }
 
             builder.setPositiveButton(getResources().getString(R.string.done)){ dialog, which ->
@@ -78,11 +86,7 @@ class TaskDialogFragment() : DialogFragment() {
                     Toast.LENGTH_SHORT).show()
 
             }
-
-
             builder.create()
-
-
 
         } ?: throw IllegalStateException("Activity cannot be null")
     }

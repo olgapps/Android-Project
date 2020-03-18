@@ -72,5 +72,24 @@
     <string name="welcome">Witaj</string>
     <string name="make_a_picture">Zrób zdjęcie</string>
 
+    <string name="text_plain">text/plain</string>
+    <string name="percentage">%</string>
+
+    <string name="tasks_table">tasks_table</string>
+    <string name="tasks_database">tasks_database</string>
+    <string name="status">status</string>
+
+    <string name="authority">olga.pietrzyk.androidteacher.fileprovider</string>
+    <string name="JPEG">JPEG_</string>
+
+
+
+    <string name="image">image/*</string>
+    <string name="jpg">.jpg</string>
+
+    <string name="yyyyMMdd_HHmmss">yyyyMMdd_HHmmss</string>
+    <string name="gallery">gallery</string>
+
+
 
 </resources>

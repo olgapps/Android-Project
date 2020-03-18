@@ -4,7 +4,6 @@ import android.content.Context
 
 val PREFERENCE_LANGUAGE= "LoginCount"
 
-
 class LanguagePreference(context: Context?) {
     val preference = context!!.getSharedPreferences(PREFERENCE_LANGUAGE, Context.MODE_PRIVATE)
     

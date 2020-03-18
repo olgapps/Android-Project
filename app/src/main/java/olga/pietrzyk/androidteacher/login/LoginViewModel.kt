@@ -10,12 +10,9 @@ import kotlin.random.Random
 
 class LoginViewModel : ViewModel() {
 
-
-
     enum class AuthenticationState {
         AUTHENTICATED, UNAUTHENTICATED
     }
-
     val authenticationState = FirebaseUserLiveData().map {user ->
         if(user!=null){
             AuthenticationState.AUTHENTICATED
@@ -23,5 +20,4 @@ class LoginViewModel : ViewModel() {
             AuthenticationState.UNAUTHENTICATED
         }
     }
-
 }

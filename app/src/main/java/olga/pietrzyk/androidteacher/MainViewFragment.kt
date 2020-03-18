@@ -15,9 +15,6 @@ import androidx.navigation.findNavController
 import olga.pietrzyk.androidteacher.databinding.FragmentMainViewBinding
 import olga.pietrzyk.androidteacher.databinding.FragmentTitleBinding
 
-/**
- * A simple [Fragment] subclass.
- */
 class MainViewFragment : Fragment() {
 
     override fun onCreateView(
@@ -25,31 +22,31 @@ class MainViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding=DataBindingUtil.inflate<FragmentMainViewBinding>(inflater, R.layout.fragment_main_view, container, false)
+        val firstItemIndex = 0
+        val secondItemIndex = 1
+        val thirdItemIndex = 2
+        val fourthItemIndex = 3
+        val fifthItemIndex = 4
 
             binding.listOptions?.setOnItemClickListener { parent, view, position, id ->
-                if (position == 0) {
+                if (position == firstItemIndex) {
                     view.findNavController()
                         .navigate(R.id.action_mainViewFragment_to_taskFragment)
                 }
-                if (position == 1) {
+                if (position == secondItemIndex) {
                     view.findNavController().navigate(R.id.action_mainViewFragment_to_testFragment)
                 }
-                if (position == 2) {
+                if (position == thirdItemIndex) {
                     view.findNavController()
                         .navigate(R.id.action_mainViewFragment_to_indexedCardsFragment)
                 }
-                if (position == 3) {
+                if (position == fourthItemIndex) {
                     view.findNavController().navigate(R.id.action_mainViewFragment_to_mainFragment)
-
                 }
-                if (position == 4) {
+                if (position == fifthItemIndex) {
                     view.findNavController().navigate(R.id.action_mainViewFragment_to_cameraFragment)
-
                 }
             }
         return binding.root
-
-
     }
-
 }

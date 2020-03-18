@@ -28,7 +28,6 @@ class MyContextWrapper(base: Context) : ContextWrapper(base) {
                 } else {
                     setSystemLocaleLegacy(config, locale)
                 }
-
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 context = context.createConfigurationContext(config)

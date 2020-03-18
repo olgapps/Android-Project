@@ -19,7 +19,6 @@
     <string name="welcome_on_main_page">Welcome on Main page</string>
     <string name="check_meaning">Check meaning</string>
 
-
     <string name="login_button_text">Login</string>
     <string name="logout_button_text">Logout</string>
     <string name="login_unsuccessful_msg">Login unsuccessful</string>
@@ -28,7 +27,6 @@
     <string name="login_prompt">Login to set customizations!</string>
     <string name="login_btn">Login</string>
     <string name="settings_btn">Add article</string>
-
 
     <string name="instruction">This is an app to help students learn Android</string>
     <string name="description">Description</string>
@@ -66,6 +64,27 @@
     <string name="title">Title</string>
     <string name="content">Content</string>
     <string name="make_a_picture">Make a picture</string>
+
+    <string name="text_plain">text/plain</string>
+    <string name="percentage">%</string>
+
+    <string name="tasks_table">tasks_table</string>
+    <string name="tasks_database">tasks_database</string>
+    <string name="status">status</string>
+
+    <string name="authority">olga.pietrzyk.androidteacher.fileprovider</string>
+    <string name="JPEG">JPEG_</string>
+
+    <string name="image">image/*</string>
+    <string name="jpg">.jpg</string>
+
+    <string name="yyyyMMdd_HHmmss">yyyyMMdd_HHmmss</string>
+    <string name="gallery">gallery</string>
+
+
+
+
+
 
 
 </resources>

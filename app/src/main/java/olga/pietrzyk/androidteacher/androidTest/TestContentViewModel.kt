@@ -5,8 +5,6 @@ import androidx.lifecycle.ViewModel
 
 class TestContentViewModel : ViewModel(){
 
-
-
     data class TestQuestion(
         val question: String,
         val answers: List<String>
@@ -41,45 +39,47 @@ class TestContentViewModel : ViewModel(){
         )
     )
 
+    val initialFinalResultValue = 0.0
+    val initialNumberOfCorrectAnswers = 0
+    val initialQuestionNumber = 1
+    val fullPercentage = 100
 
-    var currentQuestion=MutableLiveData<TestQuestion>()
+    val increaseOfIndexQuestion = 1
+    val increaseOfCorrectAnswer = 1
+    var currentQuestion = MutableLiveData<TestQuestion>()
     var answers= MutableLiveData<MutableList<String>>()
     val numberOfQuestions = questions.size
     var numberOfCorrectAnswers=MutableLiveData<Int>()
-    var finalResult=MutableLiveData<Double>()
-    var questionNumber=MutableLiveData<Int>()
-    var indexOfQuestion=0
+    var finalResult = MutableLiveData<Double>()
+    var questionNumber = MutableLiveData<Int>()
+    var indexOfQuestion = 0
 
     init{
-        finalResult.value=0.0
+        finalResult.value = initialFinalResultValue
         questions.shuffle()
-        numberOfCorrectAnswers.value=0
+        numberOfCorrectAnswers.value = initialNumberOfCorrectAnswers
         currentQuestion.value = questions[indexOfQuestion]
-        var k=currentQuestion.value
-        questionNumber.value=1
-        answers.value = k?.answers?.toMutableList()
+        var currentQuestionValue = currentQuestion.value
+        questionNumber.value=initialQuestionNumber
+        answers.value = currentQuestionValue?.answers?.toMutableList()
         answers.value?.shuffle()
     }
 
     fun increaseNumberOfCorrectAnswers(){
-        numberOfCorrectAnswers.value=(numberOfCorrectAnswers.value)?.plus(1)
+        numberOfCorrectAnswers.value = (numberOfCorrectAnswers.value)?.plus(increaseOfCorrectAnswer)
     }
 
     fun goToNextQuestion(){
-
-        indexOfQuestion += 1
-        questionNumber.value=(questionNumber.value)?.plus(1)
+        indexOfQuestion += increaseOfIndexQuestion
+        questionNumber.value = (questionNumber.value)?.plus(initialQuestionNumber)
         currentQuestion.value = questions[indexOfQuestion]
-        var k=currentQuestion.value
-        answers.value = k?.answers?.toMutableList()
+        var currentQuestionValue = currentQuestion.value
+        answers.value = currentQuestionValue?.answers?.toMutableList()
         answers.value?.shuffle()
-
     }
 
     fun setFinalResult(){
-        finalResult.value=(numberOfCorrectAnswers.value?.toDouble()!!.times(100)/numberOfQuestions.toDouble())
+        finalResult.value=(numberOfCorrectAnswers.value?.toDouble()!!.times(fullPercentage)/numberOfQuestions.toDouble())
 
     }
-
-
 }

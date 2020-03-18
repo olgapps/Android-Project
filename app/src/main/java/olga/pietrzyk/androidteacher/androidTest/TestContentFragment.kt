@@ -24,46 +24,48 @@ class TestContentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        val indexOutOfRange =-1
+        val decreaseForIndex = 1
+        val decreaseForQuestionNumber = 1
+        val firstItemIndex = 0
+        val secondItemIndex = 1
+        val thirdItemIndex = 2
+        val fourthItemIndex = 3
+
 
         val binding = DataBindingUtil.inflate<FragmentTestContentBinding>(inflater,
             R.layout.fragment_test_content, container, false)
 
-
         viewModel= ViewModelProviders.of(this).get(TestContentViewModel::class.java)
 
-        binding.txtquestionNumber.text=viewModel.questionNumber.toString()
+        binding.txtquestionNumber.text = viewModel.questionNumber.toString()
         binding.test=viewModel
 
-        var idIndex = -1
+        var idIndex = indexOutOfRange
 
         viewModel.questionNumber.observe(viewLifecycleOwner, Observer { newQuestionNumber ->
             binding.txtquestionNumber.text=newQuestionNumber.toString()
         })
-
-
             binding.answerButton.setOnClickListener { view: View ->
 
                 var userAnswerId = binding.radioGroup.checkedRadioButtonId
-                idIndex=(-1)
+                idIndex=(indexOutOfRange)
 
                 if (userAnswerId == R.id.btnAAnswer) {
-                    idIndex = 0
+                    idIndex = firstItemIndex
                 } else if (userAnswerId == R.id.btnBAnswer) {
-                    idIndex = 1
+                    idIndex = secondItemIndex
                 } else if (userAnswerId == R.id.btnCAnswer) {
-                    idIndex = 2
+                    idIndex = thirdItemIndex
                 } else if (userAnswerId == R.id.btnDAnswer) {
-                    idIndex = 3
+                    idIndex =  fourthItemIndex
                 }
 
-
-
-                if (idIndex!=-1 && viewModel.answers.value!![idIndex]== viewModel.currentQuestion.value!!.answers[0]) {
+                if (idIndex!=indexOutOfRange && viewModel.answers.value!![idIndex]== viewModel.currentQuestion.value!!.answers[firstItemIndex]) {
                     viewModel.increaseNumberOfCorrectAnswers()
                 }
 
-
-                if((viewModel.indexOfQuestion==(viewModel.numberOfQuestions-1)) && (idIndex!=-1)){
+                if((viewModel.indexOfQuestion==(viewModel.numberOfQuestions-decreaseForIndex)) && (idIndex!=indexOutOfRange)){
                     viewModel.setFinalResult()
                     val action =
                         TestContentFragmentDirections.actionTestContentFragmentToTestResultFragment(
@@ -72,23 +74,18 @@ class TestContentFragment : Fragment() {
                    NavHostFragment.findNavController(this).navigate(action)
                 }
 
-                if(idIndex!=-1 && viewModel.indexOfQuestion<(viewModel.numberOfQuestions-1)) {
+                if(idIndex!=indexOutOfRange && viewModel.indexOfQuestion < (viewModel.numberOfQuestions-decreaseForQuestionNumber)) {
                     viewModel.goToNextQuestion()
 
                     binding.radioGroup.clearCheck();
-                    if(viewModel.indexOfQuestion<(viewModel.numberOfQuestions)){
+                    if(viewModel.indexOfQuestion < (viewModel.numberOfQuestions)){
                         viewModel.questionNumber.observe(viewLifecycleOwner, Observer { newQuestionNumber ->
                             binding.txtquestionNumber.text=newQuestionNumber.toString()
                         })
-
                     }
                     binding.invalidateAll()
-
                 }
             }
-
         return binding.root
     }
-
-
 }

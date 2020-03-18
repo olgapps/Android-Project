@@ -18,7 +18,6 @@ interface TaskDatabaseDao {
     @Query("SELECT * from tasks_table WHERE taskId = :key")
     fun get(key: Long): Task?
 
-
     @Query("SELECT * from tasks_table WHERE taskId=:key")
     fun getTaskWithId(key:Long): LiveData<Task>
 
@@ -33,6 +32,4 @@ interface TaskDatabaseDao {
 
     @Query("DELETE FROM tasks_table WHERE taskId=:key")
     fun deleteByTaskId(key: Long)
-
-
 }

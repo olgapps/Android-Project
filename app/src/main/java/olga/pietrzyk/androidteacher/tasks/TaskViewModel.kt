@@ -26,20 +26,14 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
     }
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-
     var task = MutableLiveData<Task?>()
-
     val tasks = database.getAllTasks()
     var taskTitle = ""
     var taskContnet = ""
-
     var currentTask= MutableLiveData<Task?>()
-
-
 
     init{
         initializeTask()
-
     }
 
     fun addTaskTitle(title: String,content: String){
@@ -48,11 +42,9 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
         onCreateTask()
     }
 
-
     fun initializeTask(){
         uiScope.launch{
             task.value = getTaskFromDatabase()
-
         }
     }
 
@@ -68,7 +60,6 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
 
         }
     }
-
 
     fun onCreateTask(){
         uiScope.launch{
@@ -86,7 +77,6 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
         }
     }
 
-
     fun updateById(Id: Long) {
         uiScope.launch {
             withContext(Dispatchers.IO) {
@@ -96,7 +86,6 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
             }
         }
     }
-
 
     private suspend fun getTaskFromDatabase(): Task?{
         return withContext(Dispatchers.IO){
@@ -111,7 +100,6 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
             taskId.await()
         }
     }
-
 
     private suspend fun insert(task: Task){
         withContext(Dispatchers.IO){
@@ -130,6 +118,5 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
             database.deleteByTaskId(taskId)
         }
     }
-
 }
 

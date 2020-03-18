@@ -25,14 +25,11 @@ import olga.pietrzyk.androidteacher.R
 
 import olga.pietrzyk.androidteacher.databinding.FragmentMainBinding
 
-
 class MainFragment : Fragment() {
     lateinit var referenceToFirebase: DatabaseReference
     lateinit var articlesList: MutableList<Articles>
     lateinit var articleTitle: MutableList<String>
-    //lateinit var listOfArticles:
     lateinit var listOfArticles: MutableList<Articles>
-
 
     companion object {
         lateinit var currentUserMail: String
@@ -49,16 +46,13 @@ class MainFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         referenceToFirebase = FirebaseDatabase.getInstance().getReference("articles")
-
         currentUserMail = FirebaseAuth.getInstance().currentUser?.email.toString()
-
         articlesList = mutableListOf()
         articleTitle = mutableListOf()
 
         binding.btnSubmitArticle.setOnClickListener { saveArticle() }
         createArticleListFromFirebase()
         observeAuthenticationState()
-
 
         bindArticleItemWithList()
         handleListScrollingInsideScreenScrolling()
@@ -89,7 +83,6 @@ class MainFragment : Fragment() {
         referenceToFirebase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
             }
-
             override fun onDataChange(p0: DataSnapshot) {
                 if (p0!!.exists()) {
                     var i: Long = 0
@@ -98,22 +91,18 @@ class MainFragment : Fragment() {
                         val article = p.getValue(Articles::class.java)
                         articlesList.add(article!!)
                     }
-
                     articleTitle.clear()
                     for (a in articlesList) {
                         articleTitle.add(a.title)
                     }
                 }
-
-
-
                 if (currentUserMail == "null") {
                     binding.listView.adapter = adapterLoggedOut
                 } else {
                     binding.listView.adapter = adapterLoggedIn
                 }
             }
-        });
+        })
     }
 
     fun saveArticle(){
@@ -121,14 +110,9 @@ class MainFragment : Fragment() {
         val articleContent = binding.articleContent.text.toString()
         val title = articleTitle
         val content= articleContent
-
-
         val Id = referenceToFirebase.push().key
-
         val articleId=Id.toString()
-
         val article = Articles(articleId, title, content, currentUserMail)
-
 
         referenceToFirebase.child(articleId).setValue(article).addOnCompleteListener{
             Toast.makeText(context, getString(R.string.created_article), Toast.LENGTH_LONG).show()
@@ -150,7 +134,6 @@ class MainFragment : Fragment() {
         if (requestCode == SIGN_IN_RESULT_CODE) {
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK) {
-
                 Log.i(TAG, "Successfully signed in user ${FirebaseAuth.getInstance().currentUser?.displayName}!")
             } else {
                 Log.i(TAG, "Sign in unsuccessful ${response?.error?.errorCode}")
@@ -163,7 +146,6 @@ class MainFragment : Fragment() {
             val adapterLoggedIn = ArticlesAdapter(it, R.layout.articles, articlesList)
             val adapterLoggedOut =
                 ArrayAdapter(it, android.R.layout.simple_list_item_1, articleTitle)
-
 
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenicationState ->
 
@@ -202,7 +184,6 @@ class MainFragment : Fragment() {
             })
         }
     }
-
 
     private fun getFactWithPersonalization(fact: String): String {
         return String.format(

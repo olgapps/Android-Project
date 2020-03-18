@@ -10,7 +10,6 @@ import androidx.room.RoomDatabase
 abstract class TaskDatabase : RoomDatabase() {
 
     abstract val taskDatabaseDao: TaskDatabaseDao
-
     companion object {
 
         @Volatile
@@ -26,13 +25,11 @@ abstract class TaskDatabase : RoomDatabase() {
                         TaskDatabase::class.java,
                         "tasks_database"
                     )
-
                         .fallbackToDestructiveMigration()
                         .build()
 
                     INSTANCE = instance
                 }
-
                 return instance
             }
         }

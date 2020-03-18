@@ -25,18 +25,13 @@ class TestResultFragment : Fragment() {
         val testResultFragmentArgs by navArgs<TestResultFragmentArgs>()
 
         binding.finalResultText.text = testResultFragmentArgs.finalResult.toString()
-
-        result =testResultFragmentArgs.finalResult.toString()+"%"
+        result = testResultFragmentArgs.finalResult.toString()+resources.getString(R.string.percentage)
 
         binding.btnTryAgain.setOnClickListener { view:View ->
             Navigation.findNavController(view).navigate(R.id.action_testResultFragment_to_testFragment)
         }
-
         setHasOptionsMenu(true)
-
         return binding.root
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -44,10 +39,9 @@ class TestResultFragment : Fragment() {
         inflater.inflate(R.menu.result_menu, menu)
     }
 
-
     private fun getShareIntent(): Intent {
         val shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.setType("text/plain")
+        shareIntent.setType(resources.getString(R.string.text_plain))
             .putExtra(Intent.EXTRA_TEXT,
                 resources.getString(R.string.share_result)+
                 result

@@ -27,17 +27,13 @@ class ArticleDescriptionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
        binding=DataBindingUtil.inflate(inflater, R.layout.fragment_article_description, container, false)
-
         var argMail =
             ArticleDescriptionFragmentArgs.fromBundle(
                 arguments!!
             )
-
         binding.articleContent.text=argMail.articleContent
         binding.articleTitle.text=argMail.articleTitle
-
         val ref = FirebaseDatabase.getInstance().reference
 
         if(argMail.articleEmail==MainFragment.currentUserMail && MainFragment.currentUserMail!="null"){
@@ -45,18 +41,12 @@ class ArticleDescriptionFragment : Fragment() {
         }
 
         val applesQuery = ref.child("articles").orderByChild("id").equalTo(argMail.articleKey)
-
         binding.deleteButton.setOnClickListener { view: View ->
-
-
             applesQuery.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-
                     for (appleSnapshot in dataSnapshot.children) {
                         appleSnapshot.ref.removeValue()
                     }
-
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -64,12 +54,7 @@ class ArticleDescriptionFragment : Fragment() {
                 }
             })
             view.findNavController().navigate(R.id.action_articleDescriptionFragment_to_mainFragment)
-
         }
-
         return binding.root
-
     }
-
-
 }
