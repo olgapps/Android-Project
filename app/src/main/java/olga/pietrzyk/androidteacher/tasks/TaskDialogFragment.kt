@@ -73,7 +73,14 @@ class TaskDialogFragment() : DialogFragment() {
         return activity?.let {
 
             val builder = AlertDialog.Builder(it)
-            builder.setView(inflater.inflate(R.layout.dialog_fragment_task, null))
+            val builderView = inflater.inflate(R.layout.dialog_fragment_task, null)
+            builder.setView(builderView)
+
+            val dialog_title = builderView!!.findViewById<TextView>(R.id.dialog_title)
+            val dialog_content = builderView!!.findViewById<TextView>(R.id.dialog_content)
+
+            dialog_title.setText(" ${title}")
+            dialog_content.setText(" ${content}")
 
             builder.setNegativeButton(getResources().getString(R.string.delete)){ dialog, which ->
                 taskViewModel.deleteTask(taskId)

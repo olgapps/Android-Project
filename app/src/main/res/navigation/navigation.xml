@@ -27,7 +27,8 @@
             app:destination="@id/indexedCardsFragment" />
         <action
             android:id="@+id/action_mainViewFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@+id/mainViewFragment" />
         <action
             android:id="@+id/action_mainViewFragment_to_taskFragment"
             app:destination="@id/taskFragment" />
@@ -65,7 +66,8 @@
         android:label="@string/result" >
         <action
             android:id="@+id/action_testResultFragment_to_testFragment"
-            app:destination="@id/testFragment" />
+            app:destination="@id/testFragment"
+            app:popUpTo="@+id/mainViewFragment" />
         <argument
             android:name="finalResult"
             app:argType="float"
