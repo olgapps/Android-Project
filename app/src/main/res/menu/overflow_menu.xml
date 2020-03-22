@@ -15,4 +15,7 @@
     <item
         android:id="@+id/taskFragment"
         android:title="@string/control_your_progress" />
+    <item
+        android:id="@+id/cameraFragment"
+        android:title="@string/make_a_picture" />
 </menu>

@@ -7,10 +7,11 @@ class LoginViewModel : ViewModel() {
     enum class AuthenticationState {
         AUTHENTICATED, UNAUTHENTICATED
     }
-    val authenticationState = FirebaseUserLiveData().map {user ->
-        if(user!=null){
+
+    val authenticationState = FirebaseUserLiveData().map { user ->
+        if (user != null) {
             AuthenticationState.AUTHENTICATED
-        }else{
+        } else {
             AuthenticationState.UNAUTHENTICATED
         }
     }

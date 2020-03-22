@@ -4,12 +4,12 @@ package olga.pietrzyk.androidteacher.tasks
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import olga.pietrzyk.androidteacher.databaseSqlite.Task
 import olga.pietrzyk.androidteacher.databinding.ListItemTaskBinding
 
-class TaskAdapter(private val clickListener: TaskListener) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
+class TaskAdapter(private val clickListener: TaskListener) :
+    RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 
     var tasks = listOf<Task>()
         set(value) {
@@ -18,11 +18,11 @@ class TaskAdapter(private val clickListener: TaskListener) : RecyclerView.Adapte
         }
 
     override fun getItemCount(): Int {
-       return tasks.size
+        return tasks.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item =tasks[position]
+        val item = tasks[position]
         holder.bind(item, clickListener)
     }
 
@@ -30,24 +30,24 @@ class TaskAdapter(private val clickListener: TaskListener) : RecyclerView.Adapte
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder(val binding: ListItemTaskBinding): RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(val binding: ListItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-        item: Task, clickListener: TaskListener
+            item: Task, clickListener: TaskListener
         ) {
-            binding.task=item
+            binding.task = item
 
-            binding.clickListener=clickListener
+            binding.clickListener = clickListener
             binding.itemTaskTitle.text = item.taskTitle.toString()
             binding.executePendingBindings()
-            if(item.taskStatus){
-                binding.taskStatus.visibility= View.GONE
-                binding.taskStatusChecked.visibility= View.VISIBLE
-            }else{
-                binding.taskStatusChecked.visibility= View.GONE
-                binding.taskStatus.visibility= View.VISIBLE
-                }
+            if (item.taskStatus) {
+                binding.taskStatus.visibility = View.GONE
+                binding.taskStatusChecked.visibility = View.VISIBLE
+            } else {
+                binding.taskStatusChecked.visibility = View.GONE
+                binding.taskStatus.visibility = View.VISIBLE
             }
+        }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
@@ -59,7 +59,9 @@ class TaskAdapter(private val clickListener: TaskListener) : RecyclerView.Adapte
     }
 }
 
-class TaskListener(val clickListener: (task: Task)-> Unit){
-    fun onClick(task:Task){clickListener(task)}
+class TaskListener(val clickListener: (task: Task) -> Unit) {
+    fun onClick(task: Task) {
+        clickListener(task)
+    }
 }
 

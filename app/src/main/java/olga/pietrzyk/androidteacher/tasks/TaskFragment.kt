@@ -18,7 +18,7 @@ import olga.pietrzyk.androidteacher.databaseSqlite.TaskDatabase
 import olga.pietrzyk.androidteacher.databinding.FragmentTaskBinding
 
 class TaskFragment : Fragment() {
-    companion object{
+    companion object {
         lateinit var taskViewModel: TaskViewModel
     }
 
@@ -27,7 +27,8 @@ class TaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentTaskBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_task, container, false)
+        val binding: FragmentTaskBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_task, container, false)
         val application = requireNotNull(this.activity).application
         val dataSource = TaskDatabase.getInstance(application).taskDatabaseDao
         val viewModelFactory = TaskViewModelFactory(dataSource, application)
@@ -41,27 +42,28 @@ class TaskFragment : Fragment() {
             taskViewModel.addTaskTitle(taskTitle, taskContent)
         }
 
-        binding.taskViewModel=taskViewModel
+        binding.taskViewModel = taskViewModel
         binding.lifecycleOwner = this
 
-        val manager =GridLayoutManager(activity, gridNumber)
-        binding.tasksList.layoutManager=manager
+        val manager = GridLayoutManager(activity, gridNumber)
+        binding.tasksList.layoutManager = manager
 
         val builder = AlertDialog.Builder(context)
         builder.setView(view)
 
-        val adapter = TaskAdapter(TaskListener { task->
+        val adapter = TaskAdapter(TaskListener { task ->
             val fragmentManager = activity!!.supportFragmentManager
-            val taskDialogFragment = TaskDialogFragment.newInstance(task.taskTitle,task.taskContent, task.taskId)
+            val taskDialogFragment =
+                TaskDialogFragment.newInstance(task.taskTitle, task.taskContent, task.taskId)
             taskDialogFragment.show(fragmentManager, "TaskDialogFragment_tag")
         })
 
-         binding.tasksList.adapter=adapter
-         taskViewModel.tasks.observe(viewLifecycleOwner, Observer{
-              it?.let{
-                  adapter.tasks=it
-              }
-         })
+        binding.tasksList.adapter = adapter
+        taskViewModel.tasks.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.tasks = it
+            }
+        })
         return binding.root
     }
 

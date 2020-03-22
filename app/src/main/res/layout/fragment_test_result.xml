@@ -3,52 +3,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.navigation.TestResultFragment">
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <androidx.core.widget.NestedScrollView
-            android:layout_height="match_parent"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/testResultConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/result_header"
+                    style="@style/fragment_test_result_header"
                     android:text="@string/your_result"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_result"
-                    style="@style/fragment_test_result_header" />
+                    app:layout_constraintTop_toBottomOf="@+id/image_result" />
+
                 <TextView
                     android:id="@+id/final_result_text"
+                    style="@style/fragment_test_result_final"
                     android:text="@string/result"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.43"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/result_header"
-                    style="@style/fragment_test_result_final" />
+                    app:layout_constraintTop_toBottomOf="@+id/result_header" />
+
                 <TextView
                     android:id="@+id/percentage"
-                    android:text="%"
+                    style="@style/fragment_test_result_percentage"
+                    android:text="@string/percentage"
                     app:layout_constraintBottom_toBottomOf="@+id/final_result_text"
-                    app:layout_constraintStart_toEndOf="@+id/final_result_text"
-                    style="@style/fragment_test_result_percentage" />
+                    app:layout_constraintStart_toEndOf="@+id/final_result_text" />
+
                 <ImageView
                     android:id="@+id/image_result"
+                    style="@style/fragment_test_result_image"
                     android:src="@drawable/image_test_result"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/fragment_test_result_image" />
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <Button
                     android:id="@+id/button_try_again"
+                    style="@style/fragment_test_result_try_again_button"
                     android:text="@string/try_again"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/final_result_text"
-                    style="@style/fragment_test_result_try_again_button" />
+                    app:layout_constraintTop_toBottomOf="@+id/final_result_text" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

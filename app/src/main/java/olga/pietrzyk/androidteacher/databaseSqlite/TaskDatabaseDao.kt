@@ -18,7 +18,7 @@ interface TaskDatabaseDao {
     fun get(key: Long): Task?
 
     @Query("SELECT * from tasks_table WHERE taskId = :key")
-    fun getTaskWithId(key:Long): LiveData<Task>
+    fun getTaskWithId(key: Long): LiveData<Task>
 
     @Query("DELETE FROM tasks_table")
     fun clear()

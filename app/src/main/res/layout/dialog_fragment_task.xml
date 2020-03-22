@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <androidx.core.widget.NestedScrollView
-            android:layout_height="match_parent"
-            android:layout_width="match_parent">
-                <LinearLayout
-                    android:id="@+id/edit_name"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_gravity="center" android:orientation="vertical"  >
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:src="@drawable/image_dialog_fragment_task"
-                        style="@style/dialog_task_image" />
-                    <TextView
-                        android:id="@+id/dialog_title"
-                        android:hint="@string/title"
-                        style="@style/dialog_task_title" />
-                    <TextView
-                        android:id="@+id/dialog_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/content"
-                        style="@style/dialog_task_content" />
-                </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/edit_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/update_task_title"
+                    style="@style/dialog_fragment_update_task_title"
+                    android:text="@string/update_article" />
+
+                <ImageView
+                    style="@style/dialog_task_image"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/image_dialog_fragment_task" />
+
+                <TextView
+                    android:id="@+id/dialog_title"
+                    style="@style/dialog_task_title"
+                    android:hint="@string/title" />
+
+                <TextView
+                    android:id="@+id/dialog_content"
+                    style="@style/dialog_task_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/content" />
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

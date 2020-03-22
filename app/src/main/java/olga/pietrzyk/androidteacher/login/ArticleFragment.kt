@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -54,7 +53,8 @@ class ArticleFragment : Fragment() {
         articleTitle = mutableListOf()
 
         adapterLoggedIn = ArticlesAdapter(context!!, R.layout.list_item_article, articlesList)
-        adapterLoggedOut = ArrayAdapter(context!!, android.R.layout.simple_list_item_1, articleTitle)
+        adapterLoggedOut =
+            ArrayAdapter(context!!, android.R.layout.simple_list_item_1, articleTitle)
         binding.btnSubmitArticle.setOnClickListener { saveArticle() }
 
         bindArticleItemWithList()
@@ -84,6 +84,7 @@ class ArticleFragment : Fragment() {
         referenceToFirebase.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
             }
+
             override fun onDataChange(p0: DataSnapshot) {
                 if (p0.exists()) {
                     articlesList.clear()
@@ -105,16 +106,16 @@ class ArticleFragment : Fragment() {
         })
     }
 
-    private fun saveArticle(){
+    private fun saveArticle() {
         val articleTitle = binding.articleTitle.text.toString()
         val articleContent = binding.articleContent.text.toString()
         val title = articleTitle
-        val content= articleContent
+        val content = articleContent
         val Id = referenceToFirebase.push().key
-        val articleId=Id.toString()
+        val articleId = Id.toString()
         val article = Articles(articleId, title, content, currentUserMail)
 
-        referenceToFirebase.child(articleId).setValue(article).addOnCompleteListener{
+        referenceToFirebase.child(articleId).setValue(article).addOnCompleteListener {
             Toast.makeText(context, getString(R.string.created_article), Toast.LENGTH_LONG).show()
         }
     }
@@ -134,9 +135,17 @@ class ArticleFragment : Fragment() {
         if (requestCode == SIGN_IN_RESULT_CODE) {
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK) {
-                Log.i(TAG, getString(R.string.sucesfully_signed_in) + "${FirebaseAuth.getInstance().currentUser?.displayName}!")
+                Toast.makeText(
+                    context!!,
+                    getString(R.string.sucesfully_signed_in) + "${FirebaseAuth.getInstance().currentUser?.displayName}!",
+                    Toast.LENGTH_LONG
+                ).show()
             } else {
-                Log.i(TAG, getString(R.string.unsucesfully_signed_in) +"${response?.error?.errorCode}")
+                Toast.makeText(
+                    context!!,
+                    getString(R.string.unsucesfully_signed_in),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
@@ -146,41 +155,44 @@ class ArticleFragment : Fragment() {
 
         context?.let {
             createArticleListFromFirebase()
-            viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenicationState ->
-                when (authenicationState) {
-                    LoginViewModel.AuthenticationState.AUTHENTICATED -> {
-                        binding.apply {
-                            authButton.text = getString(R.string.logout_button_text)
-                            authButton.setOnClickListener {
-                                AuthUI.getInstance().signOut(requireContext())
+            viewModel.authenticationState.observe(
+                viewLifecycleOwner,
+                Observer { authenicationState ->
+                    when (authenicationState) {
+                        LoginViewModel.AuthenticationState.AUTHENTICATED -> {
+                            binding.apply {
+                                authButton.text = getString(R.string.logout_button_text)
+                                authButton.setOnClickListener {
+                                    AuthUI.getInstance().signOut(requireContext())
+                                }
+                                welcomeText.text = getWelcomeData()
+                                loginInstruction.visibility = View.GONE
+                                currentUserMail =
+                                    FirebaseAuth.getInstance().currentUser?.email.toString()
+                                listView.adapter = adapterLoggedIn
+                                articleContent.visibility = View.VISIBLE
+                                articleTitle.visibility = View.VISIBLE
+                                btnSubmitArticle.visibility = View.VISIBLE
                             }
-                            welcomeText.text = getWelcomeData()
-                            loginInstruction.visibility = View.GONE
-                            currentUserMail =
-                                FirebaseAuth.getInstance().currentUser?.email.toString()
-                            listView.adapter = adapterLoggedIn
-                            articleContent.visibility = View.VISIBLE
-                            articleTitle.visibility = View.VISIBLE
-                            btnSubmitArticle.visibility = View.VISIBLE
+                        }
+                        else -> {
+                            binding.apply {
+                                articleContent.visibility = View.GONE
+                                articleTitle.visibility = View.GONE
+                                btnSubmitArticle.visibility = View.GONE
+                                authButton.text = getString(R.string.login_button_text)
+                                loginInstruction.text = getString(R.string.add_article_text)
+                                authButton.setOnClickListener { launchSignInFlow() }
+                                welcomeText.text = getString(R.string.articles_list)
+                                listView.adapter = adapterLoggedOut
+                                currentUserMail = resources.getString(
+                                    R.string.null_value
+                                )
+                                authButton.text = getString(R.string.login_btn)
+                            }
                         }
                     }
-                    else -> {
-                        binding.apply {
-                            articleContent.visibility = View.GONE
-                            articleTitle.visibility = View.GONE
-                            btnSubmitArticle.visibility = View.GONE
-                            authButton.text = getString(R.string.login_button_text)
-                            loginInstruction.text = getString(R.string.add_article_text)
-                            authButton.setOnClickListener { launchSignInFlow() }
-                            welcomeText.text = getString(R.string.articles_list)
-                            listView.adapter = adapterLoggedOut
-                            currentUserMail =   resources.getString(
-                                R.string.null_value)
-                            authButton.text = getString(R.string.login_btn)
-                        }
-                    }
-                }
-            })
+                })
         }
     }
 
@@ -206,7 +218,7 @@ class ArticleFragment : Fragment() {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    fun handleListScrollingInsideScreenScrolling(){
+    fun handleListScrollingInsideScreenScrolling() {
         binding.listView.setOnTouchListener { v, event ->
             when (event!!.action) {
                 MotionEvent.ACTION_DOWN ->

@@ -17,7 +17,7 @@
         android:id="@+id/mainViewFragment"
         android:name="olga.pietrzyk.androidteacher.MainViewFragment"
         android:label="@string/main_page"
-        tools:layout="@layout/fragment_main_view" >
+        tools:layout="@layout/fragment_main_view">
         <action
             android:id="@+id/action_mainViewFragment_to_testFragment"
             app:destination="@id/testFragment"
@@ -40,7 +40,7 @@
         android:id="@+id/aboutAppFragment"
         android:name="olga.pietrzyk.androidteacher.AboutAppFragment"
         android:label="@string/about"
-        tools:layout="@layout/fragment_about_app" >
+        tools:layout="@layout/fragment_about_app">
         <action
             android:id="@+id/action_aboutAppFragment_to_mainViewFragment"
             app:destination="@id/mainViewFragment" />
@@ -49,7 +49,7 @@
         android:id="@+id/testFragment"
         android:name="olga.pietrzyk.androidteacher.androidTest.TestFragment"
         android:label="@string/test"
-        tools:layout="@layout/fragment_test_welcome_page" >
+        tools:layout="@layout/fragment_test_welcome_page">
         <action
             android:id="@+id/action_testFragment_to_testContentFragment"
             app:destination="@id/testContentFragment" />
@@ -58,7 +58,7 @@
         android:id="@+id/testContentFragment"
         android:name="olga.pietrzyk.androidteacher.androidTest.TestContentFragment"
         android:label="@string/test"
-        tools:layout="@layout/fragment_test_content" >
+        tools:layout="@layout/fragment_test_content">
         <action
             android:id="@+id/action_testContentFragment_to_testResultFragment"
             app:destination="@id/testResultFragment"
@@ -67,15 +67,15 @@
     <fragment
         android:id="@+id/testResultFragment"
         android:name="olga.pietrzyk.androidteacher.androidTest.TestResultFragment"
-        android:label="@string/result" >
+        android:label="@string/result">
         <action
             android:id="@+id/action_testResultFragment_to_testFragment"
             app:destination="@id/testFragment"
             app:popUpTo="@+id/mainViewFragment" />
         <argument
             android:name="finalResult"
-            app:argType="float"
-            android:defaultValue="0.0" />
+            android:defaultValue="0.0"
+            app:argType="float" />
     </fragment>
     <fragment
         android:id="@+id/indexedCardsFragment"
@@ -84,7 +84,7 @@
     <fragment
         android:id="@+id/articleFragment"
         android:name="olga.pietrzyk.androidteacher.login.ArticleFragment"
-        android:label="@string/articles" >
+        android:label="@string/articles">
         <action
             android:id="@+id/action_mainFragment_to_articleDescriptionFragment"
             app:destination="@id/articleDescriptionFragment" />
@@ -92,7 +92,7 @@
     <fragment
         android:id="@+id/articleDescriptionFragment"
         android:name="olga.pietrzyk.androidteacher.login.ArticleDescriptionFragment"
-        android:label="@string/article" >
+        android:label="@string/article">
         <argument
             android:name="articleTitle"
             app:argType="string" />
@@ -117,5 +117,5 @@
     <fragment
         android:id="@+id/cameraFragment"
         android:name="olga.pietrzyk.androidteacher.camera.CameraFragment"
-        android:label="CameraFragment" />
+        android:label="@string/camera_header" />
 </navigation>

@@ -16,7 +16,7 @@ class TaskDialogFragment() : DialogFragment() {
 
     private lateinit var title: String
     private lateinit var content: String
-    private var taskId: Long =-1
+    private var taskId: Long = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,15 +79,21 @@ class TaskDialogFragment() : DialogFragment() {
             dialogTitle.text = " $title"
             dialogContent.text = " $content"
 
-            builder.setNegativeButton(resources.getString(R.string.delete)){ _, _ ->
+            builder.setNegativeButton(resources.getString(R.string.delete)) { _, _ ->
                 taskViewModel.deleteTask(taskId)
-                Toast.makeText(context, resources.getString(R.string.task_removed), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.task_removed),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
-            builder.setPositiveButton(resources.getString(R.string.done)){ _, _ ->
+            builder.setPositiveButton(resources.getString(R.string.done)) { _, _ ->
                 taskViewModel.updateById(taskId)
-                Toast.makeText(context, resources.getString(R.string.congratulations),
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context, resources.getString(R.string.congratulations),
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }
             builder.create()

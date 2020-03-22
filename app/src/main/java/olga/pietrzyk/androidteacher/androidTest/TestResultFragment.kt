@@ -1,6 +1,5 @@
 package olga.pietrzyk.androidteacher.androidTest
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -11,21 +10,26 @@ import androidx.navigation.fragment.navArgs
 import olga.pietrzyk.androidteacher.R
 import olga.pietrzyk.androidteacher.databinding.FragmentTestResultBinding
 
-var result : String=""
+var result: String = ""
+
 class TestResultFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentTestResultBinding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_test_result, container, false)
+        val binding: FragmentTestResultBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_test_result, container, false
+        )
         val testResultFragmentArgs by navArgs<TestResultFragmentArgs>()
 
         binding.finalResultText.text = testResultFragmentArgs.finalResult.toString()
-        result = testResultFragmentArgs.finalResult.toString()+resources.getString(R.string.percentage)
+        result =
+            testResultFragmentArgs.finalResult.toString() + resources.getString(R.string.percentage)
 
-        binding.buttonTryAgain.setOnClickListener { view:View ->
-            Navigation.findNavController(view).navigate(R.id.action_testResultFragment_to_testFragment)
+        binding.buttonTryAgain.setOnClickListener { view: View ->
+            Navigation.findNavController(view)
+                .navigate(R.id.action_testResultFragment_to_testFragment)
         }
         setHasOptionsMenu(true)
         return binding.root
@@ -39,19 +43,20 @@ class TestResultFragment : Fragment() {
     private fun getShareIntent(): Intent {
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.setType(resources.getString(R.string.text_plain))
-            .putExtra(Intent.EXTRA_TEXT,
-                resources.getString(R.string.share_result)+
-                result
-                )
+            .putExtra(
+                Intent.EXTRA_TEXT,
+                resources.getString(R.string.share_result) +
+                        result
+            )
         return shareIntent
     }
 
-    private fun shareResult(){
+    private fun shareResult() {
         startActivity(getShareIntent())
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.resultMenu -> shareResult()
         }
         return super.onOptionsItemSelected(item)

@@ -3,50 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.navigation.TestFragment">
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <androidx.core.widget.NestedScrollView
-            android:layout_height="match_parent"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/testConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/welcome_test_text"
+                    style="@style/fragment_test_welcome_page_test"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/test_welcome_header"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/fragment_test_welcome_page_test" />
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/test_text"
+                    style="@style/fragment_test_welcome_page_test_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/test_welcome_description"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/welcome_test_text"
-                    style="@style/fragment_test_welcome_page_test_text" />
+                    app:layout_constraintTop_toBottomOf="@+id/welcome_test_text" />
+
                 <ImageView
                     android:id="@+id/image_test_welcome"
+                    style="@style/fragmnet_test_welcome_image"
                     android:src="@drawable/image_test"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/test_text"
-                    style="@style/fragmnet_test_welcome_image" />
+                    app:layout_constraintTop_toBottomOf="@+id/test_text" />
+
                 <Button
                     android:id="@+id/button_start_test"
+                    style="@style/fragment_start_test_button"
                     android:text="@string/start_test"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image_test_welcome"
-                    app:layout_constraintVertical_bias="1.0"
-                    style="@style/fragment_start_test_button" />
+                    app:layout_constraintVertical_bias="1.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

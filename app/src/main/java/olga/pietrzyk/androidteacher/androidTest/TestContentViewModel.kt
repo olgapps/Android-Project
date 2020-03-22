@@ -1,9 +1,11 @@
 package olga.pietrzyk.androidteacher.androidTest
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import olga.pietrzyk.androidteacher.R
 
-class TestContentViewModel : ViewModel(){
+class TestContentViewModel(val applicaton: Application) : AndroidViewModel(applicaton) {
 
     data class TestQuestion(
         val question: String,
@@ -12,30 +14,40 @@ class TestContentViewModel : ViewModel(){
 
     private val questions: MutableList<TestQuestion> = mutableListOf(
         TestQuestion(
-            question = "What is the not a function of life cycle of android activity?",
-            answers = listOf("onRecreate()", "onStart()", "onResume()", "onCreate()")
-        ),
-        TestQuestion(
-            question = "Where you inflate your menu",
+            question = applicaton.getString(R.string.question1),
             answers = listOf(
-                "onCreateOptions",
-                "onOptionItemSelected",
-                "setHasOptionMenu",
-                "onInflateMenu"
+                applicaton.getString(R.string.answer1a),
+                applicaton.getString(R.string.answer1b),
+                applicaton.getString(R.string.answer1c),
+                applicaton.getString(R.string.answer1d)
             )
         ),
         TestQuestion(
-            question = "Where UI Fragments contain a layout and occupy a place within?",
+            question = applicaton.getString(R.string.question2),
             answers = listOf(
-                "in the Activity Layout",
-                "in onContextView",
-                "in context",
-                "in onCreate method"
+                applicaton.getString(R.string.answer2a),
+                applicaton.getString(R.string.answer2b),
+                applicaton.getString(R.string.answer2c),
+                applicaton.getString(R.string.answer2d)
             )
         ),
         TestQuestion(
-            question = "What id the most current version of Android",
-            answers = listOf("Android Pie", "Android Oreo", "Android Nougat", "Android Marshmallow")
+            question = applicaton.getString(R.string.question3),
+            answers = listOf(
+                applicaton.getString(R.string.answer3a),
+                applicaton.getString(R.string.answer3b),
+                applicaton.getString(R.string.answer3c),
+                applicaton.getString(R.string.answer3d)
+            )
+        ),
+        TestQuestion(
+            question = applicaton.getString(R.string.question4),
+            answers = listOf(
+                applicaton.getString(R.string.answer4a),
+                applicaton.getString(R.string.answer4b),
+                applicaton.getString(R.string.answer4c),
+                applicaton.getString(R.string.answer4d)
+            )
         )
     )
 
@@ -46,29 +58,29 @@ class TestContentViewModel : ViewModel(){
     private val increaseOfIndexQuestion = 1
     private val increaseOfCorrectAnswer = 1
     var currentQuestion = MutableLiveData<TestQuestion>()
-    var answers= MutableLiveData<MutableList<String>>()
+    var answers = MutableLiveData<MutableList<String>>()
     val numberOfQuestions = questions.size
-    var numberOfCorrectAnswers=MutableLiveData<Int>()
+    var numberOfCorrectAnswers = MutableLiveData<Int>()
     var finalResult = MutableLiveData<Double>()
     var questionNumber = MutableLiveData<Int>()
     var indexOfQuestion = 0
 
-    init{
+    init {
         finalResult.value = initialFinalResultValue
         questions.shuffle()
         numberOfCorrectAnswers.value = initialNumberOfCorrectAnswers
         currentQuestion.value = questions[indexOfQuestion]
         val currentQuestionValue = currentQuestion.value
-        questionNumber.value=initialQuestionNumber
+        questionNumber.value = initialQuestionNumber
         answers.value = currentQuestionValue?.answers?.toMutableList()
         answers.value?.shuffle()
     }
 
-    fun increaseNumberOfCorrectAnswers(){
+    fun increaseNumberOfCorrectAnswers() {
         numberOfCorrectAnswers.value = (numberOfCorrectAnswers.value)?.plus(increaseOfCorrectAnswer)
     }
 
-    fun goToNextQuestion(){
+    fun goToNextQuestion() {
         indexOfQuestion += increaseOfIndexQuestion
         questionNumber.value = (questionNumber.value)?.plus(initialQuestionNumber)
         currentQuestion.value = questions[indexOfQuestion]
@@ -77,7 +89,8 @@ class TestContentViewModel : ViewModel(){
         answers.value?.shuffle()
     }
 
-    fun setFinalResult(){
-        finalResult.value=(numberOfCorrectAnswers.value?.toDouble()!!.times(fullPercentage)/numberOfQuestions.toDouble())
+    fun setFinalResult() {
+        finalResult.value =
+            (numberOfCorrectAnswers.value?.toDouble()!!.times(fullPercentage) / numberOfQuestions.toDouble())
     }
 }

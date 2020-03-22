@@ -2,7 +2,6 @@ package olga.pietrzyk.androidteacher.login
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.TextView
@@ -12,7 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 import olga.pietrzyk.androidteacher.R
 
 class UpdateArticleDialogFragment : DialogFragment() {
-    private var articleId: String ="-1"
+    private var articleId: String = "-1"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         articleId = arguments?.getString(ID)!!.toString()
@@ -21,7 +20,7 @@ class UpdateArticleDialogFragment : DialogFragment() {
     companion object {
         private const val ID = "ID"
         fun newInstance(
-           articleId: String
+            articleId: String
         ): UpdateArticleDialogFragment = UpdateArticleDialogFragment().apply {
             arguments = Bundle().apply {
                 putString(ID, articleId)
@@ -34,18 +33,18 @@ class UpdateArticleDialogFragment : DialogFragment() {
             val builder = AlertDialog.Builder(it)
             val inflater = LayoutInflater.from(it)
             val view = inflater.inflate(R.layout.dialog_fragment_update_article, null)
-            val articleTitle= view!!.findViewById<TextView>(R.id.article_title)
+            val articleTitle = view!!.findViewById<TextView>(R.id.article_title)
             val articleContent = view.findViewById<TextView>(R.id.article_content)
 
             builder.setView(view)
             builder.setPositiveButton(
-                    it.resources.getString(R.string.update)
+                it.resources.getString(R.string.update)
             ) { _, _ ->
                 val articleInDatabase =
                     FirebaseDatabase.getInstance().getReference("articles")
                 val title = articleTitle.text.toString()
                 val content = articleContent.text.toString()
-                val article =  Articles(articleId, title, content, ArticleFragment.currentUserMail)
+                val article = Articles(articleId, title, content, ArticleFragment.currentUserMail)
                 articleInDatabase.child(article.id.toString()).setValue(article)
                 Toast.makeText(
                     it,
@@ -55,7 +54,7 @@ class UpdateArticleDialogFragment : DialogFragment() {
             }
 
             builder.setNegativeButton(
-                    it.getResources().getString(R.string.no)
+                it.getResources().getString(R.string.no)
             ) { _, _ ->
                 Toast.makeText(
                     it,

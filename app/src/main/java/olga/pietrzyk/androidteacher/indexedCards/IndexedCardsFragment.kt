@@ -18,8 +18,17 @@ class IndexedCardsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentIndexedCardsBinding>(inflater, R.layout.fragment_indexed_cards, container, false)
-        viewModel = ViewModelProviders.of(this).get(IndexedCardsViewModel::class.java)
+        val binding = DataBindingUtil.inflate<FragmentIndexedCardsBinding>(
+            inflater,
+            R.layout.fragment_indexed_cards,
+            container,
+            false
+        )
+
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = IndexedCardsViewModelFactory(application)
+        viewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(IndexedCardsViewModel::class.java)
 
         viewModel.current_card.observe(viewLifecycleOwner, Observer { newWord ->
             binding.definition.text = newWord.definition
@@ -28,8 +37,8 @@ class IndexedCardsFragment : Fragment() {
         binding.indexedCardsViewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.meaning.observe(viewLifecycleOwner, Observer{meaning->
-            if (meaning == false){
+        viewModel.meaning.observe(viewLifecycleOwner, Observer { meaning ->
+            if (meaning == false) {
                 binding.description.visibility = View.GONE
                 binding.checkMeaningButton.visibility = View.VISIBLE
             }

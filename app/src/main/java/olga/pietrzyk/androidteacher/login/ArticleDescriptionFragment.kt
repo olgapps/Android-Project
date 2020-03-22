@@ -21,17 +21,22 @@ class ArticleDescriptionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       binding=DataBindingUtil.inflate(inflater, R.layout.fragment_article_description, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_article_description,
+            container,
+            false
+        )
         val argMail =
             ArticleDescriptionFragmentArgs.fromBundle(
                 arguments!!
             )
-        binding.articleContent.text=argMail.articleContent
-        binding.articleTitle.text=argMail.articleTitle
+        binding.articleContent.text = argMail.articleContent
+        binding.articleTitle.text = argMail.articleTitle
         val ref = FirebaseDatabase.getInstance().reference
 
-        if(argMail.articleEmail==ArticleFragment.currentUserMail && ArticleFragment.currentUserMail!="null"){
-            binding.deleteButton.visibility=View.VISIBLE
+        if (argMail.articleEmail == ArticleFragment.currentUserMail && ArticleFragment.currentUserMail != "null") {
+            binding.deleteButton.visibility = View.VISIBLE
         }
 
         val applesQuery = ref.child("articles").orderByChild("id").equalTo(argMail.articleKey)
@@ -42,11 +47,13 @@ class ArticleDescriptionFragment : Fragment() {
                         appleSnapshot.ref.removeValue()
                     }
                 }
+
                 override fun onCancelled(databaseError: DatabaseError) {
                     Log.e("error", "onCancelled", databaseError.toException())
                 }
             })
-            view.findNavController().navigate(R.id.action_articleDescriptionFragment_to_mainFragment)
+            view.findNavController()
+                .navigate(R.id.action_articleDescriptionFragment_to_mainFragment)
         }
         return binding.root
     }

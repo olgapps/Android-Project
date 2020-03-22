@@ -1,6 +1,5 @@
 package olga.pietrzyk.androidteacher.androidTest
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,10 +16,13 @@ class TestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentTestWelcomePageBinding>(inflater,
-            R.layout.fragment_test_welcome_page, container, false)
-        binding.buttonStartTest.setOnClickListener { view:View ->
-            Navigation.findNavController(view).navigate(R.id.action_testFragment_to_testContentFragment)
+        val binding = DataBindingUtil.inflate<FragmentTestWelcomePageBinding>(
+            inflater,
+            R.layout.fragment_test_welcome_page, container, false
+        )
+        binding.buttonStartTest.setOnClickListener { view: View ->
+            Navigation.findNavController(view)
+                .navigate(R.id.action_testFragment_to_testContentFragment)
         }
         return binding.root
     }

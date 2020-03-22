@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-
 class AboutAppFragment : Fragment() {
 
     override fun onCreateView(

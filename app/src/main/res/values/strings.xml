@@ -36,6 +36,7 @@
     <string name="no">no</string>
     <string name="update">update</string>
     <string name="updated_article">you have updated the Article</string>
+    <string name="updated_task_title">Update your task</string>
     <string name="no_updated_article">you have not updated the Article</string>
     <string name="next">Next</string>
     <string name="info_about_the_app">Info about the App</string>
@@ -76,7 +77,50 @@
     <string name="cannot_be_null">Activity cannot be null</string>
     <string name="nothing_selected">Nothing selected</string>
     <string name="unsucesfully_signed_in">Unsuccessful sign in</string>
-    <string name="sucesfully_signed_in">Successfully signed in user</string>
+    <string name="sucesfully_signed_in">Successfully signed in user </string>
     <string name="articles_list">Articles list:</string>
     <string name="add_article_text">to add your articles login -></string>
+    <string name="not_sucesfull_db">fail to save file in Database</string>
+    <string name="sucesfull_db">save file in Database succesfully</string>
+    <string name="camera">CAMERA</string>
+    <string name="camera_header">Camera and photos</string>
+    <string name="upload">upload</string>
+    <string name="android_teacher">Android Teacher</string>
+    <string name="share">Share</string>
+    <string name="share_your_photo_text">Share your photo with the others</string>
+    <string name="all_users_text">All users pictures:</string>
+
+    <string name="definition1">Geotagging</string>
+    <string name="definition2">Kindle</string>
+    <string name="definition3">Launcher</string>
+    <string name="description1">Where in in your phone finds your location via GPS and attaches coordinates to pictures you are taking. Can be a privacy/security concern.</string>
+    <string name="description2">Amazons popular tablets and e Readers. Also an app for Android.</string>
+    <string name="description3">Collectively, the part of the Android user interface on home screens that lets you launch apps, make phone calls, etc. Is built in to Android, or can be purchased in the Android Market</string>
+
+
+    <string name="question1">What is the not a function of life cycle of android activity?</string>
+    <string name="question2">Where you inflate your menu</string>
+    <string name="question3">Where UI Fragments contain a layout and occupy a place within?</string>
+    <string name="question4">What id the most current version of Android</string>
+
+    <string name="answer1a">onRecreate()</string>
+    <string name="answer1b">onStart()</string>
+    <string name="answer1c">onResume()</string>
+    <string name="answer1d">onCreate()</string>
+
+    <string name="answer2a">onCreateOptions</string>
+    <string name="answer2b">onOptionItemSelected</string>
+    <string name="answer2c">setHasOptionMenu</string>
+    <string name="answer2d">onInflateMenu</string>
+
+    <string name="answer3a">in the Activity Layout</string>
+    <string name="answer3b">in onContextView</string>
+    <string name="answer3c">in context</string>
+    <string name="answer3d">in onCreate method</string>
+
+    <string name="answer4a">Android Pie</string>
+    <string name="answer4b">Android Oreo</string>
+    <string name="answer4c">Android Nougat</string>
+    <string name="answer4d">Android Marshmallow</string>
+
 </resources>

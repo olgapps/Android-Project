@@ -7,8 +7,10 @@ import kotlinx.coroutines.*
 import olga.pietrzyk.androidteacher.databaseSqlite.Task
 import olga.pietrzyk.androidteacher.databaseSqlite.TaskDatabaseDao
 
-class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) : AndroidViewModel(applicaton){
- private var viewModelJob= Job()
+class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) :
+    AndroidViewModel(applicaton) {
+
+    private var viewModelJob = Job()
 
     override fun onCleared() {
         super.onCleared()
@@ -20,33 +22,33 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
     val tasks = database.getAllTasks()
     var taskTitle = ""
     private var taskContnet = ""
-    var currentTask= MutableLiveData<Task?>()
+    var currentTask = MutableLiveData<Task?>()
 
-    init{
+    init {
         initializeTask()
     }
 
-    fun addTaskTitle(title: String,content: String){
+    fun addTaskTitle(title: String, content: String) {
         taskTitle = title
         taskContnet = content
         onCreateTask()
     }
 
-    private fun initializeTask(){
-        uiScope.launch{
+    private fun initializeTask() {
+        uiScope.launch {
             task.value = getTaskFromDatabase()
         }
     }
 
-    fun deleteTask(taskId : Long){
-        uiScope.launch{
+    fun deleteTask(taskId: Long) {
+        uiScope.launch {
             deleteTaskById(taskId)
         }
     }
 
-    private fun onCreateTask(){
-        uiScope.launch{
-            val aTask = Task(taskTitle,taskContnet, false)
+    private fun onCreateTask() {
+        uiScope.launch {
+            val aTask = Task(taskTitle, taskContnet, false)
             insert(aTask)
             task.value = getTaskFromDatabase()
         }
@@ -70,22 +72,15 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
         }
     }
 
-    private suspend fun getTaskFromDatabase(): Task?{
-        return withContext(Dispatchers.IO){
+    private suspend fun getTaskFromDatabase(): Task? {
+        return withContext(Dispatchers.IO) {
             var task = database.getTask()
             task
         }
     }
 
-    private suspend fun getTaskByIdFromDatabase(id : Long): Task?{
-        return withContext(Dispatchers.IO){
-            var taskId = async { database.get(id) }
-            taskId.await()
-        }
-    }
-
-    private suspend fun insert(task: Task){
-        withContext(Dispatchers.IO){
+    private suspend fun insert(task: Task) {
+        withContext(Dispatchers.IO) {
             database.insert(task)
         }
     }
