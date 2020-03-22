@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import olga.pietrzyk.androidteacher.R
-//import olga.pietrzyk.androidteacher.TestContentFragmentDirections
 import olga.pietrzyk.androidteacher.databinding.FragmentTestContentBinding
 
 
@@ -23,7 +22,6 @@ class TestContentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val indexOutOfRange =-1
         val decreaseForIndex = 1
         val decreaseForQuestionNumber = 1
@@ -32,24 +30,21 @@ class TestContentFragment : Fragment() {
         val thirdItemIndex = 2
         val fourthItemIndex = 3
 
-
         val binding = DataBindingUtil.inflate<FragmentTestContentBinding>(inflater,
             R.layout.fragment_test_content, container, false)
 
         viewModel= ViewModelProviders.of(this).get(TestContentViewModel::class.java)
 
-        binding.txtquestionNumber.text = viewModel.questionNumber.toString()
+        binding.questionNumber.text
         binding.test=viewModel
 
-        var idIndex = indexOutOfRange
-
         viewModel.questionNumber.observe(viewLifecycleOwner, Observer { newQuestionNumber ->
-            binding.txtquestionNumber.text=newQuestionNumber.toString()
+            binding.questionContent.text=newQuestionNumber.toString()
         })
-            binding.answerButton.setOnClickListener { view: View ->
+            binding.answerButton.setOnClickListener {
 
-                var userAnswerId = binding.radioGroup.checkedRadioButtonId
-                idIndex=(indexOutOfRange)
+                val userAnswerId = binding.radioGroup.checkedRadioButtonId
+                var idIndex = indexOutOfRange
 
                 if (userAnswerId == R.id.btnAAnswer) {
                     idIndex = firstItemIndex
@@ -80,7 +75,7 @@ class TestContentFragment : Fragment() {
                     binding.radioGroup.clearCheck();
                     if(viewModel.indexOfQuestion < (viewModel.numberOfQuestions)){
                         viewModel.questionNumber.observe(viewLifecycleOwner, Observer { newQuestionNumber ->
-                            binding.txtquestionNumber.text=newQuestionNumber.toString()
+                            binding.questionNumber.text=newQuestionNumber.toString()
                         })
                     }
                     binding.invalidateAll()

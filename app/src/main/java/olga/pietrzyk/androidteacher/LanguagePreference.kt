@@ -2,10 +2,11 @@ package olga.pietrzyk.androidteacher
 
 import android.content.Context
 
-val PREFERENCE_LANGUAGE= "LoginCount"
+const val PREFERENCE_LANGUAGE= "Language"
+
 
 class LanguagePreference(context: Context?) {
-    val preference = context!!.getSharedPreferences(PREFERENCE_LANGUAGE, Context.MODE_PRIVATE)
+    private val preference = context!!.getSharedPreferences(PREFERENCE_LANGUAGE, Context.MODE_PRIVATE)
     
     fun getLanguage():String?{
         return preference.getString(PREFERENCE_LANGUAGE,"en")

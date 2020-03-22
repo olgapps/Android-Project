@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.core.widget.NestedScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+           <TextView
+                android:id="@+id/login_instruction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/auth_button"
+                app:layout_constraintEnd_toStartOf="@+id/auth_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/fragment_articles_login_instruction" />
+            <TextView
+                android:id="@+id/auth_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/login_button_text"
+                style="@style/fragment_articles_auth_button" />
+            <TextView
+                android:id="@+id/welcome_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/fragment_articles_welcome_text" />
+            <EditText
+                android:id="@+id/article_title"
+                android:text="@string/article_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/welcome_text"
+                style="@style/fragment_articles_title" />
+            <EditText
+                android:id="@+id/article_content"
+                android:text="@string/content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/article_title"
+                style="@style/fragment_articles_content" />
+            <Button
+                android:id="@+id/btn_submit_article"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_article"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/article_content"
+                style="@style/fragment_articles_submit_button" />
+            <ListView
+                android:id="@+id/list_view"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_submit_article"
+                app:layout_constraintVertical_bias="0.0"
+                style="@style/fragment_articles_list" />-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

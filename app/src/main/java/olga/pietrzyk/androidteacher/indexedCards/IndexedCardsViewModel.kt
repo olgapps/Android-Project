@@ -1,17 +1,15 @@
 package olga.pietrzyk.androidteacher.indexedCards
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class IndexedCardsViewModel: ViewModel(){
-
     data class IndexedCards(
         var definition: String,
         var description: String
     )
-    var _cards: MutableList<IndexedCards> = mutableListOf(
+    private var _cards: MutableList<IndexedCards> = mutableListOf(
         IndexedCards(
             definition = "Geotagging",
             description = "Wherein in your phone finds your location via GPS and attaches coordinates to pictures you're taking. Can be a privacy/security concern."
@@ -25,7 +23,6 @@ class IndexedCardsViewModel: ViewModel(){
             description = "Collectively, the part of the Android user interface on home screens that lets you launch apps, make phone calls, etc. Is built in to Android, or can be purchased in the Android Market"
         )
     )
-
     private var cardIndex = 0
     private val indexCardChanger = 1
     private val firstIndexCard = 0
@@ -43,7 +40,7 @@ class IndexedCardsViewModel: ViewModel(){
         _meaning.value = false
     }
 
-    fun changeTheCard(){
+    private fun changeTheCard(){
         cardIndex += indexCardChanger
         _current_card.value =_cards[cardIndex]
     }
@@ -52,7 +49,7 @@ class IndexedCardsViewModel: ViewModel(){
         _meaning.value = true
     }
 
-    fun coverMeaning(){
+    private fun coverMeaning(){
         _meaning.value = false
     }
 
@@ -62,7 +59,7 @@ class IndexedCardsViewModel: ViewModel(){
         coverMeaning()
     }
 
-    fun setWordsAgain(){
+    private fun setWordsAgain(){
         if(cardIndex == (_cards.size-indexCardChanger)){
             cardIndex = firstIndexCard
             _cards.shuffle()

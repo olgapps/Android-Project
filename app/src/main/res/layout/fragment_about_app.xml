@@ -6,50 +6,30 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
-    <androidx.core.widget.NestedScrollView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/titleConstraint"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <ImageView
-            android:id="@+id/titleImage"
-            android:layout_width="412dp"
-            android:layout_height="275dp"
-
-            android:scaleType="fitCenter"
-            android:src="@drawable/image_info_about_app"
-            app:layout_constraintBottom_toTopOf="@+id/playButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="TODO" />
-
-        <TextView
-            android:id="@+id/questionText"
-            android:layout_width="318dp"
-            android:layout_height="29dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="32dp"
-            android:fontFamily="sans-serif"
-            android:gravity="center_horizontal"
-            android:text="@string/instruction"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:typeface="normal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleImage" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+        <androidx.core.widget.NestedScrollView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/titleConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/image_about_app"
+                    android:src="@drawable/image_info_about_app"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    style="@style/fragment_about_app_image" />
+                <TextView
+                    android:id="@+id/app_instruction"
+                    android:text="@string/instruction"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_about_app"
+                    style="@style/fragment_about_app_instruction_txt" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -27,7 +27,7 @@
             app:destination="@id/indexedCardsFragment" />
         <action
             android:id="@+id/action_mainViewFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
+            app:destination="@id/articleFragment"
             app:popUpTo="@+id/mainViewFragment" />
         <action
             android:id="@+id/action_mainViewFragment_to_taskFragment"
@@ -40,12 +40,16 @@
         android:id="@+id/aboutAppFragment"
         android:name="olga.pietrzyk.androidteacher.AboutAppFragment"
         android:label="@string/about"
-        tools:layout="@layout/fragment_about_app" />
+        tools:layout="@layout/fragment_about_app" >
+        <action
+            android:id="@+id/action_aboutAppFragment_to_mainViewFragment"
+            app:destination="@id/mainViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/testFragment"
         android:name="olga.pietrzyk.androidteacher.androidTest.TestFragment"
         android:label="@string/test"
-        tools:layout="@layout/fragment_test" >
+        tools:layout="@layout/fragment_test_welcome_page" >
         <action
             android:id="@+id/action_testFragment_to_testContentFragment"
             app:destination="@id/testContentFragment" />
@@ -78,8 +82,8 @@
         android:name="olga.pietrzyk.androidteacher.indexedCards.IndexedCardsFragment"
         android:label="@string/indexed_card" />
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="olga.pietrzyk.androidteacher.login.MainFragment"
+        android:id="@+id/articleFragment"
+        android:name="olga.pietrzyk.androidteacher.login.ArticleFragment"
         android:label="@string/articles" >
         <action
             android:id="@+id/action_mainFragment_to_articleDescriptionFragment"
@@ -100,7 +104,8 @@
             app:argType="string" />
         <action
             android:id="@+id/action_articleDescriptionFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/articleFragment"
+            app:popUpTo="@+id/mainViewFragment" />
         <argument
             android:name="articleEmail"
             app:argType="string" />

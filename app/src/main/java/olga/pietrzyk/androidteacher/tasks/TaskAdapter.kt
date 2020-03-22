@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import olga.pietrzyk.androidteacher.databaseSqlite.Task
 import olga.pietrzyk.androidteacher.databinding.ListItemTaskBinding
 
-class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
+class TaskAdapter(private val clickListener: TaskListener) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 
     var tasks = listOf<Task>()
         set(value) {
@@ -23,9 +23,6 @@ class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAd
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item =tasks[position]
-
-        val res = holder.itemView.context.resources
-
         holder.bind(item, clickListener)
     }
 
@@ -43,7 +40,7 @@ class TaskAdapter(val clickListener: TaskListener) : RecyclerView.Adapter<TaskAd
             binding.clickListener=clickListener
             binding.itemTaskTitle.text = item.taskTitle.toString()
             binding.executePendingBindings()
-            if(item.taskStatus==true){
+            if(item.taskStatus){
                 binding.taskStatus.visibility= View.GONE
                 binding.taskStatusChecked.visibility= View.VISIBLE
             }else{

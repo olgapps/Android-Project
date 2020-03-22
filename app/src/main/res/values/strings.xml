@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">AndroidTeacher</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="test_welcome_header">Welcome on Test page</string>
     <string name="test_welcome_description">Check your knowledge of Android</string>
     <string name="test">Test</string>
@@ -11,14 +9,11 @@
     <string name="your_result">Your result is:</string>
     <string name="try_again">Try again</string>
     <string name="answer">Answer</string>
-
     <string name="result">Result</string>
     <string name="article_title">Title</string>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome_on_main_page">Welcome on Main page</string>
     <string name="check_meaning">Check meaning</string>
-
     <string name="login_button_text">Login</string>
     <string name="logout_button_text">Logout</string>
     <string name="login_unsuccessful_msg">Login unsuccessful</string>
@@ -27,19 +22,16 @@
     <string name="login_prompt">Login to set customizations!</string>
     <string name="login_btn">Login</string>
     <string name="settings_btn">Add article</string>
-
     <string name="instruction">This is an app to help students learn Android</string>
     <string name="description">Description</string>
     <string name="add_article">Add article</string>
     <string name="your_tasks">Your tasks:</string>
     <string name="delete_all">delete all</string>
     <string name="add">add</string>
-
     <string name="delete">delete</string>
     <string name="done">done</string>
     <string name="congratulations">Congatulations, keep going!</string>
     <string name="task_removed">Your task has been removed</string>
-
     <string name="update_article">Update article</string>
     <string name="no">no</string>
     <string name="update">update</string>
@@ -52,7 +44,6 @@
     <string name="do_a_test">Do a Test</string>
     <string name="control_your_progress">Control your progress</string>
     <string name="created_article">you created article</string>
-
     <string name="share_result">I want to share with you my Android test result which is:</string>
     <string name="task">Tasks</string>
     <string name="article">Article</string>
@@ -64,27 +55,28 @@
     <string name="title">Title</string>
     <string name="content">Content</string>
     <string name="make_a_picture">Make a picture</string>
-
     <string name="text_plain">text/plain</string>
     <string name="percentage">%</string>
-
     <string name="tasks_table">tasks_table</string>
     <string name="tasks_database">tasks_database</string>
     <string name="status">status</string>
-
     <string name="authority">olga.pietrzyk.androidteacher.fileprovider</string>
     <string name="JPEG">JPEG_</string>
-
     <string name="image">image/*</string>
     <string name="jpg">.jpg</string>
-
     <string name="yyyyMMdd_HHmmss">yyyyMMdd_HHmmss</string>
     <string name="gallery">gallery</string>
-
-
-
-
-
-
-
+    <string name="null_value">Null</string>
+    <string name="image_bug">Capture Image Bug: </string>
+    <string name="request_error">Request cancelled or something went wrong.</string>
+    <string name="sucesful_upload">file uploaded to Firebase</string>
+    <string name="fail_upload">file upload failed</string>
+    <string name="upload_progress">upload progress</string>
+    <string name="upload_info">Upload information</string>
+    <string name="cannot_be_null">Activity cannot be null</string>
+    <string name="nothing_selected">Nothing selected</string>
+    <string name="unsucesfully_signed_in">Unsuccessful sign in</string>
+    <string name="sucesfully_signed_in">Successfully signed in user</string>
+    <string name="articles_list">Articles list:</string>
+    <string name="add_article_text">to add your articles login -></string>
 </resources>

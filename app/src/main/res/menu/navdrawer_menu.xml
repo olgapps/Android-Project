@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-
     <item
         android:id="@+id/aboutAppFragment"
         android:title="@string/aboutApp" />
     <item
-    android:id="@+id/taskFragment"
-    android:title="@string/do_a_test" />
+        android:id="@+id/taskFragment"
+        android:title="@string/do_a_test" />
     <item
         android:id="@+id/indexedCardsFragment"
         android:title="@string/indexed_cards" />
-
     <item
         android:id="@+id/testFragment"
         android:title="@string/do_a_test" />
     <item
-        android:id="@+id/mainFragment"
+        android:id="@+id/articleFragment"
         android:title="@string/articles" />
-
     <item
-    android:id="@+id/cameraFragment"
-    android:title="@string/make_a_picture" />
+        android:id="@+id/cameraFragment"
+        android:title="@string/make_a_picture" />
 </menu>

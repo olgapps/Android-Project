@@ -1,21 +1,16 @@
 package olga.pietrzyk.androidteacher.tasks
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
 import olga.pietrzyk.androidteacher.R
-import olga.pietrzyk.androidteacher.databaseSqlite.TaskDatabase
-import olga.pietrzyk.androidteacher.login.LoginViewModel
 
 class TaskDialogFragment() : DialogFragment() {
 
@@ -30,6 +25,7 @@ class TaskDialogFragment() : DialogFragment() {
         taskId = arguments?.getLong(ID)!!.toLong()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,11 +36,11 @@ class TaskDialogFragment() : DialogFragment() {
         title = arguments?.getString(TITLE).toString()
         taskId = arguments?.getLong(ID)!!.toLong()
 
-        val dialog_title = view!!.findViewById<TextView>(R.id.dialog_title)
-        val dialog_content = view.findViewById<TextView>(R.id.dialog_content)
+        val dialogTitle = view!!.findViewById<TextView>(R.id.dialog_title)
+        val dialogContent = view.findViewById<TextView>(R.id.dialog_content)
 
-        dialog_title.setText(" ${title}")
-        dialog_content.setText(" ${content}")
+        dialogTitle.text = " $title"
+        dialogContent.text = " $content"
 
         return view
     }
@@ -65,6 +61,7 @@ class TaskDialogFragment() : DialogFragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         val inflater = requireActivity().layoutInflater;
@@ -76,25 +73,25 @@ class TaskDialogFragment() : DialogFragment() {
             val builderView = inflater.inflate(R.layout.dialog_fragment_task, null)
             builder.setView(builderView)
 
-            val dialog_title = builderView!!.findViewById<TextView>(R.id.dialog_title)
-            val dialog_content = builderView!!.findViewById<TextView>(R.id.dialog_content)
+            val dialogTitle = builderView!!.findViewById<TextView>(R.id.dialog_title)
+            val dialogContent = builderView.findViewById<TextView>(R.id.dialog_content)
 
-            dialog_title.setText(" ${title}")
-            dialog_content.setText(" ${content}")
+            dialogTitle.text = " $title"
+            dialogContent.text = " $content"
 
-            builder.setNegativeButton(getResources().getString(R.string.delete)){ dialog, which ->
+            builder.setNegativeButton(resources.getString(R.string.delete)){ _, _ ->
                 taskViewModel.deleteTask(taskId)
-                Toast.makeText(context,getResources().getString(R.string.task_removed), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(R.string.task_removed), Toast.LENGTH_SHORT).show()
             }
 
-            builder.setPositiveButton(getResources().getString(R.string.done)){ dialog, which ->
+            builder.setPositiveButton(resources.getString(R.string.done)){ _, _ ->
                 taskViewModel.updateById(taskId)
-                Toast.makeText(context,getResources().getString(R.string.congratulations),
+                Toast.makeText(context, resources.getString(R.string.congratulations),
                     Toast.LENGTH_SHORT).show()
 
             }
             builder.create()
 
-        } ?: throw IllegalStateException("Activity cannot be null")
+        } ?: throw IllegalStateException(resources.getString(R.string.cannot_be_null))
     }
 }

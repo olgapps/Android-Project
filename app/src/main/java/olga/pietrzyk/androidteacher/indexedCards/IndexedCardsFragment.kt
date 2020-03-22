@@ -9,15 +9,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-
 import olga.pietrzyk.androidteacher.R
 import olga.pietrzyk.androidteacher.databinding.FragmentIndexedCardsBinding
 
-/**
- * A simple [Fragment] subclass.
- */
 class IndexedCardsFragment : Fragment() {
-
     private lateinit var viewModel: IndexedCardsViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,20 +22,20 @@ class IndexedCardsFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(IndexedCardsViewModel::class.java)
 
         viewModel.current_card.observe(viewLifecycleOwner, Observer { newWord ->
-            binding.txtDefinition.text = newWord.definition
-            binding.txtDescription.text = newWord.description
+            binding.definition.text = newWord.definition
+            binding.description.text = newWord.description
         })
         binding.indexedCardsViewModel = viewModel
-        binding.setLifecycleOwner (this)
+        binding.lifecycleOwner = this
 
         viewModel.meaning.observe(viewLifecycleOwner, Observer{meaning->
             if (meaning == false){
-                binding.txtDescription.visibility = View.GONE
-                binding.btnCheckMeaning.visibility=View.VISIBLE
+                binding.description.visibility = View.GONE
+                binding.checkMeaningButton.visibility = View.VISIBLE
             }
             if (meaning == true) {
-                binding.txtDescription.visibility = View.VISIBLE
-                binding.btnCheckMeaning.visibility = View.GONE
+                binding.description.visibility = View.VISIBLE
+                binding.checkMeaningButton.visibility = View.GONE
             }
         })
         return binding.root

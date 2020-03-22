@@ -7,91 +7,72 @@
     <data>
         <variable
             name="indexedCards"
-            type="olga.pietrzyk.androidteacher.indexedCards.IndexedCardsFragment"
-            />
-            <variable
-                name="indexedCardsViewModel"
-                type="olga.pietrzyk.androidteacher.indexedCards.IndexedCardsViewModel" />
-
+            type="olga.pietrzyk.androidteacher.indexedCards.IndexedCardsFragment" />
+        <variable
+            name="indexedCardsViewModel"
+            type="olga.pietrzyk.androidteacher.indexedCards.IndexedCardsViewModel" />
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
-    <androidx.core.widget.NestedScrollView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/testConstraint"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <TextView
-            android:id="@+id/txtDefinition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.105" />
-
-        <TextView
-            android:id="@+id/txtDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="32dp"
-            android:gravity="center_horizontal"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:text="@string/description"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/txtDefinition" />
-
-        <Button
-            android:id="@+id/btnCheckMeaning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:text="@string/check_meaning"
-            android:onClick="@{() -> indexedCardsViewModel.showMeaning()}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.228"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/txtDefinition" />
-
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:text="@string/next"
-            android:onClick="@{() -> indexedCardsViewModel.changeCard()}"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.81"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtDefinition" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="412dp"
-            android:layout_height="232dp"
-            android:src="@drawable/image_indexed_cards"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+        <androidx.core.widget.NestedScrollView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/testConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/image_indexed_cards"
+                    android:src="@drawable/image_indexed_cards"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    style="@style/fragment_indexed_cards_image" />
+                <TextView
+                    android:id="@+id/definition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_indexed_cards"
+                    app:layout_constraintVertical_bias="0.105"
+                    style="@style/fragment_indexed_definition" />
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/description"
+                    app:layout_constraintEnd_toEndOf="@+id/image_indexed_cards"
+                    app:layout_constraintStart_toStartOf="@+id/image_indexed_cards"
+                    app:layout_constraintTop_toBottomOf="@+id/definition"
+                    style="@style/fragment_indexed_description" />
+                <Button
+                    android:id="@+id/check_meaning_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/check_meaning"
+                    android:onClick="@{() -> indexedCardsViewModel.showMeaning()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.228"
+                    app:layout_constraintStart_toStartOf="@+id/image_indexed_cards"
+                    app:layout_constraintTop_toBottomOf="@+id/definition"
+                    style="@style/fragment_indexed_check_button" />
+                <Button
+                    android:id="@+id/next_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/next"
+                    android:onClick="@{() -> indexedCardsViewModel.changeCard()}"
+                    app:layout_constraintEnd_toEndOf="@+id/image_indexed_cards"
+                    app:layout_constraintHorizontal_bias="0.81"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/definition"
+                    style="@style/fragment_indexed_next_button" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 </layout>

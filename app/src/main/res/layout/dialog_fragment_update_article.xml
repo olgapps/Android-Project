@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <androidx.core.widget.NestedScrollView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/update_article_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/update_article"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    style="@style/dialog_fragment_update_article_header" />
+                <ImageView
+                    android:id="@+id/image_update_article_dialog"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/update_article_title"
+                    app:srcCompat="@drawable/image_dialog_fragment_update_article"
+                    style="@style/dialog_fragment_update_article_image" />
+                <EditText
+                    android:id="@+id/article_title"
+                    android:hint="@string/title"
+                    android:text="@string/title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_update_article_dialog"
+                    style="@style/dialog_fragment_update_article_title" />
+                <EditText
+                    android:id="@+id/article_content"
+                    android:hint="@string/content"
+                    android:text="@string/content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/article_title"
+                    style="@style/dialog_fragment_update_article_content" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

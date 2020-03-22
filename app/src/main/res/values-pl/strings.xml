@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">AndroidTeacher</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="test_welcome_header">Witaj na stronie głównej</string>
     <string name="test_welcome_description">Sprawdź swoją wiedzę z Androida</string>
     <string name="test">Test</string>
@@ -11,18 +9,12 @@
     <string name="your_result">Twój wynik to:</string>
     <string name="try_again">Spróbuj ponownie</string>
     <string name="answer">Odpowiedź</string>
-
     <string name="result">Wynik</string>
     <string name="title">Tytuł</string>
     <string name="article_title">Tytuł</string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="welcome_on_main_page">Witaj na stornie głównej</string>
-    <string name="check_meaning">Sprawdź znaczenie</string>
-
-
+    <string name="welcome_on_main_page">Witaj na stronie głównej</string>
+    <string name="check_meaning">Sprawdź</string>
     <string name="login_button_text">Logowanie</string>
     <string name="logout_button_text">Wyloguj się</string>
     <string name="login_unsuccessful_msg">Login unsuccessful</string>
@@ -31,30 +23,23 @@
     <string name="login_prompt">Login to set customizations!</string>
     <string name="login_btn">Login</string>
     <string name="settings_btn">Dodaj artykuł</string>
-
-
-
     <string name="instruction">Aplikacja pomaga studento nauczyć się Androida</string>
     <string name="description">Opis</string>
     <string name="content">Zawartość</string>
     <string name="add_article">Dodaj artykuł</string>
-
     <string name="your_tasks">Twoje zadania:</string>
     <string name="delete_all">usuń wszystkie</string>
     <string name="add">dodaj</string>
-
     <string name="delete">usuń</string>
     <string name="done">zrobione</string>
     <string name="congratulations">Gratulacje, tak trzymaj!</string>
     <string name="task_removed">Twoje zadanie zostało usunięte</string>
-
     <string name="update_article">Aktualizuj artykuł</string>
     <string name="no">nie</string>
     <string name="update">aktualizuj</string>
     <string name="updated_article">zaktualizowałeś swój artykuł</string>
     <string name="no_updated_article">nie zaktualizowałeś swójego artykułu</string>
     <string name="next">Dalej</string>
-
     <string name="info_about_the_app">Informacja o Appce</string>
     <string name="read_articles">Czytaj artykuły</string>
     <string name="indexed_cards">Fiszki</string>
@@ -62,7 +47,6 @@
     <string name="control_your_progress">Kontroluj postęp</string>
     <string name="created_article">Stworzyłeś artykuł</string>
     <string name="share_result">Chcę się podzielić moim wynikiem z testu z Androida, który wynosi:</string>
-
     <string name="task">Zadania</string>
     <string name="article">Artykuł</string>
     <string name="articles">Artykuły</string>
@@ -71,25 +55,28 @@
     <string name="main_page">Strona główna</string>
     <string name="welcome">Witaj</string>
     <string name="make_a_picture">Zrób zdjęcie</string>
-
     <string name="text_plain">text/plain</string>
     <string name="percentage">%</string>
-
     <string name="tasks_table">tasks_table</string>
     <string name="tasks_database">tasks_database</string>
     <string name="status">status</string>
-
     <string name="authority">olga.pietrzyk.androidteacher.fileprovider</string>
     <string name="JPEG">JPEG_</string>
-
-
-
     <string name="image">image/*</string>
     <string name="jpg">.jpg</string>
-
     <string name="yyyyMMdd_HHmmss">yyyyMMdd_HHmmss</string>
     <string name="gallery">gallery</string>
-
-
-
+    <string name="null_value">Null</string>
+    <string name="image_bug">Zanaleziono bład w obrazku: </string>
+    <string name="request_error">Prośba odwołana lub coś poszło źle</string>
+    <string name="sucesful_upload">plik wgrany do Firebase</string>
+    <string name="fail_upload">wgywanie pliku nie powiodło się</string>
+    <string name="upload_progress">wgywanie w trakcie</string>
+    <string name="upload_info">Infomacje o wgrywaniu</string>
+    <string name="cannot_be_null">Aktywność nie może być nullem</string>
+    <string name="nothing_selected">Nic nie wybrano</string>
+    <string name="unsucesfully_signed_in">Zalogowanie nie powiodło się</string>
+    <string name="sucesfully_signed_in">Zalogowanie powiodło się</string>
+    <string name="articles_list">Lista artykułów:</string>
+    <string name="add_article_text">żeby dodac artykuł zaloguj się -></string>
 </resources>

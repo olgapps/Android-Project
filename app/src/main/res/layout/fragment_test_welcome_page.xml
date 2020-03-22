@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,61 +9,45 @@
         <androidx.core.widget.NestedScrollView
             android:layout_height="match_parent"
             android:layout_width="match_parent">
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/testConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-
                 <TextView
-                    android:id="@+id/welcomeTestText"
+                    android:id="@+id/welcome_test_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
                     android:text="@string/test_welcome_header"
-                    android:textSize="30sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
+                    app:layout_constraintTop_toTopOf="parent"
+                    style="@style/fragment_test_welcome_page_test" />
                 <TextView
-                    android:id="@+id/testText"
+                    android:id="@+id/test_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:text="@string/test_welcome_description"
-                    android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/welcomeTestText" />
-
+                    app:layout_constraintTop_toBottomOf="@+id/welcome_test_text"
+                    style="@style/fragment_test_welcome_page_test_text" />
                 <ImageView
-                    android:id="@+id/imageTest"
-                    android:layout_width="429dp"
-                    android:layout_height="290dp"
-                    android:layout_marginTop="32dp"
+                    android:id="@+id/image_test_welcome"
                     android:src="@drawable/image_test"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/testText" />
-
+                    app:layout_constraintTop_toBottomOf="@+id/test_text"
+                    style="@style/fragmnet_test_welcome_image" />
                 <Button
-                    android:id="@+id/buttonStartTest"
-                    android:layout_width="159dp"
-                    android:layout_height="63dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginBottom="32dp"
+                    android:id="@+id/button_start_test"
                     android:text="@string/start_test"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageTest"
-                    app:layout_constraintVertical_bias="1.0" />
-
+                    app:layout_constraintTop_toBottomOf="@+id/image_test_welcome"
+                    app:layout_constraintVertical_bias="1.0"
+                    style="@style/fragment_start_test_button" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 </layout>

@@ -1,23 +1,13 @@
 package olga.pietrzyk.androidteacher.tasks
 
 import android.app.Application
-import android.util.Log
-import android.widget.Toast
-import androidx.core.content.res.TypedArrayUtils.getString
-
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import kotlinx.android.synthetic.main.fragment_task.view.*
 import kotlinx.coroutines.*
-import olga.pietrzyk.androidteacher.R
 import olga.pietrzyk.androidteacher.databaseSqlite.Task
 import olga.pietrzyk.androidteacher.databaseSqlite.TaskDatabaseDao
 
 class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) : AndroidViewModel(applicaton){
-
-
  private var viewModelJob= Job()
 
     override fun onCleared() {
@@ -29,7 +19,7 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
     var task = MutableLiveData<Task?>()
     val tasks = database.getAllTasks()
     var taskTitle = ""
-    var taskContnet = ""
+    private var taskContnet = ""
     var currentTask= MutableLiveData<Task?>()
 
     init{
@@ -42,7 +32,7 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
         onCreateTask()
     }
 
-    fun initializeTask(){
+    private fun initializeTask(){
         uiScope.launch{
             task.value = getTaskFromDatabase()
         }
@@ -54,14 +44,7 @@ class TaskViewModel(val database: TaskDatabaseDao, val applicaton: Application) 
         }
     }
 
-    fun getTaskByID(id: Long){
-        uiScope.launch{
-            currentTask.value = getTaskByIdFromDatabase(id)
-
-        }
-    }
-
-    fun onCreateTask(){
+    private fun onCreateTask(){
         uiScope.launch{
             val aTask = Task(taskTitle,taskContnet, false)
             insert(aTask)

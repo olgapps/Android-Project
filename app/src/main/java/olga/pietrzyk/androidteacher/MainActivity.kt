@@ -9,17 +9,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import olga.pietrzyk.androidteacher.databinding.ActivityMainBinding
 import android.content.Intent
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
-
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
-    lateinit var languagePreference: LanguagePreference
+    private lateinit var languagePreference: LanguagePreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         drawerLayout=binding.drawerLayout
 
         val NavController = this.findNavController(R.id.myNavHostFragment)
+
         NavigationUI.setupActionBarWithNavController(this, NavController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, NavController)
     }
@@ -38,9 +33,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(newBase: Context?) {
-        languagePreference= LanguagePreference(newBase!!)
+        languagePreference = LanguagePreference(newBase!!)
         val lang: String = languagePreference.getLanguage().toString()
-
         super.attachBaseContext(MyContextWrapper.wrap(newBase, lang))
     }
 

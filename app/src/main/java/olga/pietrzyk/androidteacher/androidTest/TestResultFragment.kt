@@ -9,17 +9,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import olga.pietrzyk.androidteacher.R
-//import olga.pietrzyk.androidteacher.TestResultFragmentArgs
 import olga.pietrzyk.androidteacher.databinding.FragmentTestResultBinding
 
 var result : String=""
 class TestResultFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val binding: FragmentTestResultBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_test_result, container, false)
         val testResultFragmentArgs by navArgs<TestResultFragmentArgs>()
@@ -27,7 +24,7 @@ class TestResultFragment : Fragment() {
         binding.finalResultText.text = testResultFragmentArgs.finalResult.toString()
         result = testResultFragmentArgs.finalResult.toString()+resources.getString(R.string.percentage)
 
-        binding.btnTryAgain.setOnClickListener { view:View ->
+        binding.buttonTryAgain.setOnClickListener { view:View ->
             Navigation.findNavController(view).navigate(R.id.action_testResultFragment_to_testFragment)
         }
         setHasOptionsMenu(true)
@@ -54,7 +51,7 @@ class TestResultFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item!!.itemId){
+        when(item.itemId){
             R.id.resultMenu -> shareResult()
         }
         return super.onOptionsItemSelected(item)

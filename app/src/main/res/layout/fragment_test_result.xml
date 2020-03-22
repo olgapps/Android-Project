@@ -3,72 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.android.navigation.TestResultFragment">
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
-    <androidx.core.widget.NestedScrollView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/testResultConstraint"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!-- TODO: Update blank fragment layout -->
-
-        <TextView
-            android:id="@+id/resultHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="@string/your_result"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgResult" />
-
-        <TextView
-            android:id="@+id/finalResultText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/result"
-            android:textSize="55sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.43"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/resultHeader" />
-
-        <TextView
-            android:id="@+id/percentage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="%"
-            android:textSize="55sp"
-            app:layout_constraintBottom_toBottomOf="@+id/finalResultText"
-            app:layout_constraintStart_toEndOf="@+id/finalResultText" />
-
-        <ImageView
-            android:id="@+id/imgResult"
-            android:layout_width="412dp"
-            android:layout_height="232dp"
-            android:src="@drawable/image_test_result"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnTryAgain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:text="@string/try_again"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/finalResultText" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+        <androidx.core.widget.NestedScrollView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/testResultConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/result_header"
+                    android:text="@string/your_result"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_result"
+                    style="@style/fragment_test_result_header" />
+                <TextView
+                    android:id="@+id/final_result_text"
+                    android:text="@string/result"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.43"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/result_header"
+                    style="@style/fragment_test_result_final" />
+                <TextView
+                    android:id="@+id/percentage"
+                    android:text="%"
+                    app:layout_constraintBottom_toBottomOf="@+id/final_result_text"
+                    app:layout_constraintStart_toEndOf="@+id/final_result_text"
+                    style="@style/fragment_test_result_percentage" />
+                <ImageView
+                    android:id="@+id/image_result"
+                    android:src="@drawable/image_test_result"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    style="@style/fragment_test_result_image" />
+                <Button
+                    android:id="@+id/button_try_again"
+                    android:text="@string/try_again"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/final_result_text"
+                    style="@style/fragment_test_result_try_again_button" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

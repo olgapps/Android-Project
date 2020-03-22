@@ -10,7 +10,7 @@ class TestContentViewModel : ViewModel(){
         val answers: List<String>
     )
 
-    val questions: MutableList<TestQuestion> = mutableListOf(
+    private val questions: MutableList<TestQuestion> = mutableListOf(
         TestQuestion(
             question = "What is the not a function of life cycle of android activity?",
             answers = listOf("onRecreate()", "onStart()", "onResume()", "onCreate()")
@@ -39,13 +39,12 @@ class TestContentViewModel : ViewModel(){
         )
     )
 
-    val initialFinalResultValue = 0.0
-    val initialNumberOfCorrectAnswers = 0
-    val initialQuestionNumber = 1
-    val fullPercentage = 100
-
-    val increaseOfIndexQuestion = 1
-    val increaseOfCorrectAnswer = 1
+    private val initialFinalResultValue = 0.0
+    private val initialNumberOfCorrectAnswers = 0
+    private val initialQuestionNumber = 1
+    private val fullPercentage = 100
+    private val increaseOfIndexQuestion = 1
+    private val increaseOfCorrectAnswer = 1
     var currentQuestion = MutableLiveData<TestQuestion>()
     var answers= MutableLiveData<MutableList<String>>()
     val numberOfQuestions = questions.size
@@ -59,7 +58,7 @@ class TestContentViewModel : ViewModel(){
         questions.shuffle()
         numberOfCorrectAnswers.value = initialNumberOfCorrectAnswers
         currentQuestion.value = questions[indexOfQuestion]
-        var currentQuestionValue = currentQuestion.value
+        val currentQuestionValue = currentQuestion.value
         questionNumber.value=initialQuestionNumber
         answers.value = currentQuestionValue?.answers?.toMutableList()
         answers.value?.shuffle()
@@ -73,13 +72,12 @@ class TestContentViewModel : ViewModel(){
         indexOfQuestion += increaseOfIndexQuestion
         questionNumber.value = (questionNumber.value)?.plus(initialQuestionNumber)
         currentQuestion.value = questions[indexOfQuestion]
-        var currentQuestionValue = currentQuestion.value
+        val currentQuestionValue = currentQuestion.value
         answers.value = currentQuestionValue?.answers?.toMutableList()
         answers.value?.shuffle()
     }
 
     fun setFinalResult(){
         finalResult.value=(numberOfCorrectAnswers.value?.toDouble()!!.times(fullPercentage)/numberOfQuestions.toDouble())
-
     }
 }
