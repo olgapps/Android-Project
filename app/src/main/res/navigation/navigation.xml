@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/titleFragment"
         android:name="olga.pietrzyk.androidteacher.TitleFragment"
-        android:label="TitleFragment" >
+        android:label="@string/welcome">
         <action
             android:id="@+id/action_titleFragment_to_mainViewFragment"
             app:destination="@id/mainViewFragment" />
@@ -16,34 +16,49 @@
     <fragment
         android:id="@+id/mainViewFragment"
         android:name="olga.pietrzyk.androidteacher.MainViewFragment"
-        android:label="fragment_main_view"
-        tools:layout="@layout/fragment_main_view" >
+        android:label="@string/main_page"
+        tools:layout="@layout/fragment_main_view">
         <action
             android:id="@+id/action_mainViewFragment_to_testFragment"
-            app:destination="@id/testFragment" />
+            app:destination="@id/testFragment"
+            app:popUpTo="@+id/mainViewFragment" />
         <action
             android:id="@+id/action_mainViewFragment_to_indexedCardsFragment"
             app:destination="@id/indexedCardsFragment" />
+        <action
+            android:id="@+id/action_mainViewFragment_to_mainFragment"
+            app:destination="@id/articleFragment"
+            app:popUpTo="@+id/mainViewFragment" />
+        <action
+            android:id="@+id/action_mainViewFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
+        <action
+            android:id="@+id/action_mainViewFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutAppFragment"
         android:name="olga.pietrzyk.androidteacher.AboutAppFragment"
-        android:label="fragment_about_app"
-        tools:layout="@layout/fragment_about_app" />
+        android:label="@string/about"
+        tools:layout="@layout/fragment_about_app">
+        <action
+            android:id="@+id/action_aboutAppFragment_to_mainViewFragment"
+            app:destination="@id/mainViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/testFragment"
-        android:name="olga.pietrzyk.androidteacher.TestFragment"
-        android:label="fragment_test"
-        tools:layout="@layout/fragment_test" >
+        android:name="olga.pietrzyk.androidteacher.androidTest.TestFragment"
+        android:label="@string/test"
+        tools:layout="@layout/fragment_test_welcome_page">
         <action
             android:id="@+id/action_testFragment_to_testContentFragment"
             app:destination="@id/testContentFragment" />
     </fragment>
     <fragment
         android:id="@+id/testContentFragment"
-        android:name="olga.pietrzyk.androidteacher.TestContentFragment"
-        android:label="fragment_test_content"
-        tools:layout="@layout/fragment_test_content" >
+        android:name="olga.pietrzyk.androidteacher.androidTest.TestContentFragment"
+        android:label="@string/test"
+        tools:layout="@layout/fragment_test_content">
         <action
             android:id="@+id/action_testContentFragment_to_testResultFragment"
             app:destination="@id/testResultFragment"
@@ -51,18 +66,56 @@
     </fragment>
     <fragment
         android:id="@+id/testResultFragment"
-        android:name="olga.pietrzyk.androidteacher.TestResultFragment"
-        android:label="TestResultFragment" >
+        android:name="olga.pietrzyk.androidteacher.androidTest.TestResultFragment"
+        android:label="@string/result">
         <action
             android:id="@+id/action_testResultFragment_to_testFragment"
-            app:destination="@id/testFragment" />
+            app:destination="@id/testFragment"
+            app:popUpTo="@+id/mainViewFragment" />
         <argument
             android:name="finalResult"
-            app:argType="float"
-            android:defaultValue="0.0" />
+            android:defaultValue="0.0"
+            app:argType="float" />
     </fragment>
     <fragment
         android:id="@+id/indexedCardsFragment"
         android:name="olga.pietrzyk.androidteacher.indexedCards.IndexedCardsFragment"
-        android:label="IndexedCardsFragment" />
+        android:label="@string/indexed_card" />
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="olga.pietrzyk.androidteacher.login.ArticleFragment"
+        android:label="@string/articles">
+        <action
+            android:id="@+id/action_mainFragment_to_articleDescriptionFragment"
+            app:destination="@id/articleDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDescriptionFragment"
+        android:name="olga.pietrzyk.androidteacher.login.ArticleDescriptionFragment"
+        android:label="@string/article">
+        <argument
+            android:name="articleTitle"
+            app:argType="string" />
+        <argument
+            android:name="articleContent"
+            app:argType="string" />
+        <argument
+            android:name="articleKey"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_articleDescriptionFragment_to_mainFragment"
+            app:destination="@id/articleFragment"
+            app:popUpTo="@+id/mainViewFragment" />
+        <argument
+            android:name="articleEmail"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="olga.pietrzyk.androidteacher.tasks.TaskFragment"
+        android:label="@string/task" />
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="olga.pietrzyk.androidteacher.camera.CameraFragment"
+        android:label="@string/camera_header" />
 </navigation>

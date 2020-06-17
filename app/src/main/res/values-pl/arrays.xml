@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="options">
+        <item>Kotroluj postępy</item>
+        <item>Zrób test</item>
+        <item>Kontroluj swoją wiedzę</item>
+        <item>Artykuły</item>
+        <item>Zrób zdjęcie</item>
+    </string-array>
+
+</resources>

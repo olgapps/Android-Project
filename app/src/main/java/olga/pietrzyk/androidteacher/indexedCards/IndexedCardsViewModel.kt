@@ -1,78 +1,72 @@
 package olga.pietrzyk.androidteacher.indexedCards
 
-import android.util.Log
-import android.view.View
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import olga.pietrzyk.androidteacher.TestContentFragment
+import olga.pietrzyk.androidteacher.R
 
-class IndexedCardsViewModel: ViewModel(){
-
+class IndexedCardsViewModel(val applicaton: Application) : AndroidViewModel(applicaton) {
     data class IndexedCards(
         var definition: String,
         var description: String
     )
-    var _cards: MutableList<IndexedCards> = mutableListOf(
+
+    private var _cards: MutableList<IndexedCards> = mutableListOf(
         IndexedCards(
-            definition = "Geotagging",
-            description = "Wherein in your phone finds your location via GPS and attaches coordinates to pictures you're taking. Can be a privacy/security concern."
+            definition = applicaton.getString(R.string.definition1),
+            description = applicaton.getString(R.string.description1)
         ),
         IndexedCards(
-            definition = "Kindle",
-            description = "Amazon's popular tablets and e Readers. Also an app for Android."
+            definition = applicaton.getString(R.string.definition2),
+            description = applicaton.getString(R.string.description2)
         ),
         IndexedCards(
-            definition = "Launcher",
-            description = "Collectively, the part of the Android user interface on home screens that lets you launch apps, make phone calls, etc. Is built in to Android, or can be purchased in the Android Market"
+            definition = applicaton.getString(R.string.definition3),
+            description = applicaton.getString(R.string.description3)
         )
-
     )
-
-
-    private var cardIndex=0
-    private var _meaning= MutableLiveData <Boolean>()
+    private var cardIndex = 0
+    private val indexCardChanger = 1
+    private val firstIndexCard = 0
+    private var _meaning = MutableLiveData<Boolean>()
     val meaning: LiveData<Boolean>
-        get()=_meaning
+        get() = _meaning
 
-    private val _current_card= MutableLiveData<IndexedCards>()
+    private val _current_card = MutableLiveData<IndexedCards>()
     val current_card: LiveData<IndexedCards>
-        get()=_current_card
+        get() = _current_card
 
-
-    init{
+    init {
         _cards.shuffle()
-        _current_card.value=_cards[cardIndex]
-        _meaning.value=false
+        _current_card.value = _cards[cardIndex]
+        _meaning.value = false
     }
 
-    fun changeTheCard(){
-        Log.i("AAA", "${cardIndex}")
-        cardIndex+=1
-        _current_card.value=_cards[cardIndex]
+    private fun changeTheCard() {
+        cardIndex += indexCardChanger
+        _current_card.value = _cards[cardIndex]
     }
 
-    fun showMeaning(){
-        _meaning.value=true
-
+    fun showMeaning() {
+        _meaning.value = true
     }
 
-    fun coverMeaning(){
-        _meaning.value=false
-
+    private fun coverMeaning() {
+        _meaning.value = false
     }
 
-    fun setWordsAgain(){
-        Log.i("AAAAAAA", "${cardIndex}")
-        if(cardIndex==2){
-            cardIndex=0
+    fun changeCard() {
+        changeTheCard()
+        setWordsAgain()
+        coverMeaning()
+    }
+
+    private fun setWordsAgain() {
+        if (cardIndex == (_cards.size - indexCardChanger)) {
+            cardIndex = firstIndexCard
             _cards.shuffle()
-            _current_card.value=_cards[cardIndex]
+            _current_card.value = _cards[cardIndex]
         }
-
-
     }
-
-
-
 }

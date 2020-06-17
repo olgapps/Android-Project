@@ -9,74 +9,44 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-
 import olga.pietrzyk.androidteacher.R
 import olga.pietrzyk.androidteacher.databinding.FragmentIndexedCardsBinding
 
-/**
- * A simple [Fragment] subclass.
- */
 class IndexedCardsFragment : Fragment() {
-
     private lateinit var viewModel: IndexedCardsViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val binding = DataBindingUtil.inflate<FragmentIndexedCardsBinding>(
+            inflater,
+            R.layout.fragment_indexed_cards,
+            container,
+            false
+        )
 
-        val binding = DataBindingUtil.inflate<FragmentIndexedCardsBinding>(inflater, R.layout.fragment_indexed_cards, container, false)
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = IndexedCardsViewModelFactory(application)
+        viewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(IndexedCardsViewModel::class.java)
 
-
-        viewModel = ViewModelProviders.of(this).get(IndexedCardsViewModel::class.java)
-
-        var meaningSetter: Boolean=false
-
-        viewModel.current_card.observe(this, Observer { newWord ->
-            binding.txtDefinition.text = newWord.definition
-            binding.txtDescription.text=newWord.description
-
+        viewModel.current_card.observe(viewLifecycleOwner, Observer { newWord ->
+            binding.definition.text = newWord.definition
+            binding.description.text = newWord.description
         })
+        binding.indexedCardsViewModel = viewModel
+        binding.lifecycleOwner = this
 
-
-
-
-        binding.btnNext.setOnClickListener {
-
-            viewModel.changeTheCard()
-            viewModel.setWordsAgain()
-            binding.txtDescription.visibility = View.GONE
-            binding.btnCheckMeaning.visibility=View.VISIBLE
-        }
-
-
-            if ( viewModel.meaning.value==false) {
-                binding.txtDescription.visibility = View.GONE
-                binding.btnCheckMeaning.visibility=View.VISIBLE
-        }
-
-        binding.btnCheckMeaning.setOnClickListener {
-            viewModel.showMeaning()
-            binding.txtDescription.visibility = View.VISIBLE
-            binding.btnCheckMeaning.visibility=View.GONE
-
-        }
-        if ( viewModel.meaning.value==true) {
-            binding.txtDescription.visibility = View.VISIBLE
-            binding.btnCheckMeaning.visibility=View.GONE
-        }
-
-        if (viewModel.meaning.value==false) {
-            binding.txtDescription.visibility = View.GONE
-            binding.btnCheckMeaning.visibility=View.VISIBLE}
-
-
+        viewModel.meaning.observe(viewLifecycleOwner, Observer { meaning ->
+            if (meaning == false) {
+                binding.description.visibility = View.GONE
+                binding.checkMeaningButton.visibility = View.VISIBLE
+            }
+            if (meaning == true) {
+                binding.description.visibility = View.VISIBLE
+                binding.checkMeaningButton.visibility = View.GONE
+            }
+        })
         return binding.root
-
     }
-
-
-
-
-
 }

@@ -1,11 +1,435 @@
 <resources>
 
     <!-- Base application theme. -->
+
+    <color name="dark_blue">#180065</color>
+    <color name="light_blue">#334ee9ff</color>
+    <color name="medium_green">#3d853e</color>
+    <color name="light_green">#3c2ae668</color>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="colorPrimaryDark">#000</item>
+        <item name="android:textColorHighlight">@color/light_blue</item>
+        <item name="colorAccent">@color/dark_blue</item>
+        <item name="colorControlNormal">@color/dark_blue</item>
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@color/medium_green</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <!-- dialog_fragment_task -->
+
+    <style name="dialog_task_content">
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="dialog_task_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="dialog_task_image">
+        <item name="android:layout_height">170dp</item>
+        <item name="android:contentDescription">@string/app_name</item>
+        <item name="android:scaleType">center</item>
+    </style>
+
+    <!-- dialog_fragment_update_article -->
+
+    <style name="dialog_fragment_update_article_header">
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="dialog_fragment_update_article_image">
+        <item name="android:layout_width">238dp</item>
+        <item name="android:layout_height">159dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="dialog_fragment_update_article_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPersonName</item>
+    </style>
+
+    <style name="dialog_fragment_update_article_content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPersonName</item>
+    </style>
+
+    <style name="fragment_about_app_image">
+        <item name="android:layout_width">412dp</item>
+        <item name="android:layout_height">275dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:contentDescription">TODO</item>
+    </style>
+
+    <style name="fragment_about_app_instruction_txt">
+        <item name="android:layout_width">318dp</item>
+        <item name="android:layout_height">29dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginBottom">32dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">normal</item>
+    </style>
+
+    <style name="fragment_article_description_image">
+        <item name="android:layout_width">421dp</item>
+        <item name="android:layout_height">214dp</item>
+    </style>
+
+    <style name="fragment_article_description_title">
+        <item name="android:layout_marginTop">276dp</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="fragment_article_description_content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingLeft">20dp</item>
+    </style>
+
+    <style name="fragment_article_description_delete_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginBottom">24dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="fragment_articles_auth_button">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="fragment_articles_welcome_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">60dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="fragment_articles_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPersonName</item>
+    </style>
+
+    <style name="fragment_articles_content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPersonName</item>
+    </style>
+
+    <style name="fragment_articles_submit_button">
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
+    <style name="fragment_articles_list">
+        <item name="android:layout_width">293dp</item>
+        <item name="android:layout_height">247dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+    </style>
+
+    <style name="fragment_camera_take_picture_button">
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+
+    <style name="fragment_camera_upload_picture_button">
+        <item name="android:layout_marginStart">28dp</item>
+    </style>
+
+    <style name="fragment_camera_image">
+        <item name="android:layout_marginTop">88dp</item>
+        <item name="android:layout_width">332dp</item>
+        <item name="android:layout_height">348dp</item>
+    </style>
+
+    <style name="fragment_main_view_image">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="fragment_main_view_welcome_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">normal</item>
+    </style>
+
+    <style name="fragment_main_view_list">
+        <item name="android:layout_width">224dp</item>
+        <item name="android:layout_height">279dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
+        <item name="android:entries">@array/options</item>
+    </style>
+
+    <style name="fragment_task_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">68dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPersonName</item>
+    </style>
+
+    <style name="fragment_task_decription">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPersonName</item>
+    </style>
+
+    <style name="fragment_task_start_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+    </style>
+
+    <style name="fragment_task_list">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+
+    <style name="fragment_test_contetnt_answer_button">
+        <item name="android:layout_marginTop">40dp</item>
+    </style>
+
+    <style name="fragment_test_result_header">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">50dp</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="fragment_test_result_final">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">55sp</item>
+    </style>
+
+    <style name="fragment_test_result_percentage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">55sp</item>
+    </style>
+
+    <style name="fragment_test_result_image">
+        <item name="android:layout_width">412dp</item>
+        <item name="android:layout_height">232dp</item>
+    </style>
+
+    <style name="fragment_test_result_try_again_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">45dp</item>
+    </style>
+
+    <style name="fragment_test_welcome_page_test">
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="fragment_test_welcome_page_test_text">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="fragmnet_test_welcome_image">
+        <item name="android:layout_width">429dp</item>
+        <item name="android:layout_height">290dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+    </style>
+
+    <style name="fragment_start_test_button">
+        <item name="android:layout_width">159dp</item>
+        <item name="android:layout_height">63dp</item>
+        <item name="android:layout_marginTop">50dp</item>
+        <item name="android:layout_marginBottom">32dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="fragment_title_image">
+        <item name="android:layout_width">475dp</item>
+        <item name="android:layout_height">324dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="fragment_title_button_start">
+        <item name="android:layout_width">179dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:layout_marginTop">100dp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="list_item_article_update">
+        <item name="android:layout_width">63dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <style name="list_item_article_title">
+        <item name="android:layout_width">221dp</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="list_item_task_status_unchecked">
+        <item name="android:layout_width">46dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="list_item_task_status_checked">
+        <item name="android:layout_width">46dp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="list_item_task_title">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="menu_navdrawer_header_image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="fragment_indexed_cards_image">
+        <item name="android:layout_width">412dp</item>
+        <item name="android:layout_height">232dp</item>
+    </style>
+
+    <style name="fragment_indexed_definition">
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="fragment_indexed_description">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingLeft">50dp</item>
+        <item name="android:paddingRight">50dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="fragment_indexed_check_button">
+        <item name="android:layout_marginTop">200dp</item>
+    </style>
+
+    <style name="fragment_indexed_next_button">
+        <item name="android:layout_marginTop">200dp</item>
+    </style>
+
+    <style name="fragment_articles_login_instruction">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="dialog_fragment_update_task_title">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="list_item_task_layout">
+        <item name="android:layout_width">130dp</item>
+        <item name="android:layout_height">90dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:paddingTop">3dp</item>
+    </style>
+
+    <style name="list_item_photo_view_name">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="fragment_task_header">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="fragment_camera_icon">
+        <item name="android:layout_width">68dp</item>
+        <item name="android:layout_height">69dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+
+    <style name="fragment_camera_gallery_icon">
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">69dp</item>
+        <item name="android:layout_marginEnd">68dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+
+    <style name="fragment_camera_firebase_picture">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">28dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="fragment_camera_user_photo_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

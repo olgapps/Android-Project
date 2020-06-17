@@ -1,66 +1,62 @@
-package olga.pietrzyk.androidteacher
+package olga.pietrzyk.androidteacher.androidTest
 
-
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import olga.pietrzyk.androidteacher.R
 import olga.pietrzyk.androidteacher.databinding.FragmentTestResultBinding
 
-/**
- * A simple [Fragment] subclass.
- */var result : String="I want to share with you my Android test result which is: "
-class TestResultFragment : Fragment() {
+var result: String = ""
 
+class TestResultFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val binding: FragmentTestResultBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_test_result, container, false)
+        val binding: FragmentTestResultBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_test_result, container, false
+        )
         val testResultFragmentArgs by navArgs<TestResultFragmentArgs>()
 
         binding.finalResultText.text = testResultFragmentArgs.finalResult.toString()
+        result =
+            testResultFragmentArgs.finalResult.toString() + resources.getString(R.string.percentage)
 
-        result+=testResultFragmentArgs.finalResult.toString()+"%"
-        binding.btnTryAgain.setOnClickListener { view:View ->
-            Navigation.findNavController(view).navigate(R.id.action_testResultFragment_to_testFragment)
+        binding.buttonTryAgain.setOnClickListener { view: View ->
+            Navigation.findNavController(view)
+                .navigate(R.id.action_testResultFragment_to_testFragment)
         }
-
         setHasOptionsMenu(true)
         return binding.root
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.result_menu, menu)
+        inflater.inflate(R.menu.result_menu, menu)
     }
-
 
     private fun getShareIntent(): Intent {
         val shareIntent = Intent(Intent.ACTION_SEND)
-
-        shareIntent.setType("text/plain")
-            .putExtra(Intent.EXTRA_TEXT,
-
-                result
-                )
+        shareIntent.setType(resources.getString(R.string.text_plain))
+            .putExtra(
+                Intent.EXTRA_TEXT,
+                resources.getString(R.string.share_result) +
+                        result
+            )
         return shareIntent
     }
 
-    private fun shareResult(){
+    private fun shareResult() {
         startActivity(getShareIntent())
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item!!.itemId){
+        when (item.itemId) {
             R.id.resultMenu -> shareResult()
         }
         return super.onOptionsItemSelected(item)

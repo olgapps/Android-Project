@@ -5,114 +5,115 @@
     tools:context="com.example.android.navigation.GameFragment">
 
     <data>
+
         <variable
             name="test"
-            type="olga.pietrzyk.androidteacher.TestContentViewModel" />
+            type="olga.pietrzyk.androidteacher.androidTest.TestContentViewModel" />
     </data>
-    <ScrollView
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/testContentLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-
-
-        <TextView
-            android:id="@+id/txtquestionNumberTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="72dp"
-            android:layout_marginEnd="32dp"
-            android:text="Question number"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/txtquestionNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/txtquestionNumberTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.12"
-            app:layout_constraintStart_toEndOf="@+id/txtquestionNumberTitle" />
-
-        <TextView
-            android:id="@+id/textView"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="148dp"
-            android:layout_marginEnd="32dp"
-            android:text="@{test.currentQuestion.question}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent">
 
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.23"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.110000014">
-
-            <RadioButton
-                android:id="@+id/btnAAnswer"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{test.answers[0]}" />
-
-            <RadioButton
-                android:id="@+id/btnBAnswer"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/testContentLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{test.answers[1]}" />
+                android:layout_height="match_parent">
 
-            <RadioButton
-                android:id="@+id/btnCAnswer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{test.answers[2]}" />
+                <ImageView
+                    android:id="@+id/image_test_content"
+                    android:layout_width="414dp"
+                    android:layout_height="223dp"
+                    android:src="@drawable/image_test_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <RadioButton
-                android:id="@+id/btnDAnswer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{test.answers[3]}" />
-        </RadioGroup>
+                <TextView
+                    android:id="@+id/question_number_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Question number"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="@+id/image_test_content"
+                    app:layout_constraintTop_toBottomOf="@+id/image_test_content" />
 
-        <Button
-            android:id="@+id/answerButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/answer"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-            app:layout_constraintVertical_bias="0.25" />
+                <TextView
+                    android:id="@+id/question_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="1"
+                    android:textSize="25sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/question_number_title"
+                    app:layout_constraintStart_toEndOf="@+id/question_number_title" />
 
+                <TextView
+                    android:id="@+id/question_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="16dp"
+                    android:paddingRight="50dp"
+                    android:text="@{test.currentQuestion.question}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/image_test_content"
+                    app:layout_constraintTop_toBottomOf="@+id/question_number_title" />
 
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/question_content"
+                    app:layout_constraintTop_toBottomOf="@+id/question_content"
+                    app:layout_constraintVertical_bias="0.110000014">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <RadioButton
+                        android:id="@+id/btnAAnswer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{test.answers[0]}" />
 
-</ScrollView>
+                    <RadioButton
+                        android:id="@+id/btnBAnswer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{test.answers[1]}" />
+
+                    <RadioButton
+                        android:id="@+id/btnCAnswer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{test.answers[2]}" />
+
+                    <RadioButton
+                        android:id="@+id/btnDAnswer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{test.answers[3]}" />
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/answerButton"
+                    style="@style/fragment_test_contetnt_answer_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/answer"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+                    app:layout_constraintVertical_bias="0.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
